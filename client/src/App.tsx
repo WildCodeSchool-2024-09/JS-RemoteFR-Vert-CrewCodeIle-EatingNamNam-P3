@@ -1,10 +1,10 @@
 import "./App.css";
-import DiscoveryHeader from "./components/discoveryHeader/DiscoveryHeader";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <DiscoveryHeader />
+      <Outlet />
     </>
   );
 }
