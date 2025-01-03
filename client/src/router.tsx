@@ -4,12 +4,11 @@ import DiscoveryPage from "./pages/DiscoveryPage";
 
 export const router = createBrowserRouter([
   {
+    path: "/",
+    element: <DiscoveryPage />,
+  },
+  {
     element: <App />,
-    children: [
-      {
-        path: "/",
-        element: <DiscoveryPage />,
-      },
-    ],
+    children: [{}],
   },
 ]);
