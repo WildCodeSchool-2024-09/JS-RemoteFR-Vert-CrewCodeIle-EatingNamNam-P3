@@ -1,11 +1,26 @@
 .header {
   background-image: url("images/fond-nourriture-ingredients.jpg");
-  background-position: 0%;
-  background-repeat: no-repeat;
+  background-position: 100%;
   background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2em;
+  justify-content: space-between;
+  padding-top: 0em;
+  gap: 4em;
   height: 20em;
+}
+
+.eatIcon {
+  margin-top: 0.2em;
+  height: 5em;
+  border-radius: 0.2em;
+}
+
+.buttonsGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  margin-bottom: 0.5em;
 }
