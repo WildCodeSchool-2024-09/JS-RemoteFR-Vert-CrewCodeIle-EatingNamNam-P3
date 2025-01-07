@@ -1,10 +1,23 @@
 {
   "recipe1": {
     "id": 1,
-    "picture": "../assets/images/temp_recipe_image.jpg",
     "title": "Salade Poulet & Pois chiches : Fraîcheur Protéinée",
-    "cookingTime": 40,
+    "cookingTime": 20,
     "prepTime": 25,
     "resume": "Boostez votre énergie avec cette salade équilibrée, riche en protéines et légumes croquants. Idéale pour les sportifs, elle combine poulet tendre, pois chiches nourrissants, et la fraîcheur du concombre, de l'avocat et des tomates. Simple, sain, et délicieux !"
+  },
+  "recipe2": {
+    "id": 2,
+    "title": "Saumon & Quinoa : Évasion Oméga-3",
+    "cookingTime": 30,
+    "prepTime": 20,
+    "resume": "Un repas sain et délicieux combinant saumon grillé riche en oméga-3, quinoa moelleux, et légumes colorés comme les carottes râpées, les radis et les edamames. Le tout est sublimé d'une sauce citron-gingembre pour une touche d'exotisme. Parfait pour un déjeuner équilibré !"
+  },
+  "recipe3": {
+    "id": 3,
+    "title": "Buddha Bowl Vegan : Harmonie Végétale",
+    "cookingTime": 25,
+    "prepTime": 20,
+    "resume": "Savourez une explosion de couleurs et de saveurs avec ce Buddha bowl vegan. Lentilles corail, patates douces rôties, avocat crémeux, et chou rouge croquant se mélangent dans un plat nourrissant et rassasiant. Une sauce tahini au citron vient parfaire cette expérience culinaire 100% végétale."
   }
 }

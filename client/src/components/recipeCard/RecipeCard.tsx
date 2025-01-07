@@ -26,6 +26,7 @@ export default function RecipeCard() {
       </div>
       <p className={style.resume}>{sampleRecipe.recipe1.resume}</p>
       <ul className={style.labelContainer}>
+        {/** Je créer des listes vides afin de simuler des icônes à venir avec le css*/}
         <li className={style.li} />
         <li className={style.li} />
         <li className={style.li} />
