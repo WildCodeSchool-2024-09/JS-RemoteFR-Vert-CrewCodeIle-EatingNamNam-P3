@@ -1,0 +1,10 @@
+{
+  "recipe1": {
+    "id": 1,
+    "picture": "../assets/images/temp_recipe_image.jpg",
+    "title": "Salade Poulet & Pois chiches : Fraîcheur Protéinée",
+    "cookingTime": 40,
+    "prepTime": 25,
+    "resume": "Boostez votre énergie avec cette salade équilibrée, riche en protéines et légumes croquants. Idéale pour les sportifs, elle combine poulet tendre, pois chiches nourrissants, et la fraîcheur du concombre, de l'avocat et des tomates. Simple, sain, et délicieux !"
+  }
+}
