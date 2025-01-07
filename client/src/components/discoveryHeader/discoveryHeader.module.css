@@ -1,26 +1,69 @@
-.header {
-  background-image: url("images/fond-nourriture-ingredients.jpg");
-  background-position: 100%;
+.bgimage {
+  background-image: url("images/healthy-vegetables-wooden-table.jpg");
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.header {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding-top: 0em;
   gap: 4em;
-  height: 20em;
+  height: 25em;
+  color: var(--color-light);
+  font-family: var(--text-font);
+
+  @media screen and (min-width: 990px) {
+    height: 40em;
+  }
+}
+
+.slogan {
+  filter: drop-shadow(1px 1px black);
+  font-size: 1.8em;
+
+  @media screen and (min-width: 990px) {
+    font-size: 5em;
+  }
 }
 
 .eatIcon {
-  margin-top: 0.2em;
-  height: 5em;
-  border-radius: 0.2em;
+  margin-top: 0.8em;
+  width: 6.5em;
+  border-radius: 1.5em;
+  backdrop-filter: blur(2px);
+
+  @media screen and (min-width: 990px) {
+    width: 9em;
+  }
 }
 
 .buttonsGroup {
   display: flex;
   flex-direction: column;
   gap: 0.3em;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
+
+  @media screen and (min-width: 990px) {
+    flex-direction: row;
+    gap: 2em;
+    margin-bottom: 3em;
+  }
+}
+
+.button {
+  background-color: var(--color-accent);
+  padding: 0.5em;
+  border-radius: 1em;
+  color: var(--color-light);
+  font-family: var(--text-font);
+
+  @media screen and (min-width: 990px) {
+    padding: 0.8em;
+    min-width: 10em;
+    border-radius: 2em;
+  }
 }

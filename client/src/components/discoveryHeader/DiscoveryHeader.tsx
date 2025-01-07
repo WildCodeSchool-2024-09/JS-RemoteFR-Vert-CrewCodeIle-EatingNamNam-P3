@@ -2,22 +2,26 @@ import style from "./DiscoveryHeader.module.css";
 
 const DiscoveryHeader = () => {
   return (
-    <div className={style.header}>
-      <img
-        className={style.eatIcon}
-        src="favicon/image.png"
-        alt="logo EatingNamNam"
-      />
-      <p>Cuisinez saingue, Vivez biengue</p>
-      <div className={style.buttonsGroup}>
-        <button className={style.button} type="button">
-          CONECTE TOI
-        </button>
-        <button className={style.button} type="button">
-          CREE TON COMPTE
-        </button>
+    <section className={style.bgimage}>
+      <div className={style.header}>
+        <img
+          className={style.eatIcon}
+          src="favicon/image.png"
+          alt="logo EatingNamNam"
+        />
+        <div className={style.slogan}>
+          <p>Cuisinez sain, Vivez bien</p>
+        </div>
+        <div className={style.buttonsGroup}>
+          <button className={style.button} type="button">
+            Connecte toi
+          </button>
+          <button className={style.button} type="button">
+            Crée ton compte
+          </button>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
