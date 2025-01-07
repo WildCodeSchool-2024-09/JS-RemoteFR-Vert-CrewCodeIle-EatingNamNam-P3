@@ -2,6 +2,7 @@ import HealthRatingDisplay from "../ratingDisplay/HealthRatingDisplay";
 import UserRatingDisplay from "../ratingDisplay/UserRatingDisplay";
 import style from "./recipeCard.module.css";
 
+/** J'importe un fichier json afin de simuler la base de données future */
 import sampleRecipe from "../../lib/sampleRecipe.json";
 
 export default function RecipeCard() {
