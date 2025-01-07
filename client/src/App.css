@@ -1,5 +1,24 @@
+:root {
+  --color-primary: #f7f5ec;
+  --color-secondary: #1e3c1a;
+  --color-tertiary: #a0c000;
+  --color-accent: #e86900;
+  --color-light: #ffffff;
+  --color-dark: #040403;
+  --color-hint: #717171;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  list-style: none;
+  background: none;
+  border: none;
+  max-width: 100%;
+  height: auto;
 }
