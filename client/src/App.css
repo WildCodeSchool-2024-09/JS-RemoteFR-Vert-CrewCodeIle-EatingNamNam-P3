@@ -6,17 +6,17 @@
   --color-light: #ffffff;
   --color-dark: #040403;
   --color-hint: #717171;
-  --title-font: "AleoRegular";
-  --text-font: "NowRegular";
+  --title-font: "francisaleo-regular";
+  --text-font: "francisnow-regular";
 }
 
 @font-face {
-  font-family: "AleoRegular";
+  font-family: "francisaleo-regular";
   src: url("fonts/Aleo-Regular.ttf");
 }
 
 @font-face {
-  font-family: "NowRegular";
+  font-family: "francisnow-regular";
   src: url("fonts/Now-Regular.otf");
 }
 
