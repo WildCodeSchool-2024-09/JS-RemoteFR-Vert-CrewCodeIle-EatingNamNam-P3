@@ -78,6 +78,7 @@
   border-radius: 1em;
   color: var(--color-light);
   font-family: var(--text-font);
+  cursor: pointer;
 
   @media (767px <= width <=991px) {
     padding: 0.8em;
