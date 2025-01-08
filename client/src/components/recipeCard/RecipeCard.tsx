@@ -44,7 +44,7 @@ export default function RecipeCard() {
       <ul className={style.labelContainer}>
         {/* /** On crée des listes vides afin de simuler des icônes à venir avec le css*/}
         {sampleRecipe.recipe1.diet_type.map((_, index) => (
-          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+          // biome-ignore lint/suspicious/noArrayIndexKey: <l'utilisation de l'index est temporaire afin de simuler une base de donnée>
           <li key={index} className={style.li} />
         ))}
       </ul>
