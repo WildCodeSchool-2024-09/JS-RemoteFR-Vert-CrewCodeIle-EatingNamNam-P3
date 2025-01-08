@@ -1,7 +1,3 @@
 export default function DiscoveryPage() {
-  return (
-    <div>
-      <p>Discoverypage</p>
-    </div>
-  );
+  return <p>Discovery Page</p>;
 }
