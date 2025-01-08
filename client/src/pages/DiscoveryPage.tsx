@@ -1,7 +1,9 @@
+import DiscoveryHeader from "../components/discoveryHeader/DiscoveryHeader";
+
 export default function DiscoveryPage() {
   return (
     <div>
-      <p>Discoverypage</p>
+      <DiscoveryHeader />
     </div>
   );
 }
