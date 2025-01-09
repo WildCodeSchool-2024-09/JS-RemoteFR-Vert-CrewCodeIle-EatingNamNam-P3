@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import style from "./signInPopUp.module.css";
 export default function SignInPopup() {
   return (
@@ -22,9 +23,9 @@ export default function SignInPopup() {
             </button>
             <p className={style.text}>
               Pas de compte ?
-              <a href="/" className={style.lien}>
+              <Link to="/registrerpopup" className={style.lien}>
                 Créer un compte
-              </a>
+              </Link>
             </p>
           </section>
         </form>
