@@ -16,7 +16,11 @@
   color: var(--color-light);
   font-family: var(--text-font);
 
-  @media screen and (min-width: 990px) {
+  @media (767px <= width <=991px) {
+    height: 35em;
+  }
+
+  @media (width > 990px) {
     height: 40em;
   }
 }
@@ -25,8 +29,12 @@
   filter: drop-shadow(1px 1px black);
   font-size: 1.8em;
 
-  @media screen and (min-width: 990px) {
-    font-size: 5em;
+  @media (767px <= width <=991px) {
+    font-size: 3em;
+  }
+
+  @media (width > 990px) {
+    font-size: 4em;
   }
 }
 
@@ -36,8 +44,12 @@
   border-radius: 1.5em;
   backdrop-filter: blur(2px);
 
-  @media screen and (min-width: 990px) {
+  @media (767px <= width <=991px) {
     width: 9em;
+  }
+
+  @media (width > 990px) {
+    width: 10em;
   }
 }
 
@@ -47,7 +59,13 @@
   gap: 0.3em;
   margin-bottom: 1em;
 
-  @media screen and (min-width: 990px) {
+  @media (767px <= width <=991px) {
+    flex-direction: row;
+    gap: 2em;
+    margin-bottom: 3em;
+  }
+
+  @media (width > 990px) {
     flex-direction: row;
     gap: 2em;
     margin-bottom: 3em;
@@ -60,10 +78,17 @@
   border-radius: 1em;
   color: var(--color-light);
   font-family: var(--text-font);
+  cursor: pointer;
 
-  @media screen and (min-width: 990px) {
+  @media (767px <= width <=991px) {
     padding: 0.8em;
-    min-width: 10em;
+    font-size: 1.2em;
+    border-radius: 2em;
+  }
+
+  @media (width > 990px) {
+    padding: 0.8em;
+    font-size: 1.2em;
     border-radius: 2em;
   }
 }
