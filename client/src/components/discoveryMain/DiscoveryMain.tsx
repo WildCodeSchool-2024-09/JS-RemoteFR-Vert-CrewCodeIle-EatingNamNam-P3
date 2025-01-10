@@ -1,8 +1,11 @@
 import RecipeCard from "../recipeCard/RecipeCard";
+import style from "./discoveryMain.module.css";
 
 export default function DiscoveryPage() {
   return (
-    <main>
+    <main className={style.main}>
+      <RecipeCard />
+      <RecipeCard />
       <RecipeCard />
     </main>
   );
