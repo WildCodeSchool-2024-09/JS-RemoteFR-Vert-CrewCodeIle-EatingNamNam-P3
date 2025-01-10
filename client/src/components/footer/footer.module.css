@@ -4,23 +4,17 @@
   flex-direction: column;
   align-items: center;
 
-  @media (767px <= width <=991px) {
-    height: 35em;
-
-    flex-direction: row;
-  }
-
   @media (width > 990px) {
     flex-direction: row;
+    justify-content: center;
+    justify-content: space-evenly;
   }
 }
 
 .logos {
-  @media (767px <= width <=991px) {
-    display: flex;
-    flex-direction: column;
-    padding-left: 1em;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media (width > 990px) {
     display: flex;
@@ -38,6 +32,14 @@
   display: flex;
   flex-direction: row;
   gap: 4em;
+
+  @media (767px <= width <=991px) {
+    gap: 2em;
+  }
+
+  @media (width > 990px) {
+    padding-bottom: 2em;
+  }
 }
 
 .icon {
@@ -46,9 +48,22 @@
 
 .footertext {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (767px <= width <=991px) {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  @media (width > 990px) {
+    padding-bottom: 2em;
+    flex-direction: row;
+  }
 }
 
 .contact {
+  max-width: 20em;
+  min-width: 20em;
   text-align: center;
   margin: 2em;
   font-family: var(--text-font);
@@ -57,6 +72,8 @@
 }
 
 .mention {
+  max-width: 20em;
+  min-width: 20em;
   text-align: center;
   margin: 2em;
   font-family: var(--text-font);
@@ -65,6 +82,8 @@
 }
 
 .adress {
+  max-width: 20em;
+  min-width: 20em;
   text-align: center;
   margin: 2em;
   font-family: var(--text-font);
