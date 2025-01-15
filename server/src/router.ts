@@ -14,5 +14,8 @@ router.get("/api/items/:id", itemActions.read);
 router.post("/api/items", itemActions.add);
 
 /* ************************************************************************* */
+import ingredientRouter from "./routes/ingredient.routes";
+
+router.use("/api/ingredients", ingredientRouter);
 
 export default router;
