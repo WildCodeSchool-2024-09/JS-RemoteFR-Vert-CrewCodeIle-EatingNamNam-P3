@@ -12,12 +12,12 @@
 
 @font-face {
   font-family: "AleoRegular";
-  src: url("fonts/Aleo-Regular.ttf");
+  src: url("fonts/aleo-regular.ttf");
 }
 
 @font-face {
   font-family: "NowRegular";
-  src: url("fonts/Now-Regular.otf");
+  src: url("fonts/now-regular.otf");
 }
 
 * {
