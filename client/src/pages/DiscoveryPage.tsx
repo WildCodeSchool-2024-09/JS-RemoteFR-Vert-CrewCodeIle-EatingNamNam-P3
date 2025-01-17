@@ -1,11 +1,11 @@
 import DiscoveryHeader from "../components/discoveryHeader/DiscoveryHeader";
-import RecipeForm from "../components/recipeForm/RecipeForm";
+import Footer from "../components/footer/Footer";
 
 export default function DiscoveryPage() {
   return (
     <div>
       <DiscoveryHeader />
-      <RecipeForm />
+      <Footer />
     </div>
   );
 }
