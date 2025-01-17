@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import style from "./recipeCard.module.css";
 import type { RecipeDataType } from "../../lib/definitions";
+import style from "./recipeCard.module.css";
 
 export default function RecipeCard({
   recipeDataProps,

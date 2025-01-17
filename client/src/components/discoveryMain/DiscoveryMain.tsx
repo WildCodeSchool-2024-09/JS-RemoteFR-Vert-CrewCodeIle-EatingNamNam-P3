@@ -1,7 +1,7 @@
+import { useEffect, useState } from "react";
 import type { RecipeDataType } from "../../lib/definitions";
 import RecipeCard from "../recipeCard/RecipeCard";
 import style from "./discoveryMain.module.css";
-import { useEffect, useState } from "react";
 
 export default function DiscoveryMain() {
   const [recipeData, setRecipeData] = useState<RecipeDataType[]>([]);
