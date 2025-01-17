@@ -1,4 +1,5 @@
 import DiscoveryHeader from "../components/discoveryHeader/DiscoveryHeader";
+import Footer from "../components/footer/Footer";
 import IngredientForm from "../components/ingredient/IngredientForm";
 
 export default function DiscoveryPage() {
@@ -6,6 +7,7 @@ export default function DiscoveryPage() {
     <div>
       <DiscoveryHeader />
       <IngredientForm />
+      <Footer />
     </div>
   );
 }
