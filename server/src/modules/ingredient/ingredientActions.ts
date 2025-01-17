@@ -32,7 +32,7 @@ const edit: RequestHandler = async (req, res, next) => {
   try {
     const ingredient = {
       id: Number(req.params.id),
-      label: req.body.title,
+      label: req.body.label,
       protein_amount: Number(req.body.protein_amount),
       carb_amount: Number(req.body.carb_amount),
       fat_amount: Number(req.body.fat_amount),

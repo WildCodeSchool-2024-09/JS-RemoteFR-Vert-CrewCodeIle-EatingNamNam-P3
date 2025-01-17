@@ -112,3 +112,35 @@ CREATE TABLE recipe_ingredient(
   ingredient_id INT UNSIGNED NOT NULL,
   FOREIGN KEY(ingredient_id) REFERENCES ingredient(id)
 );
+
+INSERT INTO role (id, label)
+VALUES(1, "admin");
+
+INSERT INTO user(
+    id, 
+  username, 
+  email, 
+  password_hash, 
+  avatar,
+  birth_date,
+  localisation,
+  profession,
+  firstname,
+  lastname,
+  role_id)
+VALUES (1,
+ "harryrouter", 
+ "harryrouter@eatingnamnam.fr", 
+ "harryrouter", 
+ "photo", 
+ '1993-08-20',
+ "preaulard",
+ "sorcier", 
+ "harry",
+ "router",
+ 1);
+
+INSERT INTO unit_type (id,label)
+VALUES(1,"pce");
+
+  
