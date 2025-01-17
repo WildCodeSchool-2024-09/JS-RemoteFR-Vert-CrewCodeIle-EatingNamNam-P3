@@ -1,15 +1,14 @@
-import HealthRatingDisplay from "../ratingDisplay/HealthRatingDisplay";
-import UserRatingDisplay from "../ratingDisplay/UserRatingDisplay";
-
 import { Link } from "react-router-dom";
-
 import style from "./recipeCard.module.css";
+import type { RecipeDataType } from "../../lib/definitions";
 
-export default function RecipeCard() {
+export default function RecipeCard({
+  recipeDataProps,
+}: { recipeDataProps: RecipeDataType }) {
   return (
     <article className={style.cardContainer}>
       <figure className={style.recipePicture} />
-      <h3 className={style.recipeTitle}>Titre de la recette</h3>
+      <h3 className={style.recipeTitle}>{recipeDataProps.title}</h3>
       <p className={style.author}>
         By{" "}
         <Link
@@ -17,23 +16,14 @@ export default function RecipeCard() {
           className={style.authorLink}
           rel="créateur de la recette"
         >
-          Créateur
+          {recipeDataProps.user_id}
         </Link>
       </p>
-      <UserRatingDisplay />
-      <HealthRatingDisplay />
       <ul>
-        <li className={style.prepTime}>33 mins</li>
-        <li className={style.cookTime}>33 mins</li>
+        <li className={style.prepTime}>{recipeDataProps.prep_time}</li>
+        <li className={style.cookTime}>{recipeDataProps.cook_time}</li>
       </ul>
-      <p className={style.resume}>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet possimus
-        corrupti eaque? Maiores cupiditate vitae excepturi ratione consequuntur
-        modi deleniti officiis maxime similique, incidunt pariatur! Sint cumque,
-        deleniti tempora, vero distinctio repellendus vel repellat aperiam
-        libero dolor, accusamus sapiente sunt magnam! Facere accusantium quod
-        voluptatem distinctio odit rem alias neque.
-      </p>
+      <p className={style.resume}>{recipeDataProps.summary}</p>
       <ul className={style.dietTypeList}>
         <li className={style.dietTypeIcon} />
       </ul>
