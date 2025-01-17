@@ -37,6 +37,7 @@ const edit: RequestHandler = async (req, res, next) => {
       prep_time: Number.parseInt(req.body.prep_time),
       cook_time: Number.parseInt(req.body.cook_time),
       serving: Number.parseInt(req.body.serving),
+      user_id: Number.parseInt(req.body.user_id),
     };
 
     const affectedRows = await recipeRepository.update(recipe);
@@ -60,6 +61,7 @@ const add: RequestHandler = async (req, res, next) => {
       prep_time: Number.parseInt(req.body.prep_time),
       cook_time: Number.parseInt(req.body.cook_time),
       serving: Number.parseInt(req.body.serving),
+      user_id: Number.parseInt(req.body.user_id),
     };
 
     const insertId = await recipeRepository.create(newRecipe);

@@ -2,8 +2,8 @@ import express from "express";
 
 const router = express.Router();
 
-import recipeActions from "./modules/recipe/recipeActions";
+import recipeRouter from "./routes/recipe.routes";
 
-router.get("/api/recipe", recipeActions.browse);
+router.use("/api/recipes", recipeRouter);
 
 export default router;

@@ -3,6 +3,9 @@ CREATE TABLE role (
   label VARCHAR(50) NOT NULL UNIQUE
 );
 
+INSERT INTO role(id, label)
+VALUES (1, 'Admin');
+
 CREATE TABLE user (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   username VARCHAR(50) NOT NULL UNIQUE,
@@ -17,6 +20,21 @@ CREATE TABLE user (
   lastname VARCHAR(255) NOT NULL,
   role_id INT UNSIGNED NOT NULL,
   FOREIGN KEY(role_id) REFERENCES role(id)
+);
+
+INSERT INTO user (id, username, email, password_hash, avatar, birth_date, localisation, profession, firstname, lastname, role_id)
+VALUES (
+  1,
+  'Master_Nam',
+  'email@exemple.com',
+  'cecinestpasunmotdepasse',
+  'avatar',
+  '1990-01-01',
+  'Namistan',
+  'Namer',
+  'Namus',
+  'Namoux',
+  1
 );
 
 CREATE TABLE recipe(

@@ -3,7 +3,7 @@ import databaseClient from "../../../database/client";
 
 import type { Result, Rows } from "../../../database/client";
 
-import type { RecipeType } from "../../lib/definitions";
+import type { RecipeDataType } from "../../lib/definitions";
 
 class RecipeRepository {
   async readAll() {
@@ -11,7 +11,7 @@ class RecipeRepository {
       `SELECT *
         FROM recipe`,
     );
-    return rows as RecipeType[];
+    return rows as RecipeDataType[];
   }
 
   async read(id: number) {
@@ -22,13 +22,13 @@ class RecipeRepository {
       [id],
     );
 
-    return rows[0] as RecipeType;
+    return rows[0] as RecipeDataType;
   }
 
-  async update(recipe: RecipeType) {
+  async update(recipe: RecipeDataType) {
     const [result] = await databaseClient.query<Result>(
       `UPDATE recipe
-        SET title = ?, picture = ?, summary = ?, prep_time = ?, cook_time = ?, serving = ?
+        SET title = ?, picture = ?, summary = ?, prep_time = ?, cook_time = ?, serving = ?, user_id = ?
         WHERE id = ?`,
       [
         recipe.title,
@@ -38,20 +38,17 @@ class RecipeRepository {
         recipe.cook_time,
         recipe.serving,
         recipe.id,
+        recipe.user_id,
       ],
     );
     return result.affectedRows;
   }
 
-  async create(recipe: Omit<RecipeType, "id">) {
+  async create(recipe: Omit<RecipeDataType, "id">) {
     const [result] = await databaseClient.query<Result>(
       `INSERT INTO recipe
-        (title) values (?),
-        (picture) values (?)
-        (summary) values (?)
-        (prep_time) values (?)
-        (cook_time) values (?)
-        (serving) values (?)`,
+    (title, picture, summary, prep_time, cook_time, serving, user_id)
+  VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [
         recipe.title,
         recipe.picture,
@@ -59,6 +56,7 @@ class RecipeRepository {
         recipe.prep_time,
         recipe.cook_time,
         recipe.serving,
+        recipe.user_id,
       ],
     );
     return result.insertId;
