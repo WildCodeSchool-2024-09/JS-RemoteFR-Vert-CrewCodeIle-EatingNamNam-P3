@@ -1,4 +1,4 @@
-import AddRole from "../components/addRole/AddRole";
+import AddRole from "../components/adminRoleForm/AdminRoleForm";
 
 const AdminPage = () => {
   return (

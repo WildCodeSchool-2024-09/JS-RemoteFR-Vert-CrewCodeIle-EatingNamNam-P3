@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 
-const AddRole = () => {
+const AdminRoleForm = () => {
   type RoleType = {
     label: string;
   };
@@ -44,4 +44,4 @@ const AddRole = () => {
   );
 };
 
-export default AddRole;
+export default AdminRoleForm;
