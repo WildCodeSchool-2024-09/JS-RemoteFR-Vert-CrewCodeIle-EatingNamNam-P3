@@ -5,7 +5,7 @@ import type { UserType } from "../../lib/definitions";
 import style from "./registrerPopup.module.css";
 
 export default function RegistrerPopup() {
-  const { register, handleSubmit } = useForm<UserType>();
+  const { register, handleSubmit, watch } = useForm<UserType>();
 
   const sendData: SubmitHandler<UserType> = (data) => {
     axios.post(`${import.meta.env.VITE_API_URL}/api/users`, data);
@@ -86,7 +86,7 @@ export default function RegistrerPopup() {
           />
         </div>
         <div className={style.champ}>
-          <label htmlFor="password">Mot de passe</label>
+          <label htmlFor="password_hash">Mot de passe</label>
           <input
             type="password"
             {...register("password_hash", {
@@ -98,13 +98,18 @@ export default function RegistrerPopup() {
           />
         </div>
         <div className={style.champ}>
-          <label htmlFor="password">Confirmer le mot de passe</label>
+          <label htmlFor="confirmPassword">Confirmer le mot de passe</label>
           <input
             type="password"
-            {...register("password_hash", {
+            {...register("confirmPassword", {
               required: true,
               minLength: 12,
               maxLength: 20,
+              validate: (value: string) => {
+                if (watch("password_hash") !== value) {
+                  return "Mot de passe différent";
+                }
+              },
             })}
             className={style.bloc}
           />

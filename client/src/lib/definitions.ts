@@ -3,6 +3,7 @@ export type UserType = {
   username: string;
   email: string;
   password_hash: string;
+  confirmPassword: string;
   avatar: string;
   birth_date: Date;
   localisation: string;
