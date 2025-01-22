@@ -1,106 +1,83 @@
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import type { SubmitHandler } from "react-hook-form";
 import type { AddIngredientData } from "../../lib/definitions";
 import style from "./ingredient.module.css";
 
 export default function IngredientForm() {
-  const newIngredient = {
-    label: "",
-    protein_amount: Number(""),
-    carb_amount: Number(""),
-    fat_amount: Number(""),
-    calorie_amount: Number(""),
-    user_id: Number("1"),
-    unit_type_id: Number("1"),
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<AddIngredientData>();
 
-  const handleSubmit = (IngredientData: AddIngredientData) => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/ingredients`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(IngredientData),
-    }).then((res) => res.json());
+  const formSubmit: SubmitHandler<AddIngredientData> = (data) => {
+    axios.post(`${import.meta.env.VITE_API_URL}/api/ingredients`, data);
   };
 
   return (
     <section className={style.formingredient}>
-      <form
-        className={style.form}
-        onSubmit={(event) => {
-          event.preventDefault();
-
-          const formData = new FormData(event.currentTarget);
-
-          const label = formData.get("label") as string;
-          const protein_amount = Number(formData.get("protein_amount"));
-          const carb_amount = Number(formData.get("carb_amount"));
-          const fat_amount = Number(formData.get("fat_amount"));
-          const calorie_amount = Number(formData.get("calorie_amount"));
-          const user_id = 1;
-          const unit_type_id = 1;
-
-          handleSubmit({
-            label,
-            protein_amount,
-            carb_amount,
-            fat_amount,
-            calorie_amount,
-            user_id,
-            unit_type_id,
-          });
-        }}
-      >
+      <form className={style.form} onSubmit={handleSubmit(formSubmit)}>
         <h2 className={style.title}>Ajouter un Ingrédient</h2>
         <label htmlFor="label" className={style.champ}>
-          Nom de l'ingrédients
+          Nom de l'ingrédient
           <input
             type="text"
-            name="label"
-            defaultValue={newIngredient.label}
             className={style.bloc}
+            {...register("label", { required: true })}
           />
+          {errors.label && (
+            <span className={style.error}>Champ obligatoire</span>
+          )}
         </label>
-
         <label htmlFor="protein_amount" className={style.champ}>
-          Protein pour 100g
+          Proteine
           <input
             type="number"
-            name="protein_amount"
-            defaultValue={newIngredient.protein_amount}
+            step="0.1"
             className={style.bloc}
+            {...register("protein_amount", { required: true, minLength: 0 })}
           />
+          {errors.protein_amount && (
+            <span className={style.error}>Champ obligatoire</span>
+          )}
         </label>
-
         <label htmlFor="carb_amount" className={style.champ}>
-          Glucide pour 100g
+          Glucide
           <input
+            step="0.1"
             type="number"
-            name="carb_amount"
-            defaultValue={newIngredient.carb_amount}
             className={style.bloc}
+            {...register("carb_amount", { required: true, min: 2 })}
           />
+          {errors.carb_amount && errors.carb_amount.type === "required" && (
+            <span className={style.error}>Champ obligatoire</span>
+          )}
         </label>
-
         <label htmlFor="fat_amount" className={style.champ}>
-          Lipide pour 100g
+          Lipide
           <input
             type="number"
-            name="fat_amount"
-            defaultValue={newIngredient.fat_amount}
+            step="0.1"
             className={style.bloc}
+            {...register("fat_amount", { required: true, min: 0 })}
           />
+          {errors.fat_amount && (
+            <span className={style.error}>Champ obligatoire</span>
+          )}
         </label>
-
         <label htmlFor="calorie_amount" className={style.champ}>
-          Calorie pour 100g
+          Calorie
           <input
             type="number"
-            name="calorie_amount"
-            defaultValue={newIngredient.calorie_amount}
+            step="0.1"
             className={style.bloc}
+            {...register("calorie_amount", { required: true, min: 0 })}
           />
+          {errors.calorie_amount && (
+            <span className={style.error}>Champ obligatoire</span>
+          )}
         </label>
-
         <button type="submit" className={style.btn}>
           Ajouter
         </button>
