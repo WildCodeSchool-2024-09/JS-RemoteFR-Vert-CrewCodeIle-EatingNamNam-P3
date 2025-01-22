@@ -42,14 +42,18 @@
 
 .prepTime {
   display: flex;
-  justify-content: center;
-  padding: 0.5em;
+  justify-content: right;
+  font-family: var(--text-font);
+  font-size: small;
+  padding: 0.5em 2em 0.5em 0.5em;
 }
 
 .cookTime {
   display: flex;
-  justify-content: center;
-  padding: 0.5em;
+  justify-content: right;
+  font-family: var(--text-font);
+  font-size: small;
+  padding: 0.5em 2em 0.5em 0.5em;
 }
 
 .resume {

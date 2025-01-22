@@ -20,13 +20,14 @@ export default function RecipeCard({
         </Link>
       </p>
       <ul>
-        <li className={style.prepTime}>{recipeDataProps.prep_time}</li>
-        <li className={style.cookTime}>{recipeDataProps.cook_time}</li>
+        <li className={style.prepTime}>
+          Temps de préparation : {recipeDataProps.prep_time} min
+        </li>
+        <li className={style.cookTime}>
+          Temps de cuisson : {recipeDataProps.cook_time} min
+        </li>
       </ul>
       <p className={style.resume}>{recipeDataProps.summary}</p>
-      <ul className={style.dietTypeList}>
-        <li className={style.dietTypeIcon} />
-      </ul>
     </article>
   );
 }

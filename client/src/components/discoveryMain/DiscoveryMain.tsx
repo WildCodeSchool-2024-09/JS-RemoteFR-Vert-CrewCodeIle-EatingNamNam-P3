@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import type { RecipeDataType } from "../../lib/definitions";
 import RecipeCard from "../recipeCard/RecipeCard";
@@ -7,9 +8,18 @@ export default function DiscoveryMain() {
   const [recipeData, setRecipeData] = useState<RecipeDataType[]>([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/recipes/`)
-      .then((res) => res.json())
-      .then((data) => setRecipeData(data));
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/recipes/top3`,
+        );
+        setRecipeData(response.data);
+      } catch (error) {
+        console.error("Error fetching recipes: ", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
