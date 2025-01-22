@@ -2,18 +2,9 @@ import express from "express";
 
 const router = express.Router();
 
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
+import recipeRouter from "./routes/recipe.routes";
 
-// Define item-related routes
-import itemActions from "./modules/item/itemActions";
-
-router.get("/api/items", itemActions.browse);
-router.get("/api/items/:id", itemActions.read);
-router.post("/api/items", itemActions.add);
-
-/* ************************************************************************* */
+router.use("/api/recipes", recipeRouter);
 import ingredientRouter from "./routes/ingredient.routes";
 
 router.use("/api/ingredients", ingredientRouter);

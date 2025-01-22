@@ -18,3 +18,13 @@ export type AddIngredientData = {
   user_id: number;
   unit_type_id: number;
 };
+export type RecipeDataType = {
+  id: number;
+  title: string;
+  picture: string;
+  summary: string;
+  prep_time: number;
+  cook_time: number;
+  serving: number;
+  user_id: number;
+};
