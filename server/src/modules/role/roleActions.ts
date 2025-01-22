@@ -4,14 +4,11 @@ import roleRepository from "./roleRepository";
 
 const addRole: RequestHandler = async (req, res, next) => {
   try {
-    const newRole = {
-      label: req.body.label,
-    };
+    const { label } = req.body;
 
-    const newRoleId = await roleRepository.create(newRole);
+    const newRoleId = await roleRepository.create(label);
 
     res.sendStatus(201).json({
-      message: "role créé",
       id: newRoleId,
     });
   } catch (error) {
