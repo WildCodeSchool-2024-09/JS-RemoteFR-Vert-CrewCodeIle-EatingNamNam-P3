@@ -75,7 +75,6 @@ export default function RecipeForm() {
         <input
           type="prep_time"
           className={style.input}
-          placeholder=""
           {...register("prep_time", { required: true })}
         />
         {errors.prep_time && <span>Champ obligatoire</span>}
@@ -85,7 +84,6 @@ export default function RecipeForm() {
         <input
           type="cook_time"
           className={style.input}
-          placeholder=""
           {...register("cook_time", { required: true })}
         />
         {errors.cook_time && <span>Champ obligatoire</span>}
@@ -95,7 +93,6 @@ export default function RecipeForm() {
         <input
           type="serving"
           className={style.input}
-          placeholder=""
           {...register("serving", { required: true })}
         />
         {errors.serving && <span>Champ obligatoire</span>}
