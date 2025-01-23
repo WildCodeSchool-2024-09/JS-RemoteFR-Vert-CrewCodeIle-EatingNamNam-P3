@@ -1,8 +1,8 @@
-import databaseClient from "../../database/client";
+import databaseClient from "../../../database/client";
 
-import type { Result } from "../../database/client";
+import type { Result } from "../../../database/client";
 
-import type { UserType } from "../lib/definitions";
+import type { UserType } from "../../lib/definitions";
 
 class userRepository {
   async create(user: Omit<UserType, "id">) {
@@ -19,13 +19,12 @@ class userRepository {
     lastname,
     role_id)
     VALUES
-    (?,?,?,?,?,?,?,?,?,'2')
+    (?,?,?,'/',?,?,?,?,?,'2')
     `,
       [
         user.username,
         user.email,
         user.password_hash,
-        user.avatar,
         user.birth_date,
         user.localisation,
         user.profession,

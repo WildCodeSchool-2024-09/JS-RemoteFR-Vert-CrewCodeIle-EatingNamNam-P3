@@ -9,11 +9,11 @@ const add: RequestHandler = async (req, res, next) => {
     const insertId: number = await userRepository.create(newUser);
 
     res.status(201).json({
-      message: "Nouvelle User Youpi",
+      message: `Bonjour ${req.body.username}`,
       id: insertId,
     });
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 };
 
