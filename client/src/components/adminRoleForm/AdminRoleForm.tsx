@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
 
 const AdminRoleForm = () => {
   type RoleType = {
@@ -13,11 +14,37 @@ const AdminRoleForm = () => {
   } = useForm<RoleType>();
 
   const handleRoleSubmit = (newRole: RoleType) => {
-    axios.post(`${import.meta.env.VITE_API_URL}/api/roles`, newRole);
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/api/roles`, newRole)
+      .then(() =>
+        toast.success("Role créé", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        }),
+      )
+      .catch(() =>
+        toast.error("Erreur", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        }),
+      );
   };
 
   return (
     <div>
+      <ToastContainer />
       <form onSubmit={handleSubmit(handleRoleSubmit)}>
         <label htmlFor="label">
           Nom du Rôle
