@@ -1,0 +1,33 @@
+import { Link } from "react-router-dom";
+import type { RecipeDataType } from "../../lib/definitions";
+import style from "./recipeCard.module.css";
+
+export default function RecipeCard({
+  recipeDataProps,
+}: { recipeDataProps: RecipeDataType }) {
+  return (
+    <article className={style.cardContainer}>
+      <figure className={style.recipePicture} />
+      <h3 className={style.recipeTitle}>{recipeDataProps.title}</h3>
+      <p className={style.author}>
+        By{" "}
+        <Link
+          to={"/"}
+          className={style.authorLink}
+          rel="créateur de la recette"
+        >
+          {recipeDataProps.user_id}
+        </Link>
+      </p>
+      <ul>
+        <li className={style.prepTime}>
+          Temps de préparation : {recipeDataProps.prep_time} min
+        </li>
+        <li className={style.cookTime}>
+          Temps de cuisson : {recipeDataProps.cook_time} min
+        </li>
+      </ul>
+      <p className={style.resume}>{recipeDataProps.summary}</p>
+    </article>
+  );
+}
