@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import DiscoveryPage from "./pages/DiscoveryPage";
+import DiscoveryPage from "./pages/discoveryPage/DiscoveryPage";
+import RecipeNewPage from "./pages/recipePages/RecipeNewPage";
 
 export const router = createBrowserRouter([
   {
@@ -9,6 +10,11 @@ export const router = createBrowserRouter([
   },
   {
     element: <App />,
-    children: [{}],
+    children: [
+      {
+        path: "/creer-recette",
+        element: <RecipeNewPage />,
+      },
+    ],
   },
 ]);
