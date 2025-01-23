@@ -12,6 +12,7 @@ class RecipeRepository {
         ORDER BY created_at DESC
         LIMIT 3`,
     );
+
     return rows as RecipeDataType[];
   }
 
@@ -30,6 +31,7 @@ class RecipeRepository {
         recipe.user_id,
       ],
     );
+
     return result.insertId;
   }
 }

@@ -2,7 +2,7 @@ import type { RequestHandler } from "express";
 
 import recipeRepository from "./recipeRepository";
 
-const browse: RequestHandler = async (req, res, next) => {
+const browseMostRecent: RequestHandler = async (req, res, next) => {
   try {
     const recipes = await recipeRepository.readMostRecent();
 
@@ -32,4 +32,4 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { add, browse };
+export default { add, browseMostRecent };
