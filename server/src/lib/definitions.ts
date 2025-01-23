@@ -10,6 +10,12 @@ export type UserType = {
   firstname: string;
   lastname: string;
 };
+
+export type RoleType = {
+  id: number;
+  label: string;
+};
+
 export type RecipeDataType = {
   id: number;
   title: string;
