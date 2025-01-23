@@ -1,3 +1,8 @@
+export type RoleType = {
+  id: number;
+  label: string;
+};
+
 export type RecipeDataType = {
   id: number;
   title: string;
