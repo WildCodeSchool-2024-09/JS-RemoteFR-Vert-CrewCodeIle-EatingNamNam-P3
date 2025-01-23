@@ -12,4 +12,24 @@ const browse: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse };
+const add: RequestHandler = async (req, res, next) => {
+  try {
+    const newRecipe = {
+      title: req.body.title,
+      picture: req.body.picture,
+      summary: req.body.summary,
+      prep_time: Number.parseInt(req.body.prep_time),
+      cook_time: Number.parseInt(req.body.cook_time),
+      serving: Number.parseInt(req.body.serving),
+      user_id: Number.parseInt(req.body.user_id),
+    };
+
+    const insertId = await recipeRepository.create(newRecipe);
+
+    res.status(201).json({ insertId });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { add, browse };
