@@ -8,6 +8,7 @@ const addRole: RequestHandler = async (req, res, next) => {
 
     res.sendStatus(201).json({
       id: insertId,
+      message: "Nouveau rôle créé",
     });
   } catch (error) {
     next(error);
