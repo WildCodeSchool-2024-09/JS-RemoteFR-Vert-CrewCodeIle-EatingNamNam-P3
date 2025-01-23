@@ -10,7 +10,10 @@ const add: RequestHandler = async (req, res, next) => {
 
     const insertId = await categoryRepository.create(newCategory);
 
-    res.status(201).json({ insertId });
+    res.status(201).json({
+      message: "Nouvelle catégorie",
+      id: insertId,
+    });
   } catch (err) {
     next(err);
   }
