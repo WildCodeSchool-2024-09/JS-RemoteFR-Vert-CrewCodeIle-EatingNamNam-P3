@@ -10,7 +10,10 @@ const add: RequestHandler = async (req, res, next) => {
 
     const insertId = await dietTypeRepository.create(newDietType);
 
-    res.status(201).json({ insertId });
+    res.status(201).json({
+      message: `Nouveau type "${req.body.label}" créé avec succès`,
+      id: insertId,
+    });
   } catch (err) {
     next(err);
   }
