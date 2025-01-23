@@ -8,3 +8,8 @@ export type RecipeDataType = {
   serving: number;
   user_id: number;
 };
+
+export type DietTypeType = {
+  id: number;
+  label: string;
+};
