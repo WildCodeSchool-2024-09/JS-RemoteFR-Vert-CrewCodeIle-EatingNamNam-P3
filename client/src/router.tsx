@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
+import AdminRoleForm from "./components/adminRoleForm/AdminRoleForm";
+import CategoryForm from "./components/categoryForm/CategoryForm";
 import AdminPage from "./pages/adminPage/AdminPage";
 import DiscoveryPage from "./pages/discoveryPage/DiscoveryPage";
 import RecipeNewPage from "./pages/recipePages/RecipeNewPage";
@@ -21,5 +23,15 @@ export const router = createBrowserRouter([
   {
     path: "/admin",
     element: <AdminPage />,
+    children: [
+      {
+        path: "/creer-role",
+        element: <AdminRoleForm />,
+      },
+      {
+        path: "/creer-categorie",
+        element: <CategoryForm />,
+      },
+    ],
   },
 ]);

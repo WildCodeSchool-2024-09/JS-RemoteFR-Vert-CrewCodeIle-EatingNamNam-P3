@@ -20,7 +20,7 @@ const AdminRoleForm = () => {
         newRole,
       );
       toast.success(response.data.message);
-    } catch {
+    } catch (e) {
       toast.error("Réessayer plus tard");
     }
   };
