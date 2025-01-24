@@ -25,11 +25,11 @@ export const router = createBrowserRouter([
     element: <AdminPage />,
     children: [
       {
-        path: "/creer-role",
+        path: "/admin/creer-role",
         element: <AdminRoleForm />,
       },
       {
-        path: "/creer-categorie",
+        path: "/admin/creer-categorie",
         element: <CategoryForm />,
       },
     ],
