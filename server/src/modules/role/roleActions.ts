@@ -6,7 +6,7 @@ const addRole: RequestHandler = async (req, res, next) => {
   try {
     const insertId = await roleRepository.create(req.body);
 
-    res.status(201).json({
+    res.sendStatus(201).json({
       id: insertId,
       message: "Nouveau rôle créé",
     });
