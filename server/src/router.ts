@@ -14,4 +14,12 @@ import recipeRouter from "./routes/recipe.routes";
 
 router.use("/api/recipes", recipeRouter);
 
+import dietTypeRouter from "./routes/dietType.routes";
+
+router.use("/api/dietTypes", dietTypeRouter);
+
+import categoryRouter from "./routes/category.routes";
+
+router.use("/api/category", categoryRouter);
+
 export default router;
