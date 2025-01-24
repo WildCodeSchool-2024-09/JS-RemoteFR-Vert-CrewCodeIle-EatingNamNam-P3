@@ -18,6 +18,12 @@ export type AddIngredientData = {
   user_id: number;
   unit_type_id: number;
 };
+
+export type DietTypeType = {
+  id: number;
+  label: string;
+};
+
 export type RecipeDataType = {
   id: number;
   title: string;
@@ -27,4 +33,8 @@ export type RecipeDataType = {
   cook_time: number;
   serving: number;
   user_id: number;
+};
+
+export type CategoryType = {
+  label: string;
 };
