@@ -1,4 +1,9 @@
-export type RoleType = {
+export type CategoryType = {
+  id: number;
+  label: string;
+};
+
+export type DietTypeType = {
   id: number;
   label: string;
 };
@@ -14,7 +19,7 @@ export type RecipeDataType = {
   user_id: number;
 };
 
-export type CategoryType = {
+export type RoleType = {
   id: number;
   label: string;
 };
