@@ -112,3 +112,4 @@ CREATE TABLE recipe_ingredient(
   ingredient_id INT UNSIGNED NOT NULL,
   FOREIGN KEY(ingredient_id) REFERENCES ingredient(id)
 );
+
