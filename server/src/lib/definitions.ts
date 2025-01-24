@@ -1,3 +1,13 @@
+export type CategoryType = {
+  id: number;
+  label: string;
+};
+
+export type DietTypeType = {
+  id: number;
+  label: string;
+};
+
 export type RecipeDataType = {
   id: number;
   title: string;
@@ -9,12 +19,7 @@ export type RecipeDataType = {
   user_id: number;
 };
 
-export type CategoryType = {
-  id: number;
-  label: string;
-};
-
-export type DietTypeType = {
+export type RoleType = {
   id: number;
   label: string;
 };
