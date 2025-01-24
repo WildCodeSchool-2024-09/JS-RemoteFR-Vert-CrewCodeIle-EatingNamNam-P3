@@ -14,7 +14,10 @@ const add: RequestHandler = async (req, res, next) => {
       unit_type_id: req.body.unit_type_id,
     };
     const insertId = await ingredientRepository.create(newIngredient);
-    res.status(201).json({ insertId });
+    res.status(201).json({
+      message: "Nouvelle ingrédient",
+      id: insertId,
+    });
   } catch (err) {
     next(err);
   }

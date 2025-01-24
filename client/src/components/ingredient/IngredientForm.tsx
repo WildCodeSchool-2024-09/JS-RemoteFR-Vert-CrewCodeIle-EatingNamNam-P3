@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
 import type { AddIngredientData } from "../../lib/definitions";
 import style from "./ingredient.module.css";
 
@@ -11,12 +12,21 @@ export default function IngredientForm() {
     formState: { errors },
   } = useForm<AddIngredientData>();
 
-  const formSubmit: SubmitHandler<AddIngredientData> = (data) => {
-    axios.post(`${import.meta.env.VITE_API_URL}/api/ingredients`, data);
+  const formSubmit: SubmitHandler<AddIngredientData> = async (data) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/ingredients`,
+        data,
+      );
+      toast.success(response.data.message, {});
+    } catch (err) {
+      toast.error("Erreur lors de l'ajout de l'ingrédient", {});
+    }
   };
 
   return (
     <section className={style.formingredient}>
+      <ToastContainer />
       <form className={style.form} onSubmit={handleSubmit(formSubmit)}>
         <h2 className={style.title}>Ajouter un Ingrédient</h2>
         <label htmlFor="label" className={style.champ}>
