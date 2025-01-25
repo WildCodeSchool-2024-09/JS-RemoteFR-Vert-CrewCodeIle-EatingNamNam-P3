@@ -1,11 +1,14 @@
+import { Link, Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import AdminRoleForm from "../../components/adminRoleForm/AdminRoleForm";
 
 const AdminPage = () => {
   return (
     <>
       <ToastContainer />
-      <AdminRoleForm />
+      <Link to="/admin/creer-role">Role</Link>
+      <Link to="/admin/creer-categorie">Categorie</Link>
+      <Link to="/admin/creer-diet">Type de Diet</Link>
+      <Outlet />
     </>
   );
 };
