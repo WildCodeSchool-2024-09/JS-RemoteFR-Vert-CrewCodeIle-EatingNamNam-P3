@@ -15,7 +15,7 @@ const add: RequestHandler = async (req, res, next) => {
     };
     const insertId = await ingredientRepository.create(newIngredient);
     res.status(201).json({
-      message: "Nouvelle ingrédient",
+      message: "Nouvel ingrédient",
       id: insertId,
     });
   } catch (err) {
