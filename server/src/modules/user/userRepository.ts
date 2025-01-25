@@ -19,7 +19,7 @@ class userRepository {
     lastname,
     role_id)
     VALUES
-    (?,?,?,'/',?,?,?,?,?,'2')
+    (?,?,?,'/',?,?,?,?,?,?)
     `,
       [
         user.username,
@@ -30,6 +30,7 @@ class userRepository {
         user.profession,
         user.firstname,
         user.lastname,
+        2,
       ],
     );
 

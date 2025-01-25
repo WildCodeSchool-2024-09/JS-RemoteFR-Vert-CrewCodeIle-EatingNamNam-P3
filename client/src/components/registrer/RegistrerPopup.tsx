@@ -14,10 +14,11 @@ export default function RegistrerPopup() {
   } = useForm<UserType>();
 
   const sendData: SubmitHandler<UserType> = async (data) => {
+    const { confirmPassword, ...rest } = data;
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/users`,
-        data,
+        rest,
       );
       toast.success(response.data.message);
     } catch (err) {
