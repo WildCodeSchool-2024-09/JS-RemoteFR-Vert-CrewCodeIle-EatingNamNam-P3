@@ -14,23 +14,28 @@ const browseMostRecent: RequestHandler = async (req, res, next) => {
 
 const add: RequestHandler = async (req, res, next) => {
   try {
-    console.info(req.body);
-    // const newRecipe = {
-    //   title: req.body.title,
-    //   picture: req.body.picture,
-    //   summary: req.body.summary,
-    //   prep_time: Number.parseInt(req.body.prep_time),
-    //   cook_time: Number.parseInt(req.body.cook_time),
-    //   serving: Number.parseInt(req.body.serving),
-    //   user_id: Number.parseInt(req.body.user_id),
-    // };
+    const newRecipe = {
+      title: req.body.title,
+      picture: req.body.picture,
+      summary: req.body.summary,
+      prep_time: Number.parseInt(req.body.prep_time),
+      cook_time: Number.parseInt(req.body.cook_time),
+      serving: Number.parseInt(req.body.serving),
+      user_id: Number.parseInt(req.body.user_id),
+    };
 
-    // const insertId = await recipeRepository.create(newRecipe);
+    const insertId = await recipeRepository.create(newRecipe);
 
-    // res.status(201).json({
-    //   message: `La recette "${req.body.title}" a été créée avec succès.`,
-    //   id: insertId,
-    // });
+    req.body.recipeId = insertId;
+
+    res.status(201).json({
+      message: `La recette "${req.body.title}" a été créée avec succès.`,
+      id: insertId,
+    });
+
+    if (insertId) {
+      next();
+    }
   } catch (err) {
     next(err);
   }

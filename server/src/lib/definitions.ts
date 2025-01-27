@@ -23,3 +23,10 @@ export type RoleType = {
   id: number;
   label: string;
 };
+
+export type StepType = {
+  id: number;
+  content: string;
+  step_order: number;
+  recipe_id: number;
+};

@@ -17,14 +17,14 @@ export default function RecipeForm() {
     defaultValues: {
       step: [
         {
-          step_order: +1,
+          step_order: 1,
           content: "",
         },
       ],
     },
   });
 
-  const { fields } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     name: "step",
     control,
   });
@@ -47,24 +47,42 @@ export default function RecipeForm() {
         {fields.map((field, index) => {
           return (
             <div key={field.id}>
-              <input
-                placeholder="order"
-                type="number"
-                {...register(`step.${index}.step_order`, {
-                  required: true,
-                })}
-              />
-              <textarea
-                placeholder="content"
-                {...register(`step.${index}.content`, {
-                  required: true,
-                  minLength: 10,
-                  maxLength: 255,
-                })}
-              />
+              <section key={field.id}>
+                <input
+                  placeholder="order"
+                  type="number"
+                  {...register(`step.${index}.step_order`, {
+                    required: true,
+                    min: 1,
+                    max: 21,
+                  })}
+                />
+                <textarea
+                  placeholder="content"
+                  {...register(`step.${index}.content`, {
+                    required: true,
+                    minLength: 10,
+                    maxLength: 255,
+                  })}
+                />
+                <button type="button" onClick={() => remove(index)}>
+                  X
+                </button>
+              </section>
             </div>
           );
         })}
+        <button
+          type="button"
+          onClick={() =>
+            append({
+              step_order: 0,
+              content: "",
+            })
+          }
+        >
+          Ajouter une étape
+        </button>
         <label className={style.label}>
           Je choisis un titre*
           <input
