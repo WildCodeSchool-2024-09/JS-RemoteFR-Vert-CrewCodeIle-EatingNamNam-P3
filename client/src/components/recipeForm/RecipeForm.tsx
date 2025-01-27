@@ -40,7 +40,6 @@ export default function RecipeForm() {
       toast.error("Erreur lors de l'ajout de la recette", {});
     }
   };
-
   return (
     <>
       <form className={style.form} onSubmit={handleSubmit(formSubmit)}>
@@ -52,19 +51,42 @@ export default function RecipeForm() {
                   placeholder="order"
                   type="number"
                   {...register(`step.${index}.step_order`, {
-                    required: true,
-                    min: 1,
-                    max: 21,
+                    min: {
+                      value: 1,
+                      message: "Les étapes doivent être supérieur a 1",
+                    },
+                    max: {
+                      value: 21,
+                      message: "Les étapes ne peuvent pas dépasser 21",
+                    },
                   })}
                 />
+                {errors.step?.[index]?.step_order && (
+                  <p className={style.errors}>
+                    {errors.step[index].step_order.message}
+                  </p>
+                )}
                 <textarea
                   placeholder="content"
                   {...register(`step.${index}.content`, {
-                    required: true,
-                    minLength: 10,
-                    maxLength: 255,
+                    required: "Ce champ est obligatoire",
+                    minLength: {
+                      value: 10,
+                      message:
+                        "Les instructions doivent contenir 10 lettres minimum",
+                    },
+                    maxLength: {
+                      value: 400,
+                      message:
+                        "Les instructions doivent contenir 400 lettres minimum",
+                    },
                   })}
                 />
+                {errors.step?.[index]?.content && (
+                  <p className={style.errors}>
+                    {errors.step[index].content.message}
+                  </p>
+                )}
                 <button type="button" onClick={() => remove(index)}>
                   X
                 </button>
@@ -90,20 +112,18 @@ export default function RecipeForm() {
             className={style.input}
             placeholder="Saisissez un titre"
             {...register("title", {
-              required: true,
-              minLength: 3,
-              maxLength: 60,
+              required: "Champ obligatoire",
+              minLength: {
+                value: 3,
+                message: "Ce champ doit contenir au moins 3 lettres",
+              },
+              maxLength: {
+                value: 60,
+                message: "Ce champ doit contenir moins de 60 lettres",
+              },
             })}
           />
-          {errors.title && errors.title.type === "required" && (
-            <span>Champ obligatoire</span>
-          )}
-          {errors.title && errors.title.type === "minLength" && (
-            <span>Le titre doit avoir au moins 3 caractères</span>
-          )}
-          {errors.title && errors.title.type === "maxLength" && (
-            <span>Le titre ne peut excéder 60 caractères</span>
-          )}
+          {errors.title && <span>{errors.title.message}</span>}
         </label>
         <label className={style.label}>
           Image
@@ -120,47 +140,45 @@ export default function RecipeForm() {
             className={style.input}
             placeholder="Créez un résumé de votre recette, il apparaîtra sur la fiche recette."
             {...register("summary", {
-              required: true,
-              minLength: 40,
-              maxLength: 255,
+              required: "Champ obligatoire",
+              minLength: {
+                value: 40,
+                message: "Ce champ doit contenir au moins 40 lettres",
+              },
+              maxLength: {
+                value: 255,
+                message: "Ce champ doit contenir moins de 255 lettres",
+              },
             })}
           />
-          {errors.summary && errors.summary.type === "required" && (
-            <span>Champ obligatoire</span>
-          )}
-          {errors.summary && errors.summary.type === "minLength" && (
-            <span>Le résumé doit dépasser les 40 caractères.</span>
-          )}
-          {errors.summary && errors.summary.type === "maxLength" && (
-            <span>Le résumé ne doit pas excéder 255 caractères.</span>
-          )}
+          {errors.summary && <span>{errors.summary.message}</span>}
         </label>
         <label className={style.label}>
           Temps de préparation*
           <input
             type="prep_time"
             className={style.input}
-            {...register("prep_time", { required: true })}
+            {...register("prep_time", { required: "Ce champ est obligatoire" })}
           />
-          {errors.prep_time && <span>Champ obligatoire</span>}
+          {errors.prep_time && <span>{errors.prep_time.message}</span>}
         </label>
         <label className={style.label}>
           Temps de cuisson*
           <input
             type="cook_time"
             className={style.input}
-            {...register("cook_time", { required: true })}
+            {...register("cook_time", { required: "Ce champ est obligatoire" })}
           />
-          {errors.cook_time && <span>Champ obligatoire</span>}
+          {errors.cook_time && <span>{errors.cook_time.message}</span>}
         </label>
         <label className={style.label}>
           Nombre de parts*
           <input
             type="serving"
             className={style.input}
-            {...register("serving", { required: true })}
+            {...register("serving", { required: "Ce champ est obligatoire" })}
           />
-          {errors.serving && <span>Champ obligatoire</span>}
+          {errors.serving && <span>{errors.serving.message}</span>}
         </label>
         <button className={style.button} type="submit">
           Ajouter la recette

@@ -8,14 +8,10 @@ const add: RequestHandler = async (req, res, next) => {
     if (step) {
       for (const currentStep of step) {
         const recipeStep = { ...currentStep, recipe_id: req.body.recipeId };
-        const insertId = await stepRepository.create(recipeStep);
-
-        res.status(201).json({
-          message: `L'étape "${currentStep.step_order}" a été créée avec succès.`,
-          id: insertId,
-        });
+        await stepRepository.create(recipeStep);
       }
     }
+    res.status(200);
   } catch (err) {
     next(err);
   }
