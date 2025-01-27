@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import type { RecipeDataType } from "../../lib/definitions.ts";
@@ -12,7 +12,22 @@ export default function RecipeForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RecipeDataTypeWithoutId>();
+    control,
+  } = useForm<RecipeDataTypeWithoutId>({
+    defaultValues: {
+      step: [
+        {
+          step_order: +1,
+          content: "",
+        },
+      ],
+    },
+  });
+
+  const { fields } = useFieldArray({
+    name: "step",
+    control,
+  });
 
   const formSubmit: SubmitHandler<RecipeDataTypeWithoutId> = async (data) => {
     try {
@@ -29,6 +44,27 @@ export default function RecipeForm() {
   return (
     <>
       <form className={style.form} onSubmit={handleSubmit(formSubmit)}>
+        {fields.map((field, index) => {
+          return (
+            <div key={field.id}>
+              <input
+                placeholder="order"
+                type="number"
+                {...register(`step.${index}.step_order`, {
+                  required: true,
+                })}
+              />
+              <textarea
+                placeholder="content"
+                {...register(`step.${index}.content`, {
+                  required: true,
+                  minLength: 10,
+                  maxLength: 255,
+                })}
+              />
+            </div>
+          );
+        })}
         <label className={style.label}>
           Je choisis un titre*
           <input
