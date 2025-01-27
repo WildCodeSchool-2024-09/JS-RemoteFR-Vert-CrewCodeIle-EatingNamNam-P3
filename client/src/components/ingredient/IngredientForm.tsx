@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
@@ -20,7 +21,7 @@ export default function IngredientForm() {
       );
       toast.success(response.data.message, {});
     } catch (err) {
-      toast.error("Erreur lors de l'ajout de l'ingrédient", {});
+      toast.error("Une erreur est survenue", {});
     }
   };
 
@@ -35,23 +36,21 @@ export default function IngredientForm() {
             type="text"
             className={style.bloc}
             {...register("label", {
-              required: true,
-              minLength: 3,
-              maxLength: 60,
+              required: "Le nom de l'ingrédient est obligatoire",
+              minLength: {
+                value: 3,
+                message:
+                  "le nom de l'ingredient doit contenir entre 3 et 60 caractères ",
+              },
+              maxLength: {
+                value: 100,
+                message:
+                  "le nom de l'ingredient doit contenir entre 3 et 60 caractères ",
+              },
             })}
           />
-          {errors.label && errors.label.type === "required" && (
-            <span className={style.error}>Champ obligatoire</span>
-          )}
-          {errors.label && errors.label.type === "minLength" && (
-            <span className={style.error}>
-              le champ doit contenir au minimum 3 caractères
-            </span>
-          )}
-          {errors.label && errors.label.type === "maxLength" && (
-            <span className={style.error}>
-              le champ doit contenir au maximun 60 caractères
-            </span>
+          {errors.label && (
+            <p className={style.error}>{errors.label.message as ReactNode}</p>
           )}
         </label>
         <label htmlFor="protein_amount" className={style.champ}>
@@ -62,24 +61,21 @@ export default function IngredientForm() {
             placeholder="0.1"
             className={style.bloc}
             {...register("protein_amount", {
-              required: true,
-              min: 0,
-              max: 100,
+              required: "champ obligatoire",
+              min: {
+                value: 0,
+                message: "Le nombre ne peut pas être négatif",
+              },
+              max: {
+                value: 100,
+                message: "Le nombre ne doit pas être superieur a 100",
+              },
             })}
           />
-          {errors.protein_amount &&
-            errors.protein_amount.type === "required" && (
-              <span className={style.error}>Champ obligatoire</span>
-            )}
-          {errors.protein_amount && errors.protein_amount.type === "min" && (
-            <span className={style.error}>
-              Le nombre ne peut pas être négatif
-            </span>
-          )}
-          {errors.protein_amount && errors.protein_amount.type === "max" && (
-            <span className={style.error}>
-              La valeur ne doit pas excéder 100
-            </span>
+          {errors.protein_amount && (
+            <p className={style.error}>
+              {errors.protein_amount.message as ReactNode}
+            </p>
           )}
         </label>
         <label htmlFor="carb_amount" className={style.champ}>
@@ -89,20 +85,22 @@ export default function IngredientForm() {
             type="number"
             placeholder="0.1"
             className={style.bloc}
-            {...register("carb_amount", { required: true, min: 0, max: 100 })}
+            {...register("carb_amount", {
+              required: "Champ obligatoire",
+              min: {
+                value: 0,
+                message: "Le nombre ne peut pas être négatif",
+              },
+              max: {
+                value: 100,
+                message: "Le nombre ne doit pas être superieur a 100",
+              },
+            })}
           />
-          {errors.carb_amount && errors.carb_amount.type === "required" && (
-            <span className={style.error}>Champ obligatoire</span>
-          )}
-          {errors.carb_amount && errors.carb_amount.type === "min" && (
-            <span className={style.error}>
-              Le nombre ne peut pas être négatif
-            </span>
-          )}
-          {errors.carb_amount && errors.carb_amount.type === "max" && (
-            <span className={style.error}>
-              La valeur ne doit pas excéder 100
-            </span>
+          {errors.carb_amount && (
+            <p className={style.error}>
+              {errors.carb_amount.message as ReactNode}
+            </p>
           )}
         </label>
         <label htmlFor="fat_amount" className={style.champ}>
@@ -112,20 +110,22 @@ export default function IngredientForm() {
             step="0.1"
             placeholder="0.1"
             className={style.bloc}
-            {...register("fat_amount", { required: true, min: 0, max: 100 })}
+            {...register("fat_amount", {
+              required: "Champ obligatoire",
+              min: {
+                value: 0,
+                message: "Le nombre ne peut pas être négatif",
+              },
+              max: {
+                value: 100,
+                message: "Le nombre ne doit pas être superieur a 100",
+              },
+            })}
           />
-          {errors.fat_amount && errors.fat_amount.type === "required" && (
-            <span className={style.error}>Champ obligatoire</span>
-          )}
-          {errors.fat_amount && errors.fat_amount.type === "min" && (
-            <span className={style.error}>
-              Le nombre ne peut pas être négatif
-            </span>
-          )}
-          {errors.fat_amount && errors.fat_amount.type === "max" && (
-            <span className={style.error}>
-              La valeur ne doit pas excéder 100
-            </span>
+          {errors.fat_amount && (
+            <p className={style.error}>
+              {errors.fat_amount.message as ReactNode}
+            </p>
           )}
         </label>
         <label htmlFor="calorie_amount" className={style.champ}>
@@ -136,24 +136,21 @@ export default function IngredientForm() {
             placeholder="0.1"
             className={style.bloc}
             {...register("calorie_amount", {
-              required: true,
-              min: 0,
-              max: 999,
+              required: "Champ obligatoire",
+              min: {
+                value: 0,
+                message: "Le nombre ne peut pas être négatif",
+              },
+              max: {
+                value: 999,
+                message: "Le nombre ne doit pas être superieur a 999",
+              },
             })}
           />
-          {errors.calorie_amount &&
-            errors.calorie_amount.type === "required" && (
-              <span className={style.error}>Champ obligatoire</span>
-            )}
-          {errors.calorie_amount && errors.calorie_amount.type === "min" && (
-            <span className={style.error}>
-              Le nombre ne peut pas être négatif
-            </span>
-          )}
-          {errors.calorie_amount && errors.calorie_amount.type === "max" && (
-            <span className={style.error}>
-              La valeur ne doit pas excéder 999
-            </span>
+          {errors.calorie_amount && (
+            <p className={style.error}>
+              {errors.calorie_amount.message as ReactNode}
+            </p>
           )}
         </label>
         <button type="submit" className={style.btn}>
