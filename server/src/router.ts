@@ -21,4 +21,8 @@ import categoryRouter from "./routes/category.routes";
 
 router.use("/api/category", categoryRouter);
 
+import commentaryRouter from "./routes/commentary.routes";
+
+router.use("/api/commentary", commentaryRouter);
+
 export default router;
