@@ -38,21 +38,19 @@ export default function RegistrerPopup() {
             <input
               type="text"
               {...register("username", {
-                required: true,
-                minLength: 2,
-                maxLength: 20,
+                required: "Ce champ est obligatoire",
+                minLength: {
+                  value: 2,
+                  message: "Le pseudo doit contenir au moins 2 caratères",
+                },
+                maxLength: {
+                  value: 20,
+                  message: "Le pseudo doit contenir moins de 20 caractères",
+                },
               })}
               className={style.bloc}
             />
-            {errors.username && errors.username.type === "required" && (
-              <span>Champ obligatoire</span>
-            )}
-            {errors.username && errors.username.type === "minLength" && (
-              <span>Caractères requis : entre 2 et 20</span>
-            )}
-            {errors.username && errors.username.type === "maxLength" && (
-              <span>Caractères requis : entre 2 et 20</span>
-            )}
+            {errors.username && <span>{errors.username.message}</span>}
           </label>
         </div>
         <div className={style.champ}>
@@ -60,12 +58,10 @@ export default function RegistrerPopup() {
             Adresse E-mail
             <input
               type="email"
-              {...register("email", { required: true })}
+              {...register("email", { required: "Ce champ est obligatoire" })}
               className={style.bloc}
             />
-            {errors.email && errors.email.type === "required" && (
-              <span>Champ obligatoire</span>
-            )}
+            {errors.email && <span>{errors.email.message}</span>}
           </label>
         </div>
         <div className={style.champ}>
@@ -74,21 +70,19 @@ export default function RegistrerPopup() {
             <input
               type="text"
               {...register("firstname", {
-                required: true,
-                minLength: 2,
-                maxLength: 35,
+                required: "Ce champ est obligatoire",
+                minLength: {
+                  value: 2,
+                  message: "Le prénom doit contenir au moins 2 caratères",
+                },
+                maxLength: {
+                  value: 60,
+                  message: "Le prénom doit contenir moins de 60 caractères",
+                },
               })}
               className={style.bloc}
             />
-            {errors.firstname && errors.firstname.type === "required" && (
-              <span>Champ obligatoire</span>
-            )}
-            {errors.firstname && errors.firstname.type === "minLength" && (
-              <span>Caractères requis : entre 2 et 35</span>
-            )}
-            {errors.firstname && errors.firstname.type === "maxLength" && (
-              <span>Caractères requis : entre 2 et 35</span>
-            )}
+            {errors.firstname && <span>{errors.firstname.message}</span>}
           </label>
         </div>
         <div className={style.champ}>
@@ -97,21 +91,21 @@ export default function RegistrerPopup() {
             <input
               type="text"
               {...register("lastname", {
-                required: true,
-                minLength: 2,
-                maxLength: 35,
+                required: "Ce champ est obligatoire",
+                minLength: {
+                  value: 2,
+                  message:
+                    "Le nom de famille doit contenir au moins 2 caratères",
+                },
+                maxLength: {
+                  value: 60,
+                  message:
+                    "Le nom de famille doit contenir moins de 60 caractères",
+                },
               })}
               className={style.bloc}
             />
-            {errors.lastname && errors.lastname.type === "required" && (
-              <span>Champ obligatoire</span>
-            )}
-            {errors.lastname && errors.lastname.type === "minLength" && (
-              <span>Caractères requis : entre 2 et 35</span>
-            )}
-            {errors.lastname && errors.lastname.type === "maxLength" && (
-              <span>Caractères requis : entre 2 et 35</span>
-            )}
+            {errors.lastname && <span>{errors.lastname.message}</span>}
           </label>
         </div>
         <div className={style.champ}>
@@ -120,23 +114,20 @@ export default function RegistrerPopup() {
             <input
               type="text"
               {...register("localisation", {
-                required: true,
-                minLength: 2,
-                maxLength: 35,
+                required: "Ce champ est obligatoire",
+                minLength: {
+                  value: 2,
+                  message: "La localisation doit contenir au moins 2 caratères",
+                },
+                maxLength: {
+                  value: 60,
+                  message:
+                    "La localisation doit contenir moins de 60 caractères",
+                },
               })}
               className={style.bloc}
             />
-            {errors.localisation && errors.localisation.type === "required" && (
-              <span>Champ obligatoire</span>
-            )}
-            {errors.localisation &&
-              errors.localisation.type === "minLength" && (
-                <span>Caractères requis : entre 2 et 35</span>
-              )}
-            {errors.localisation &&
-              errors.localisation.type === "maxLength" && (
-                <span>Caractères requis : entre 2 et 35</span>
-              )}
+            {errors.localisation && <span>{errors.localisation.message}</span>}
           </label>
         </div>
         <div className={style.champ}>
@@ -145,21 +136,20 @@ export default function RegistrerPopup() {
             <input
               type="text"
               {...register("profession", {
-                required: true,
-                minLength: 2,
-                maxLength: 35,
+                required: "Ce champ est obligatoire",
+                minLength: {
+                  value: 2,
+                  message: "La profession doit contenir au moins 2 caratères",
+                },
+                maxLength: {
+                  value: 100,
+                  message:
+                    "La profession doit contenir moins de 100 caractères",
+                },
               })}
               className={style.bloc}
             />
-            {errors.profession && errors.profession.type === "required" && (
-              <span>Champ obligatoire</span>
-            )}
-            {errors.profession && errors.profession.type === "minLength" && (
-              <span>Caractères requis : entre 2 et 35</span>
-            )}
-            {errors.profession && errors.profession.type === "maxLength" && (
-              <span>Caractères requis : entre 2 et 35</span>
-            )}
+            {errors.profession && <span>{errors.profession.message}</span>}
           </label>
         </div>
         <div className={style.champ}>
@@ -168,24 +158,23 @@ export default function RegistrerPopup() {
             <input
               type="password"
               {...register("password_hash", {
-                required: true,
-                minLength: 12,
-                maxLength: 20,
+                required: "Ce champ est obligatoire",
+                minLength: {
+                  value: 12,
+                  message:
+                    "Le mot de passe doit contenir au moins 12 caratères",
+                },
+                maxLength: {
+                  value: 20,
+                  message:
+                    "Le mot de passe doit contenir moins de 20 caractères",
+                },
               })}
               className={style.bloc}
             />
-            {errors.password_hash &&
-              errors.password_hash.type === "required" && (
-                <span>Champ obligatoire</span>
-              )}
-            {errors.password_hash &&
-              errors.password_hash.type === "minLength" && (
-                <span>Caractères requis : entre 12 et 20</span>
-              )}
-            {errors.password_hash &&
-              errors.password_hash.type === "maxLength" && (
-                <span>Caractères requis : entre 12 et 20</span>
-              )}
+            {errors.password_hash && (
+              <span>{errors.password_hash.message}</span>
+            )}
           </label>
         </div>
         <div className={style.champ}>
@@ -194,33 +183,28 @@ export default function RegistrerPopup() {
             <input
               type="password"
               {...register("confirmPassword", {
-                required: true,
-                minLength: 12,
-                maxLength: 20,
+                required: "Ce champ est obligatoire",
+                minLength: {
+                  value: 12,
+                  message:
+                    "Le mot de passe doit contenir au moins 12 caratères",
+                },
+                maxLength: {
+                  value: 20,
+                  message:
+                    "Le mot de passe doit contenir moins de 20 caractères",
+                },
                 validate: (value: string) => {
                   if (watch("password_hash") !== value) {
-                    return "Mot de passe différent";
+                    return "Le mot de passe saisit est différent";
                   }
                 },
               })}
               className={style.bloc}
             />
-            {errors.password_hash &&
-              errors.password_hash.type === "required" && (
-                <span>Champ obligatoire</span>
-              )}
-            {errors.password_hash &&
-              errors.password_hash.type === "minLength" && (
-                <span>Caractères requis : entre 12 et 20</span>
-              )}
-            {errors.password_hash &&
-              errors.password_hash.type === "maxLength" && (
-                <span>Caractères requis : entre 12 et 20</span>
-              )}
-            {errors.password_hash &&
-              errors.password_hash.type === "validate" && (
-                <span>Les mots de passe doivent être identiques</span>
-              )}
+            {errors.confirmPassword && (
+              <span>{errors.confirmPassword.message}</span>
+            )}
           </label>
         </div>
         <div className={style.champ}>
@@ -228,13 +212,12 @@ export default function RegistrerPopup() {
             Date de naissance
             <input
               type="date"
-              {...register("birth_date", { required: true })}
+              {...register("birth_date", {
+                required: "Ce champ est obligatoire",
+              })}
               className={style.bloc}
             />
-            {errors.password_hash &&
-              errors.password_hash.type === "required" && (
-                <span>Champ obligatoire</span>
-              )}
+            {errors.birth_date && <span>{errors.birth_date.message}</span>}
           </label>
         </div>
         <div className={style.btncontainer}>
