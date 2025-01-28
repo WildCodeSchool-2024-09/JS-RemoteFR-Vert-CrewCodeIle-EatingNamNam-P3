@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import type { RecipeDataType } from "../../lib/definitions.ts";
-import ImageUploader from "../imageUploader/ImageUploader.tsx";
 import style from "./recipeForm.module.css";
 
 export default function RecipeForm() {
@@ -20,16 +19,25 @@ export default function RecipeForm() {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/recipes/`,
         data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
       );
-      toast.success(response.data.message, {});
+      toast.success(response.data.message);
     } catch (err) {
-      toast.error("Erreur lors de l'ajout de la recette", {});
+      toast.error("Erreur lors de l'ajout de la recette");
     }
   };
 
   return (
     <>
-      <form className={style.form} onSubmit={handleSubmit(formSubmit)}>
+      <form
+        className={style.form}
+        onSubmit={handleSubmit(formSubmit)}
+        encType="multipart/form-data"
+      >
         <label className={style.label}>
           Je choisis un titre*
           <input
@@ -52,7 +60,14 @@ export default function RecipeForm() {
             <span>Le titre ne peut excéder 60 caractères</span>
           )}
         </label>
-        <ImageUploader />
+        {/* PUTAIN DE FORMULAIRE D'UPLOAD */}
+        <input
+          type="file"
+          className="style.uploader"
+          accept="image/*"
+          {...register("picture")}
+        />
+        {/* PUTAIN DE FORMULAIRE D'UPLOAD */}
         <label className={style.label}>
           Présentation*
           <input

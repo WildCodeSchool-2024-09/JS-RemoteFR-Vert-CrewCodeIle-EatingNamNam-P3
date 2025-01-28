@@ -9,6 +9,7 @@ router.use("/api/roles", roleRouter);
 import recipeRouter from "./routes/recipe.routes";
 
 router.use("/api/recipes", recipeRouter);
+
 import ingredientRouter from "./routes/ingredient.routes";
 
 router.use("/api/ingredients", ingredientRouter);
@@ -20,5 +21,7 @@ router.use("/api/dietTypes", dietTypeRouter);
 import categoryRouter from "./routes/category.routes";
 
 router.use("/api/category", categoryRouter);
+
+router.use("api/browseUploads/", express.static("public/assets/images/")); // la route à prendre pour visualiser les images téléchargées
 
 export default router;
