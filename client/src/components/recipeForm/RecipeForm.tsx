@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import type { RecipeDataType } from "../../lib/definitions.ts";
+import ImageUploader from "../imageUploader/ImageUploader.tsx";
 import style from "./recipeForm.module.css";
 
 export default function RecipeForm() {
@@ -51,14 +52,7 @@ export default function RecipeForm() {
             <span>Le titre ne peut excéder 60 caractères</span>
           )}
         </label>
-        <label className={style.label}>
-          Image
-          <input
-            type="text"
-            className={style.input}
-            placeholder="Insérez l'URL d'une image"
-          />
-        </label>
+        <ImageUploader />
         <label className={style.label}>
           Présentation*
           <input
