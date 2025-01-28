@@ -26,7 +26,10 @@ const add: RequestHandler = async (req, res, next) => {
 
     const insertId = await recipeRepository.create(newRecipe);
 
-    res.status(201).json({ insertId });
+    res.status(201).json({
+      message: `La recette "${req.body.title}" a été créée avec succès.`,
+      id: insertId,
+    });
   } catch (err) {
     next(err);
   }
