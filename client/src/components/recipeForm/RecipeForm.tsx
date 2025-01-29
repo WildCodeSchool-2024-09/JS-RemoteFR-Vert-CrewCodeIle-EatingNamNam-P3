@@ -1,8 +1,10 @@
 import axios from "axios";
+import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import type { RecipeDataType } from "../../lib/definitions.ts";
+import ImagePreview from "../imagePreview/ImagePreview.tsx";
 import style from "./recipeForm.module.css";
 
 export default function RecipeForm() {
@@ -29,11 +31,19 @@ export default function RecipeForm() {
     control,
   });
 
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      setSelectedImage(event.target.files[0]);
+    }
+  };
+
   const formSubmit: SubmitHandler<RecipeDataTypeWithoutId> = async (data) => {
     try {
       const formData = new FormData();
 
-      formData.append("file", data.picture[0]); // Image
+      formData.append("file", data.picture[0]);
       formData.append("title", data.title);
       formData.append("summary", data.summary);
       formData.append("prep_time", data.prep_time.toString());
@@ -86,16 +96,21 @@ export default function RecipeForm() {
           />
           {errors.title && <span>{errors.title.message}</span>}
         </label>
-        <input
-          type="file"
-          className="style.uploader"
-          accept="image/*"
-          {...register("picture")}
-        />
+        <label className={style.imageUploader}>
+          Je choisis une image
+          <input
+            type="file"
+            className="style.uploader"
+            accept="image/*"
+            {...register("picture")}
+            onChange={handleImageChange}
+          />
+        </label>
+        <ImagePreview image={selectedImage} />
         <label className={style.label}>
           Présentation*
           <textarea
-            className={style.input}
+            className={`${style.input} ${style.summary}`}
             placeholder="Créez un résumé de votre recette, il apparaîtra sur la fiche recette."
             {...register("summary", {
               required: "Champ obligatoire",
