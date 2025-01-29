@@ -5,13 +5,13 @@ import CategoryForm from "./components/categoryForm/CategoryForm";
 import DietTypeForm from "./components/dietTypeForm/DietTypeForm";
 import UnitType from "./components/unitTypeForm/UnitType";
 import AdminPage from "./pages/adminPage/AdminPage";
-import DiscoveryPage from "./pages/discoveryPage/DiscoveryPage";
+import DiscoveryLayout from "./pages/discoveryPage/DiscoveryLayout";
 import RecipeNewPage from "./pages/recipePages/RecipeNewPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <DiscoveryPage />,
+    element: <DiscoveryLayout />,
   },
   {
     element: <App />,
