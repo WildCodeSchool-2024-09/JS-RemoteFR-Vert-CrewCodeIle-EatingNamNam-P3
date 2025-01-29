@@ -3,7 +3,7 @@ import App from "./App";
 import AdminRoleForm from "./components/adminRoleForm/AdminRoleForm";
 import CategoryForm from "./components/categoryForm/CategoryForm";
 import DietTypeForm from "./components/dietTypeForm/DietTypeForm";
-import UnitType from "./components/unitType/UnitType";
+import UnitType from "./components/unitTypeForm/UnitType";
 import AdminPage from "./pages/adminPage/AdminPage";
 import DiscoveryPage from "./pages/discoveryPage/DiscoveryPage";
 import RecipeNewPage from "./pages/recipePages/RecipeNewPage";

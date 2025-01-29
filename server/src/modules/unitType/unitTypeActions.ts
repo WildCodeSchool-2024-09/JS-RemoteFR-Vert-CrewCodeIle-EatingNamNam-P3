@@ -10,7 +10,7 @@ const add: RequestHandler = async (req, res, next) => {
     const insertId = await unitTypeRepository.create(newUntiType);
 
     res.status(201).json({
-      message: "Nouvel unite",
+      message: "Nouvelle unité créée",
       id: insertId,
     });
   } catch (err) {
