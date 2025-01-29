@@ -22,7 +22,7 @@ export type IngredientType = {
 export type RecipeDataType = {
   id: number;
   title: string;
-  picture: string;
+  picture?: string;
   summary: string;
   prep_time: number;
   cook_time: number;

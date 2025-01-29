@@ -22,6 +22,4 @@ import categoryRouter from "./routes/category.routes";
 
 router.use("/api/category", categoryRouter);
 
-router.use("api/browseUploads/", express.static("public/assets/images/")); // la route à prendre pour visualiser les images téléchargées
-
 export default router;

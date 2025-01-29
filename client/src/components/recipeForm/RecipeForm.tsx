@@ -16,9 +16,17 @@ export default function RecipeForm() {
 
   const formSubmit: SubmitHandler<RecipeDataTypeWithoutId> = async (data) => {
     try {
+      const formData = new FormData();
+
+      formData.append("file", data.picture[0]);
+
+      for (const [key, value] of Object.entries(data)) {
+        formData.append(key, value as string);
+      }
+
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/recipes/`,
-        data,
+        formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -27,21 +35,17 @@ export default function RecipeForm() {
       );
       toast.success(response.data.message);
     } catch (err) {
-      toast.error("Erreur lors de l'ajout de la recette");
+      toast.error("Erreur lors de l'ajout de la recette.");
     }
   };
 
   return (
     <>
-      <form
-        className={style.form}
-        onSubmit={handleSubmit(formSubmit)}
-        encType="multipart/form-data"
-      >
+      <form className={style.form} onSubmit={handleSubmit(formSubmit)}>
         <label className={style.label}>
           Je choisis un titre*
           <input
-            type="title"
+            type="text"
             className={style.input}
             placeholder="Saisissez un titre"
             {...register("title", {
@@ -60,18 +64,15 @@ export default function RecipeForm() {
             <span>Le titre ne peut excéder 60 caractères</span>
           )}
         </label>
-        {/* PUTAIN DE FORMULAIRE D'UPLOAD */}
         <input
           type="file"
           className="style.uploader"
           accept="image/*"
           {...register("picture")}
         />
-        {/* PUTAIN DE FORMULAIRE D'UPLOAD */}
         <label className={style.label}>
           Présentation*
-          <input
-            type="text"
+          <textarea
             className={style.input}
             placeholder="Créez un résumé de votre recette, il apparaîtra sur la fiche recette."
             {...register("summary", {
@@ -93,7 +94,7 @@ export default function RecipeForm() {
         <label className={style.label}>
           Temps de préparation*
           <input
-            type="prep_time"
+            type="number"
             className={style.input}
             {...register("prep_time", { required: true })}
           />
@@ -102,7 +103,7 @@ export default function RecipeForm() {
         <label className={style.label}>
           Temps de cuisson*
           <input
-            type="cook_time"
+            type="number"
             className={style.input}
             {...register("cook_time", { required: true })}
           />
@@ -111,7 +112,7 @@ export default function RecipeForm() {
         <label className={style.label}>
           Nombre de parts*
           <input
-            type="serving"
+            type="number"
             className={style.input}
             {...register("serving", { required: true })}
           />

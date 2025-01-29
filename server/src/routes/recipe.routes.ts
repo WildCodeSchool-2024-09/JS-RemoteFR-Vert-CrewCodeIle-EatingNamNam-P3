@@ -2,30 +2,14 @@ import express from "express";
 
 const router = express.Router();
 
-import multer from "multer";
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/assets/images/");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
-
-const upload = multer({ storage });
-
 import recipeActions from "../modules/recipe/recipeActions";
-import uploadImageActions from "../modules/uploadImage/uploadImageActions";
+
+import { upload } from "../middlewares/multer.middleware";
 
 router.get("/top3", recipeActions.browseMostRecent);
-router.post(
-  "/",
-  (req, res) => {
-    console.info(req.body);
-  },
-  upload.single("file"),
-  uploadImageActions.upload,
-  recipeActions.add,
-);
+router.post("/", upload.single("file"), recipeActions.add);
 
 export default router;
+
+// router.use("api/browseUploads/", express.static("public/assets/images/"));
+// la route pour aller voir les images
