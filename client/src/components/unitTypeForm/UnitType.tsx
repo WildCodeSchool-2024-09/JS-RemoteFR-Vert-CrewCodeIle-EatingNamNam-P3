@@ -2,7 +2,7 @@ import axios from "axios";
 import type { ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import type { UnitTypeType } from "../../lib/definitions";
 import style from "./unitType.module.css";
 
@@ -27,7 +27,6 @@ export default function UnitType() {
 
   return (
     <section className={style.formunit}>
-      <ToastContainer />
       <form className={style.form} onSubmit={handleSubmit(formSubmit)}>
         <label htmlFor="label">
           Nom de l'unite de mesure
