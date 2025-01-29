@@ -6,13 +6,7 @@ import type { UserType } from "../../lib/definitions";
 
 class userRepository {
   async create(user: Omit<UserType, "id">) {
-    const [userId] = await databaseClient.query<Rows>(
-      `
-      SELECT id 
-      FROM role
-      WHERE label = "Utilisateur"
-      `,
-    );
+    const userId = 2;
     const [result] = await databaseClient.query<Result>(
       `INSERT INTO user
         (username,
@@ -37,7 +31,7 @@ class userRepository {
         user.profession,
         user.firstname,
         user.lastname,
-        userId[0].id,
+        userId,
       ],
     );
 
