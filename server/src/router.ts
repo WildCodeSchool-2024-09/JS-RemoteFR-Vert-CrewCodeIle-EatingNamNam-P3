@@ -21,4 +21,8 @@ import categoryRouter from "./routes/category.routes";
 
 router.use("/api/category", categoryRouter);
 
+import unitTypeRouter from "./routes/unitType.routes";
+
+router.use("/api/unittypes", unitTypeRouter);
+
 export default router;

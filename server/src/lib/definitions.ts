@@ -55,3 +55,8 @@ export type StepType = {
   step_order: number;
   recipe_id: number;
 };
+
+export type UnitTypeType = {
+  id: number;
+  label: string;
+};

@@ -42,3 +42,7 @@ export type RecipeDataType = {
 export type CategoryType = {
   label: string;
 };
+
+export type UnitTypeType = {
+  label: string;
+};
