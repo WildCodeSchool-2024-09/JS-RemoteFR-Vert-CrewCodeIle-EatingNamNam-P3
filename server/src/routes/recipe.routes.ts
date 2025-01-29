@@ -2,12 +2,21 @@ import express from "express";
 
 const router = express.Router();
 
+import { validateRecipeSchema } from "../helpers/validators/recipe.validator";
 import recipeActions from "../modules/recipe/recipeActions";
+import stepActions from "../modules/step/stepActions";
 
 import { upload } from "../middlewares/multer.middleware";
 
 router.get("/top3", recipeActions.browseMostRecent);
-router.post("/", upload.single("file"), recipeActions.add);
+
+router.post(
+  "/",
+  validateRecipeSchema,
+  upload.single("file"),
+  recipeActions.add,
+  stepActions.add,
+);
 
 export default router;
 
