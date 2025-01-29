@@ -7,6 +7,7 @@ import recipeActions from "../modules/recipe/recipeActions";
 import stepActions from "../modules/step/stepActions";
 
 router.get("/top3", recipeActions.browseMostRecent);
+router.get("/", recipeActions.readByTitle);
 router.post("/", validateRecipeSchema, recipeActions.add, stepActions.add);
 
 export default router;

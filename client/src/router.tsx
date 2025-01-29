@@ -5,6 +5,7 @@ import CategoryForm from "./components/categoryForm/CategoryForm";
 import DietTypeForm from "./components/dietTypeForm/DietTypeForm";
 import AdminPage from "./pages/adminPage/AdminPage";
 import DiscoveryPage from "./pages/discoveryPage/DiscoveryPage";
+import RecipeListPage from "./pages/recipeListPage/RecipeListPage";
 import RecipeNewPage from "./pages/recipePages/RecipeNewPage";
 
 export const router = createBrowserRouter([
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
       {
         path: "/creer-recette",
         element: <RecipeNewPage />,
+      },
+      {
+        path: "/liste-recette",
+        element: <RecipeListPage />,
       },
     ],
   },
