@@ -12,13 +12,19 @@ router.get("/top3", recipeActions.browseMostRecent);
 
 router.post(
   "/",
-  validateRecipeSchema,
   upload.single("file"),
+  // (req, res, next) => {
+  //   try {
+  //     req.body.picture = req.file?.filename;
+  //     console.info(req.body.picture);
+  //     next;
+  //   } catch (err) {
+  //     next(err);
+  //   }
+  // },
+  // validateRecipeSchema,
   recipeActions.add,
   stepActions.add,
 );
 
 export default router;
-
-// router.use("api/browseUploads/", express.static("public/assets/images/"));
-// la route pour aller voir les images

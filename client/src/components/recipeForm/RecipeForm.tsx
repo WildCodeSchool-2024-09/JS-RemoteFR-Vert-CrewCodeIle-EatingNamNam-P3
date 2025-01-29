@@ -33,10 +33,19 @@ export default function RecipeForm() {
     try {
       const formData = new FormData();
 
-      formData.append("file", data.picture[0]);
+      formData.append("file", data.picture[0]); // Image
+      formData.append("title", data.title);
+      formData.append("summary", data.summary);
+      formData.append("prep_time", data.prep_time.toString());
+      formData.append("cook_time", data.cook_time.toString());
+      formData.append("serving", data.serving.toString());
 
-      for (const [key, value] of Object.entries(data)) {
-        formData.append(key, value as string);
+      for (const [index, step] of Object.entries(data.step)) {
+        formData.append(
+          `step[${index}][step_order]`,
+          step.step_order.toString(),
+        );
+        formData.append(`step[${index}][content]`, step.content);
       }
 
       const response = await axios.post(
@@ -57,68 +66,6 @@ export default function RecipeForm() {
   return (
     <>
       <form className={style.form} onSubmit={handleSubmit(formSubmit)}>
-        {fields.map((field, index) => {
-          return (
-            <div key={field.id}>
-              <section key={field.id}>
-                <input
-                  placeholder="order"
-                  type="number"
-                  {...register(`step.${index}.step_order`, {
-                    min: {
-                      value: 1,
-                      message: "Les étapes doivent être supérieur a 1",
-                    },
-                    max: {
-                      value: 21,
-                      message: "Les étapes ne peuvent pas dépasser 21",
-                    },
-                  })}
-                />
-                {errors.step?.[index]?.step_order && (
-                  <p className={style.errors}>
-                    {errors.step[index]?.step_order?.message}
-                  </p>
-                )}
-                <textarea
-                  placeholder="content"
-                  {...register(`step.${index}.content`, {
-                    required: "Ce champ est obligatoire",
-                    minLength: {
-                      value: 10,
-                      message:
-                        "Les instructions doivent contenir 10 lettres minimum",
-                    },
-                    maxLength: {
-                      value: 400,
-                      message:
-                        "Les instructions doivent contenir 400 lettres minimum",
-                    },
-                  })}
-                />
-                {errors.step?.[index]?.content && (
-                  <p className={style.errors}>
-                    {errors.step[index]?.content?.message}
-                  </p>
-                )}
-                <button type="button" onClick={() => remove(index)}>
-                  X
-                </button>
-              </section>
-            </div>
-          );
-        })}
-        <button
-          type="button"
-          onClick={() =>
-            append({
-              step_order: 0,
-              content: "",
-            })
-          }
-        >
-          Ajouter une étape
-        </button>
         <label className={style.label}>
           Je choisis un titre*
           <input
@@ -191,6 +138,68 @@ export default function RecipeForm() {
           />
           {errors.serving && <span>{errors.serving.message}</span>}
         </label>
+        {fields.map((field, index) => {
+          return (
+            <div key={field.id}>
+              <section key={field.id}>
+                <input
+                  placeholder="order"
+                  type="number"
+                  {...register(`step.${index}.step_order`, {
+                    min: {
+                      value: 1,
+                      message: "Les étapes doivent être supérieur a 1",
+                    },
+                    max: {
+                      value: 21,
+                      message: "Les étapes ne peuvent pas dépasser 21",
+                    },
+                  })}
+                />
+                {errors.step?.[index]?.step_order && (
+                  <p className={style.errors}>
+                    {errors.step[index]?.step_order?.message}
+                  </p>
+                )}
+                <textarea
+                  placeholder="content"
+                  {...register(`step.${index}.content`, {
+                    required: "Ce champ est obligatoire",
+                    minLength: {
+                      value: 10,
+                      message:
+                        "Les instructions doivent contenir 10 lettres minimum",
+                    },
+                    maxLength: {
+                      value: 400,
+                      message:
+                        "Les instructions doivent contenir 400 lettres minimum",
+                    },
+                  })}
+                />
+                {errors.step?.[index]?.content && (
+                  <p className={style.errors}>
+                    {errors.step[index]?.content?.message}
+                  </p>
+                )}
+                <button type="button" onClick={() => remove(index)}>
+                  X
+                </button>
+              </section>
+            </div>
+          );
+        })}
+        <button
+          type="button"
+          onClick={() =>
+            append({
+              step_order: fields.length + 1,
+              content: "",
+            })
+          }
+        >
+          Ajouter une étape
+        </button>
         <button className={style.button} type="submit">
           Ajouter la recette
         </button>

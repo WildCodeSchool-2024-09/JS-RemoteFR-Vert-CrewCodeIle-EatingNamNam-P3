@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     cb(null, "public/assets/uploads/");
   },
   filename: (req, file, cb) => {
-    const name = `recipepic${Date.now().toString(36)}${crypto.randomUUID()}`;
+    const name = `${Date.now().toString(36)}${crypto.randomUUID()}`;
     const extension = MIME_TYPES[file.mimetype] || "unknown";
 
     cb(null, `${name}.${extension}`);
