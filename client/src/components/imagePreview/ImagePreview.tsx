@@ -20,9 +20,7 @@ const ImagePreview: React.FC<ImagePreviewProps> = ({ image }) => {
 
   if (!imageUrl) return null;
 
-  return (
-    <img src={imageUrl} alt="Prévisualisation" style={{ maxWidth: "100px" }} />
-  );
+  return <img src={imageUrl} alt="Prévisualisation" />;
 };
 
 export default ImagePreview;

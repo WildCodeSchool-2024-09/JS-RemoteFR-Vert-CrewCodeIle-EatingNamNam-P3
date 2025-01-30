@@ -36,6 +36,10 @@
   height: 15em;
 }
 
+.imagePreview {
+  width: 100px;
+}
+
 span {
   color: red;
   font-style: italic;
