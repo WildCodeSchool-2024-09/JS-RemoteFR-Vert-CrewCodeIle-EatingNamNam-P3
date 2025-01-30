@@ -63,4 +63,5 @@
 }
 .btnclose {
   cursor: pointer;
+  color: var(--color-dark);
 }
