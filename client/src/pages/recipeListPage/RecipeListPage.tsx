@@ -4,12 +4,11 @@ import type { FormEvent } from "react";
 import { toast } from "react-toastify";
 import RecipeCard from "../../components/recipeCard/RecipeCard";
 import type { RecipeDataType } from "../../lib/definitions";
+import style from "./recipeListPage.module.css";
 
 const RecipeListPage = () => {
   const [currentSearch, setCurrentSearch] = useState<string>("");
   const [recipeData, setRecipeData] = useState<RecipeDataType[]>([]);
-
-  console.info(currentSearch);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -24,6 +23,9 @@ const RecipeListPage = () => {
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/api/recipes`,
+          {
+            params: currentSearch ? { q: currentSearch.toLowerCase() } : {},
+          },
         );
         setRecipeData(response.data);
       } catch (error) {
@@ -33,20 +35,27 @@ const RecipeListPage = () => {
         );
       }
     };
-
     fetchData();
-  }, []);
+  }, [currentSearch]);
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="CHERCHE LE PLAT DE TES REVES" />
-        <button type="submit">ROCHERCHE</button>
+    <main className={style.main}>
+      <form className={style.form} onSubmit={handleSubmit}>
+        <input
+          className={style.searchBar}
+          type="text"
+          placeholder="Nom de recette"
+        />
+        <button className={style.searchButton} type="submit">
+          <img src="/images/loupe-recherche.png" alt="boutton de recherche" />
+        </button>
       </form>
-      {recipeData?.map((element: RecipeDataType) => (
-        <RecipeCard key={element.id} recipeDataProps={element} />
-      ))}
-    </div>
+      <section className={style.recipeList}>
+        {recipeData?.map((element: RecipeDataType) => (
+          <RecipeCard key={element.id} recipeDataProps={element} />
+        ))}
+      </section>
+    </main>
   );
 };
 

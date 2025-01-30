@@ -15,9 +15,10 @@ const browseMostRecent: RequestHandler = async (req, res, next) => {
 const readByTitle: RequestHandler = async (req, res, next) => {
   try {
     const recipeFromDB = await recipeRepository.readAll();
-    if (req.query.q !== null) {
+    console.info(req.query);
+    if (req.query.q) {
       const filteredRecipe = recipeFromDB.filter((element) =>
-        element.title.includes(req.query.q as string),
+        element.title.toLowerCase().includes(req.query.q as string),
       );
       res.json(filteredRecipe);
     } else {
