@@ -234,7 +234,11 @@ export default function RegistrerPopup({
             </a>
           </p>
         </div>
-        <button type="button" onClick={closePopupRegistre}>
+        <button
+          type="button"
+          className={style.btnclose}
+          onClick={closePopupRegistre}
+        >
           Fermer
         </button>
       </form>
