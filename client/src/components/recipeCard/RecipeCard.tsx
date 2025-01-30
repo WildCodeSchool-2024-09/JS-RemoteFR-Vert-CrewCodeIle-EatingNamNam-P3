@@ -21,7 +21,7 @@ export default function RecipeCard({
           className={style.authorLink}
           rel="créateur de la recette"
         >
-          {recipeDataProps.user_id}
+          {recipeDataProps.username}
         </Link>
       </p>
       <ul>
