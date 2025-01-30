@@ -2,6 +2,10 @@ import express from "express";
 
 const router = express.Router();
 
+import userRouter from "./routes/user.routes";
+
+router.use("/api/users", userRouter);
+
 import roleRouter from "./routes/role.routes";
 
 router.use("/api/roles", roleRouter);
@@ -21,5 +25,9 @@ router.use("/api/dietTypes", dietTypeRouter);
 import categoryRouter from "./routes/category.routes";
 
 router.use("/api/category", categoryRouter);
+
+import unitTypeRouter from "./routes/unitType.routes";
+
+router.use("/api/unittypes", unitTypeRouter);
 
 export default router;
