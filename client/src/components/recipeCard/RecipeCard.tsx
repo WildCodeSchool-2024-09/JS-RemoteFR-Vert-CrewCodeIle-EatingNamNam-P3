@@ -7,7 +7,12 @@ export default function RecipeCard({
 }: { recipeDataProps: RecipeDataType }) {
   return (
     <article className={style.cardContainer}>
-      <figure className={style.recipePicture} />
+      <figure
+        className={style.recipePicture}
+        style={{
+          backgroundImage: `url(${import.meta.env.VITE_API_URL}/${recipeDataProps.picture})`,
+        }}
+      />
       <h3 className={style.recipeTitle}>{recipeDataProps.title}</h3>
       <p className={style.author}>
         By{" "}

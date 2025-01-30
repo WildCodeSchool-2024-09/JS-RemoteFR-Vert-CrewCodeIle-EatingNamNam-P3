@@ -60,6 +60,7 @@
   font-family: var(--text-font);
   text-align: left;
   padding: 0.5em;
+  word-wrap: break-word;
 }
 
 .dietTypeList {
