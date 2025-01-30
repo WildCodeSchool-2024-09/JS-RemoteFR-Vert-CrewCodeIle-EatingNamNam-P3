@@ -43,6 +43,10 @@ export type CategoryType = {
   label: string;
 };
 
+export type UnitTypeType = {
+  label: string;
+};
+
 export type UserType = {
   id: number;
   username: string;

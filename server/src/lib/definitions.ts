@@ -68,3 +68,8 @@ export type UserType = {
   firstname: string;
   lastname: string;
 };
+
+export type UnitTypeType = {
+  id: number;
+  label: string;
+};
