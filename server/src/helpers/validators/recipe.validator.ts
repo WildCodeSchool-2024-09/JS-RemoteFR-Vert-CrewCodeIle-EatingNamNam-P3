@@ -11,15 +11,15 @@ const schema = joi.object({
 
   title: joi.string().min(3).max(60).required(),
 
-  picture: joi.string().min(3).max(255),
+  picture: joi.string().min(0).max(255),
 
-  summary: joi.string().min(40).max(255).required(),
+  summary: joi.string().min(40).max(300).required(),
 
-  prep_time: joi.number().integer().min(1).max(20).required(),
+  prep_time: joi.number().integer().min(0).max(3000).required(),
 
-  cook_time: joi.number().integer().min(1).max(20).required(),
+  cook_time: joi.number().integer().min(0).max(3000).required(),
 
-  serving: joi.number().integer().min(1).max(20).required(),
+  serving: joi.number().integer().min(1).max(50).required(),
 });
 
 export const validateRecipeSchema: RequestHandler = (req, res, next) => {

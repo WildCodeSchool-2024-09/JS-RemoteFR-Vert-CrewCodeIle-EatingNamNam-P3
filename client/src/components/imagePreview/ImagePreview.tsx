@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 
 type ImagePreviewProps = {
   image: File | null;
+  style?: React.CSSProperties;
 };
 
-const ImagePreview: React.FC<ImagePreviewProps> = ({ image }) => {
+const ImagePreview: React.FC<ImagePreviewProps> = ({ image, style }) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const ImagePreview: React.FC<ImagePreviewProps> = ({ image }) => {
 
   if (!imageUrl) return null;
 
-  return <img src={imageUrl} alt="Prévisualisation" />;
+  return <img src={imageUrl} alt="Prévisualisation" style={style} />;
 };
 
 export default ImagePreview;
