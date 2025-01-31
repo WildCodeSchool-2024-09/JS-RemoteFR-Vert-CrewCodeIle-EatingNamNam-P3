@@ -63,7 +63,7 @@ export default function RecipeForm() {
                 />
                 {errors.step?.[index]?.step_order && (
                   <p className={style.errors}>
-                    {errors.step[index].step_order.message}
+                    {errors.step[index]?.step_order?.message}
                   </p>
                 )}
                 <textarea
@@ -84,7 +84,7 @@ export default function RecipeForm() {
                 />
                 {errors.step?.[index]?.content && (
                   <p className={style.errors}>
-                    {errors.step[index].content.message}
+                    {errors.step[index]?.content?.message}
                   </p>
                 )}
                 <button type="button" onClick={() => remove(index)}>
