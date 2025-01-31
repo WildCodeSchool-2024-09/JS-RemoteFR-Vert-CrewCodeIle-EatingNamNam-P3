@@ -11,7 +11,7 @@ class RecipeRepository {
         FROM recipe
         JOIN user ON recipe.user_id = user.id
         ORDER BY created_at DESC
-        LIMIT 5`,
+        LIMIT 3`,
     );
 
     return rows as RecipeDataType[];
