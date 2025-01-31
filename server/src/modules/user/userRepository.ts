@@ -2,7 +2,7 @@ import databaseClient from "../../../database/client";
 
 import type { Result, Rows } from "../../../database/client";
 
-import type { UserType } from "../../lib/definitions";
+import type { UserLoginType, UserType } from "../../lib/definitions";
 
 class userRepository {
   async create(user: Omit<UserType, "id">) {
@@ -36,6 +36,19 @@ class userRepository {
     );
 
     return result.insertId;
+  }
+
+  async readUserName(userName: string) {
+    const [rows] = await databaseClient.query<Rows>(
+      `
+        SELECT username, password_hash
+        FROM user 
+        WHERE username = ?
+      `,
+      [userName],
+    );
+
+    return rows as UserLoginType[];
   }
 }
 

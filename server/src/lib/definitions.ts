@@ -69,6 +69,11 @@ export type UserType = {
   lastname: string;
 };
 
+export type UserLoginType = {
+  username: string;
+  password_hash: string;
+};
+
 export type UnitTypeType = {
   id: number;
   label: string;
