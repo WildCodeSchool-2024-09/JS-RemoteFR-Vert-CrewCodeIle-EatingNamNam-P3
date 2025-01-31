@@ -11,7 +11,7 @@ const schema = joi.object({
 
   title: joi.string().min(3).max(60).required(),
 
-  image: joi.string().min(3).max(60),
+  picture: joi.string().min(3).max(255),
 
   summary: joi.string().min(40).max(255).required(),
 

@@ -38,7 +38,7 @@ class RecipeRepository {
         recipe.prep_time,
         recipe.cook_time,
         recipe.serving,
-        recipe.user_id,
+        1,
       ],
     );
 

@@ -61,3 +61,7 @@ export type UserType = {
   lastname: string;
   roleId: number;
 };
+
+export type RegistrerPopupProps = {
+  closePopupRegistre: () => void;
+};
