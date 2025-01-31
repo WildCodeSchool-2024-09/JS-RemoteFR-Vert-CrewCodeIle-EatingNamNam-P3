@@ -15,7 +15,6 @@ const browseMostRecent: RequestHandler = async (req, res, next) => {
 const readByTitle: RequestHandler = async (req, res, next) => {
   try {
     const recipeFromDB = await recipeRepository.readAll();
-    console.info(req.query);
     if (req.query.q) {
       const filteredRecipe = recipeFromDB.filter((element) =>
         element.title.toLowerCase().includes(req.query.q as string),

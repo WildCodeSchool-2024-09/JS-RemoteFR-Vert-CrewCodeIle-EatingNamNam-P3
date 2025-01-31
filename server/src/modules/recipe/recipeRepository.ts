@@ -19,7 +19,7 @@ class RecipeRepository {
   async readAll() {
     const [rows] = await databaseClient.query<Rows>(
       `
-        SELECT *
+        SELECT title, user_id, prep_time, cook_time, summary
         FROM recipe
       `,
     );
