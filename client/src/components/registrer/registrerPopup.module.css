@@ -1,6 +1,14 @@
 .registrer {
   display: flex;
   justify-content: center;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+  backdrop-filter: blur(5px);
 }
 .formulaire {
   background-color: var(--color-primary);
@@ -8,7 +16,7 @@
   flex-direction: column;
   color: var(--color-dark);
   padding: 0.8em 2.7em;
-  height: 40em;
+  height: 45em;
   gap: 0.6em;
   justify-content: center;
   width: 20em;
@@ -52,4 +60,8 @@
 }
 .file {
   font-size: 0.8em;
+}
+.btnclose {
+  cursor: pointer;
+  color: var(--color-dark);
 }
