@@ -2,7 +2,7 @@ import databaseClient from "../../../database/client";
 
 import type { Result, Rows } from "../../../database/client";
 
-import type { UserLoginType, UserType } from "../../lib/definitions";
+import type { UserType } from "../../lib/definitions";
 
 class userRepository {
   async create(user: Omit<UserType, "id">) {
@@ -48,7 +48,7 @@ class userRepository {
       [userName],
     );
 
-    return rows as UserLoginType[];
+    return rows as UserType[];
   }
 }
 

@@ -1,6 +1,6 @@
 import type { RequestHandler } from "express";
 
-import type { UserLoginType } from "../../lib/definitions";
+import type { UserLoginType, UserType } from "../../lib/definitions";
 import userRepository from "./userRepository";
 
 const add: RequestHandler = async (req, res, next) => {
@@ -20,8 +20,9 @@ const add: RequestHandler = async (req, res, next) => {
 
 const readByUserName: RequestHandler = async (req, res, next) => {
   try {
-    const userFromDB: UserLoginType[] | null =
-      await userRepository.readUserName(req.body.username);
+    const userFromDB: UserType[] | null = await userRepository.readUserName(
+      req.body.username,
+    );
 
     req.body.passwordFromDB = userFromDB[0].password_hash;
 
