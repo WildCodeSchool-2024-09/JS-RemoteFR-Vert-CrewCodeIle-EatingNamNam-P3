@@ -1,8 +1,10 @@
 import axios from "axios";
+import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import type { RecipeDataType } from "../../lib/definitions.ts";
+import ImagePreview from "../imagePreview/ImagePreview.tsx";
 import style from "./recipeForm.module.css";
 
 export default function RecipeForm() {
@@ -29,20 +31,128 @@ export default function RecipeForm() {
     control,
   });
 
-  const formSubmit: SubmitHandler<RecipeDataTypeWithoutId> = async (data) => {
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/recipes/`,
-        data,
-      );
-      toast.success(response.data.message, {});
-    } catch (err) {
-      toast.error("Erreur lors de l'ajout de la recette", {});
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      setSelectedImage(event.target.files[0]);
     }
   };
+
+  const formSubmit: SubmitHandler<RecipeDataTypeWithoutId> = async (data) => {
+    try {
+      const formData = new FormData();
+
+      formData.append("file", data.picture[0]);
+      formData.append("title", data.title);
+      formData.append("summary", data.summary);
+      formData.append("prep_time", data.prep_time.toString());
+      formData.append("cook_time", data.cook_time.toString());
+      formData.append("serving", data.serving.toString());
+
+      for (const [index, step] of Object.entries(data.step)) {
+        formData.append(
+          `step[${index}][step_order]`,
+          step.step_order.toString(),
+        );
+        formData.append(`step[${index}][content]`, step.content);
+      }
+
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/recipes/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      );
+      toast.success(response.data.message);
+    } catch (err) {
+      toast.error("Erreur lors de l'ajout de la recette.");
+    }
+  };
+
   return (
     <>
       <form className={style.form} onSubmit={handleSubmit(formSubmit)}>
+        <label className={style.label}>
+          Je choisis un titre*
+          <input
+            type="text"
+            className={style.input}
+            placeholder="Saisissez un titre"
+            {...register("title", {
+              required: "Champ obligatoire",
+              minLength: {
+                value: 3,
+                message: "Ce champ doit contenir au moins 3 lettres",
+              },
+              maxLength: {
+                value: 60,
+                message: "Ce champ doit contenir moins de 60 lettres",
+              },
+            })}
+          />
+          {errors.title && <span>{errors.title.message}</span>}
+        </label>
+        <label className={style.imageUploader}>
+          Je choisis une image
+          <input
+            type="file"
+            className="style.uploader"
+            accept="image/*"
+            {...register("picture")}
+            onChange={handleImageChange}
+          />
+        </label>
+        <ImagePreview image={selectedImage} />
+        <label className={style.label}>
+          Présentation*
+          <textarea
+            className={`${style.input} ${style.summary}`}
+            placeholder="Créez un résumé de votre recette, il apparaîtra sur la fiche recette."
+            {...register("summary", {
+              required: "Champ obligatoire",
+              minLength: {
+                value: 40,
+                message: "Ce champ doit contenir au moins 40 lettres",
+              },
+              maxLength: {
+                value: 255,
+                message: "Ce champ doit contenir moins de 255 lettres",
+              },
+            })}
+          />
+          {errors.summary && <span>{errors.summary.message}</span>}
+        </label>
+        <label className={style.label}>
+          Temps de préparation*
+          <input
+            type="number"
+            className={style.input}
+            {...register("prep_time", { required: "Ce champ est obligatoire" })}
+          />
+          {errors.prep_time && <span>{errors.prep_time.message}</span>}
+        </label>
+        <label className={style.label}>
+          Temps de cuisson*
+          <input
+            type="number"
+            className={style.input}
+            {...register("cook_time", { required: "Ce champ est obligatoire" })}
+          />
+          {errors.cook_time && <span>{errors.cook_time.message}</span>}
+        </label>
+        <label className={style.label}>
+          Nombre de parts*
+          <input
+            type="number"
+            className={style.input}
+            {...register("serving", { required: "Ce champ est obligatoire" })}
+          />
+          {errors.serving && <span>{errors.serving.message}</span>}
+        </label>
         {fields.map((field, index) => {
           return (
             <div key={field.id}>
@@ -98,88 +208,13 @@ export default function RecipeForm() {
           type="button"
           onClick={() =>
             append({
-              step_order: 0,
+              step_order: fields.length + 1,
               content: "",
             })
           }
         >
           Ajouter une étape
         </button>
-        <label className={style.label}>
-          Je choisis un titre*
-          <input
-            type="title"
-            className={style.input}
-            placeholder="Saisissez un titre"
-            {...register("title", {
-              required: "Champ obligatoire",
-              minLength: {
-                value: 3,
-                message: "Ce champ doit contenir au moins 3 lettres",
-              },
-              maxLength: {
-                value: 60,
-                message: "Ce champ doit contenir moins de 60 lettres",
-              },
-            })}
-          />
-          {errors.title && <span>{errors.title.message}</span>}
-        </label>
-        <label className={style.label}>
-          Image
-          <input
-            type="text"
-            className={style.input}
-            placeholder="Insérez l'URL d'une image"
-          />
-        </label>
-        <label className={style.label}>
-          Présentation*
-          <input
-            type="text"
-            className={style.input}
-            placeholder="Créez un résumé de votre recette, il apparaîtra sur la fiche recette."
-            {...register("summary", {
-              required: "Champ obligatoire",
-              minLength: {
-                value: 40,
-                message: "Ce champ doit contenir au moins 40 lettres",
-              },
-              maxLength: {
-                value: 255,
-                message: "Ce champ doit contenir moins de 255 lettres",
-              },
-            })}
-          />
-          {errors.summary && <span>{errors.summary.message}</span>}
-        </label>
-        <label className={style.label}>
-          Temps de préparation*
-          <input
-            type="prep_time"
-            className={style.input}
-            {...register("prep_time", { required: "Ce champ est obligatoire" })}
-          />
-          {errors.prep_time && <span>{errors.prep_time.message}</span>}
-        </label>
-        <label className={style.label}>
-          Temps de cuisson*
-          <input
-            type="cook_time"
-            className={style.input}
-            {...register("cook_time", { required: "Ce champ est obligatoire" })}
-          />
-          {errors.cook_time && <span>{errors.cook_time.message}</span>}
-        </label>
-        <label className={style.label}>
-          Nombre de parts*
-          <input
-            type="serving"
-            className={style.input}
-            {...register("serving", { required: "Ce champ est obligatoire" })}
-          />
-          {errors.serving && <span>{errors.serving.message}</span>}
-        </label>
         <button className={style.button} type="submit">
           Ajouter la recette
         </button>

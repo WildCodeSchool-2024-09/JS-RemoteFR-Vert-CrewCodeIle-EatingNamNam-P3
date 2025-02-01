@@ -16,7 +16,7 @@ const add: RequestHandler = async (req, res, next) => {
   try {
     const newRecipe = {
       title: req.body.title,
-      picture: req.body.picture,
+      picture: req.file?.filename,
       summary: req.body.summary,
       prep_time: Number.parseInt(req.body.prep_time),
       cook_time: Number.parseInt(req.body.cook_time),

@@ -1,4 +1,3 @@
 # Ignorer tous les fichiers du dossier public/assets/uploads à l'exception du .gitignore
-
 /*
 !.gitignore
