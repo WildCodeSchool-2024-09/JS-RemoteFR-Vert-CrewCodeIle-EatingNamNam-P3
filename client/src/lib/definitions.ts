@@ -65,3 +65,10 @@ export type UserType = {
 export type RegistrerPopupProps = {
   closePopupRegistre: () => void;
 };
+
+export type RecipeIngredientType = {
+  id: number;
+  quantity: number;
+  recipe_id: number;
+  ingredient_id: number;
+};

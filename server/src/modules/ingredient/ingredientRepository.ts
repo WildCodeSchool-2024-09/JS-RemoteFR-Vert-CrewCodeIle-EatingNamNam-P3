@@ -1,6 +1,6 @@
 import databaseClient from "../../../database/client";
 
-import type { Result } from "../../../database/client";
+import type { Result, Rows } from "../../../database/client";
 
 import type { IngredientType } from "../../lib/definitions";
 
@@ -9,7 +9,7 @@ class IngredientRepository {
     const [result] = await databaseClient.query<Result>(
       `
             INSERT INTO ingredient (label, protein_amount, carb_amount, fat_amount, calorie_amount, user_id, unit_type_id)
-            VALUE (?,?,?,?,?,?,?)`,
+            VALUE (?,?,?,?,?,1,1)`,
       [
         ingredient.label,
         ingredient.protein_amount,
@@ -21,6 +21,16 @@ class IngredientRepository {
       ],
     );
     return result.insertId;
+  }
+
+  async readAll() {
+    const [rows] = await databaseClient.query<Rows>(
+      `
+        SELECT label
+        FROM ingredient
+      `,
+    );
+    return rows as IngredientType[];
   }
 }
 

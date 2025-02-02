@@ -73,3 +73,10 @@ export type UnitTypeType = {
   id: number;
   label: string;
 };
+
+export type RecipeIngredientType = {
+  id: number;
+  quantity: number;
+  recipe_id: number;
+  ingredient_id: number;
+};
