@@ -16,6 +16,16 @@ class RecipeRepository {
     return rows as RecipeDataType[];
   }
 
+  async readAll() {
+    const [rows] = await databaseClient.query<Rows>(
+      `
+        SELECT title, user_id, prep_time, cook_time, summary
+        FROM recipe
+      `,
+    );
+    return rows as RecipeDataType[];
+  }
+
   async create(recipe: Omit<RecipeDataType, "id">) {
     const [result] = await databaseClient.query<Result>(
       `INSERT INTO recipe
