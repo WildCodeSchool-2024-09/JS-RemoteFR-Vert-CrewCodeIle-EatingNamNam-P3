@@ -8,6 +8,7 @@ import recipeActions from "../modules/recipe/recipeActions";
 import stepActions from "../modules/step/stepActions";
 
 router.get("/discoveries", recipeActions.browseMostRecent);
+router.get("/", recipeActions.readByTitle);
 
 router.post(
   "/",
