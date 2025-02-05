@@ -8,6 +8,12 @@ const schema = joi.object({
       content: joi.string().min(10).max(255).required(),
     }),
   ),
+  recipe_ingredient: joi.array().items(
+    joi.object({
+      quantity: joi.number().integer().min(1).max(21).required(),
+      label: joi.number().min(0).max(255).required(),
+    }),
+  ),
 
   title: joi.string().min(3).max(60).required(),
 

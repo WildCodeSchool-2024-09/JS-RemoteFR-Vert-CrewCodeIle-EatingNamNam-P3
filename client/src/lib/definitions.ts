@@ -33,6 +33,10 @@ export type RecipeDataType = {
     step_order: number;
     content: string;
   }[];
+  recipe_ingredient: {
+    quantity: number;
+    label: string;
+  }[];
   prep_time: number;
   cook_time: number;
   serving: number;

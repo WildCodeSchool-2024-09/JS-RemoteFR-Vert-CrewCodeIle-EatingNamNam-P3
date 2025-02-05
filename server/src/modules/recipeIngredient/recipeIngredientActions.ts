@@ -3,17 +3,19 @@ import recipeIngredientRepository from "./recipeIngredientRepository";
 
 const add: RequestHandler = async (req, res, next) => {
   try {
-    const newRecipeIngredient = {
-      quantity: req.body.quantity,
-      recipe_id: req.body.recipe_id,
-      ingredient_id: req.body.ingredient_id,
-    };
-    const insertId =
-      await recipeIngredientRepository.create(newRecipeIngredient);
-    res.status(201).json({
-      message: "Nouvel ingrédient ajouter",
-      id: insertId,
-    });
+    const recipe_ingredient = req.body.recipe_ingredient;
+
+    if (recipe_ingredient) {
+      for (const currentingredient of recipe_ingredient) {
+        const recipeIngredientDB = {
+          ...currentingredient,
+          recipe_id: req.body.recipeId,
+        };
+        await recipeIngredientRepository.create(recipeIngredientDB);
+      }
+    }
+
+    res.status(201);
   } catch (err) {
     next(err);
   }

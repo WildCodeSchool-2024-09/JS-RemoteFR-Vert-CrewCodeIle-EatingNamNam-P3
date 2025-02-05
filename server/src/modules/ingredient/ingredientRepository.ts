@@ -26,8 +26,9 @@ class IngredientRepository {
   async readAll() {
     const [rows] = await databaseClient.query<Rows>(
       `
-        SELECT label
+        SELECT id, label
         FROM ingredient
+
       `,
     );
     return rows as IngredientType[];

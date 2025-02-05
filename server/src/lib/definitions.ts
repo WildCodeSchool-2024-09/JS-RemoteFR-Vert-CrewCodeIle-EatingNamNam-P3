@@ -78,5 +78,5 @@ export type RecipeIngredientType = {
   id: number;
   quantity: number;
   recipe_id: number;
-  ingredient_id: number;
+  label: number;
 };

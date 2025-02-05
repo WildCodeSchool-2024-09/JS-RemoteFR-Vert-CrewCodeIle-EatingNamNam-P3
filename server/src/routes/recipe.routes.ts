@@ -4,7 +4,6 @@ const router = express.Router();
 
 import { validateRecipeSchema } from "../helpers/validators/recipe.validator";
 import imageUploadActions from "../modules/imageUpload/imageUploadActions";
-import ingredientActions from "../modules/ingredient/ingredientActions";
 import recipeActions from "../modules/recipe/recipeActions";
 import recipeIngredientActions from "../modules/recipeIngredient/recipeIngredientActions";
 import stepActions from "../modules/step/stepActions";
@@ -17,7 +16,10 @@ router.post(
   recipeActions.add,
   stepActions.add,
   recipeIngredientActions.add,
+  (req, res) => {
+    console.info(req.body);
+  },
 );
 
-router.post("/ri", ingredientActions.readBylabel, recipeIngredientActions.add);
+// router.post("/ri", recipeIngredientActions.add);
 export default router;

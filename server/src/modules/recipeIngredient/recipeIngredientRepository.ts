@@ -7,14 +7,14 @@ class RecipeIngredientRepository {
   async create(recipeIngredient: Omit<RecipeIngredientType, "id">) {
     const [result] = await databaseClient.query<Result>(
       `INSERT INTO recipe_ingredient 
-            (quantity, recipe_id, ingredient_id)
+            (quantity,  ingredient_id,recipe_id)
             VALUES
             ( ? , ? , ? )
             `,
       [
         recipeIngredient.quantity,
+        recipeIngredient.label,
         recipeIngredient.recipe_id,
-        recipeIngredient.ingredient_id,
       ],
     );
 
