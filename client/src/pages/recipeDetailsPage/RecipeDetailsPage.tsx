@@ -2,13 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import type { RecipeDataType } from "../../lib/definitions";
+import type { RecipeDetailsDataType } from "../../lib/definitions";
 import { formatDate } from "../../services/dateFormatter";
 import style from "./recipeDetailsPage.module.css";
 
 export default function RecipeDetailsPage() {
   const { id } = useParams();
-  const [recipeData, setRecipeData] = useState<RecipeDataType>();
+  const [recipeData, setRecipeData] = useState<RecipeDetailsDataType>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,7 +58,7 @@ export default function RecipeDetailsPage() {
           </h3>
           <h3 className={style.subTitle}>INSTRUCTIONS</h3>
           <ol className={style.steps}>
-            {recipeData.step?.map((step) => (
+            {recipeData.steps?.map((step) => (
               <li className={style.stepList} key={step.step_order}>
                 {step.content}
               </li>
