@@ -5,6 +5,9 @@
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   box-shadow: 0 2px 10px 0 var(--color-hint);
   padding: 1em;
   margin: 1em;
@@ -29,6 +32,8 @@
   font-family: var(--text-font);
   font-size: 1em;
   word-wrap: break-word;
+  border: dashed 3px var(--color-tertiary);
+  padding: 2em;
 }
 
 .author {
@@ -45,6 +50,18 @@
 .subTitle {
   font-family: var(--title-font);
   color: var(--color-secondary);
+  border-bottom: dashed 2px var(--color-tertiary);
+  padding-bottom: 0.3em;
+}
+
+.steps {
+  border: dashed 3px var(--color-tertiary);
+  padding: 2em;
+}
+
+.stepList {
+  list-style: decimal;
+  margin-left: 2em;
 }
 
 .commentsTitle {

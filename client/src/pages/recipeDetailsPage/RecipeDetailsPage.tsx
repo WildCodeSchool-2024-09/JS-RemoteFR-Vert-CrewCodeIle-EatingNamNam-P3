@@ -57,8 +57,12 @@ export default function RecipeDetailsPage() {
             INGRÉDIENTS ( pour {recipeData.serving} parts)
           </h3>
           <h3 className={style.subTitle}>INSTRUCTIONS</h3>
-          <ol>
-            <li>a</li>
+          <ol className={style.steps}>
+            {recipeData.step?.map((step) => (
+              <li className={style.stepList} key={step.step_order}>
+                {step.content}
+              </li>
+            ))}
           </ol>
           <h3 className={style.subTitle}>DONNÉES NUTRITIONNELLES</h3>
         </section>
