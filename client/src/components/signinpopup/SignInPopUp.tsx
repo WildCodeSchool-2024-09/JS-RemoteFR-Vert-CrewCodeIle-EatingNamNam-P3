@@ -21,7 +21,7 @@ export default function SignInPopup() {
       );
       toast.success(response.data.message);
     } catch (err) {
-      toast.error("Connection reussie");
+      toast.error("Erreur dans la connexion");
     }
   };
 

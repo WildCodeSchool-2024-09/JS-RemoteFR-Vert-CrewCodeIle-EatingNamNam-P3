@@ -4,25 +4,38 @@ import type { UserType } from "../../lib/definitions";
 
 import jwt from "jsonwebtoken";
 
-const tokenGeneration = async (payload: UserType) => {
+type PayloadType = {
+  username: string;
+};
+
+const tokenGeneration = async (payload: PayloadType) => {
   return jwt.sign(payload, process.env.APP_SECRET as string, {
-    expiresIn: "48h",
+    expiresIn: "24h",
   });
 };
 
 const login: RequestHandler = async (req, res, next) => {
-  const token = await tokenGeneration(req.body.username);
+  try {
+    const { username } = req.body;
+    const payloadObject = { username };
 
-  res
-    .status(200)
-    .cookie("auth_token", token, {
-      secure: false,
-      httpOnly: true,
-      maxAge: 360000,
-    })
-    .json({
-      message: "utilisateur connecté",
-    });
+    const token = await tokenGeneration(payloadObject);
+
+    res
+      .status(200)
+      .cookie("auth_token", token, {
+        secure: false,
+        httpOnly: true,
+        maxAge: 360000,
+      })
+      .json({
+        message: "utilisateur connecté",
+      });
+
+    return;
+  } catch (err) {
+    next(err);
+  }
 };
 
 export default { login };

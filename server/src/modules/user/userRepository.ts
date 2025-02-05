@@ -48,7 +48,7 @@ class userRepository {
       [userName],
     );
 
-    return rows as UserType[];
+    return rows.length ? (rows[0] as UserType) : null;
   }
 }
 

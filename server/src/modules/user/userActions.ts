@@ -20,11 +20,14 @@ const add: RequestHandler = async (req, res, next) => {
 
 const readByUserName: RequestHandler = async (req, res, next) => {
   try {
-    const userFromDB: UserType[] | null = await userRepository.readUserName(
+    const userFromDB: UserType | null = await userRepository.readUserName(
       req.body.username,
     );
+    if (!userFromDB) {
+      return;
+    }
 
-    req.body.passwordFromDB = userFromDB[0].password_hash;
+    req.body.passwordFromDB = userFromDB.password_hash;
 
     next();
   } catch (err) {

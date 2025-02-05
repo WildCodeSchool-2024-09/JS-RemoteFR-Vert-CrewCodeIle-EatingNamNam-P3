@@ -29,7 +29,7 @@ export const passwordComparison: RequestHandler = async (req, res, next) => {
   try {
     const isValid = await verifyPassword(
       req.body.passwordFromDB,
-      req.body.password,
+      req.body.password_hash,
     );
 
     if (!isValid) {
@@ -39,9 +39,7 @@ export const passwordComparison: RequestHandler = async (req, res, next) => {
       return;
     }
 
-    console.info({ message: "tout va bien", value: req.body.password });
-
-    res.json({ message: "super" });
+    next();
   } catch (err) {
     next(err);
   }
