@@ -1,9 +1,9 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { Rating } from "react-simple-star-rating";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import type { CommentaryType } from "../../lib/definitions";
 
 export default function Commentary() {
@@ -14,7 +14,7 @@ export default function Commentary() {
     setValue("rating", valueStar);
   };
   console.info(rating);
-
+  const [comData, setComData] = useState<CommentaryType[]>([]);
   const formSubmit: SubmitHandler<CommentaryType> = async (data) => {
     try {
       const response = await axios.post(
@@ -26,10 +26,23 @@ export default function Commentary() {
       toast.error("Erreur lors de l'ajout du commentaire", {});
     }
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/commentary
+          `,
+        );
+        setComData(response.data);
+      } catch (error) {
+        toast.error("Impossible de charger les com", {});
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <section>
-      <ToastContainer />
       <form onSubmit={handleSubmit(formSubmit)}>
         <label htmlFor="">
           <Rating onClick={handleRating} initialValue={rating} />
@@ -41,11 +54,20 @@ export default function Commentary() {
             })}
           />
         </label>
-        <label htmlFor="">
-          <input type="file" />
-        </label>
         <button type="submit">Ajouter</button>
       </form>
+      <div>
+        {comData.length === 0 ? (
+          <p>Aucun commentaire disponible.</p>
+        ) : (
+          comData.map((element) => (
+            <div key={element.id}>
+              <p>{element.com_content}</p>
+              <Rating initialValue={element.rating} readonly />
+            </div>
+          ))
+        )}
+      </div>
     </section>
   );
 }

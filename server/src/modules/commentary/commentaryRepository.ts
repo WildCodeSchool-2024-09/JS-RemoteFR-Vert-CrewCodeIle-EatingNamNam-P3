@@ -1,5 +1,5 @@
 import databaseClient from "../../../database/client";
-import type { Result } from "../../../database/client";
+import type { Result, Rows } from "../../../database/client";
 import type { commentaryType } from "../../lib/definitions";
 
 class CommentaryRepository {
@@ -11,6 +11,15 @@ class CommentaryRepository {
       [commentary.rating, commentary.com_content, commentary.com_picture, 1, 1],
     );
     return result.insertId;
+  }
+
+  async read() {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT rating, com_content
+      FROM user_com_recipe
+      `,
+    );
+    return rows as commentaryType[];
   }
 }
 

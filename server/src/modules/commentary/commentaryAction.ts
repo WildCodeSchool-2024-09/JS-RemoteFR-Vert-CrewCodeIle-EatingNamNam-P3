@@ -21,5 +21,14 @@ const add: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+const browse: RequestHandler = async (req, res, next) => {
+  try {
+    const recipes = await commentaryRepository.read();
 
-export default { add };
+    res.json(recipes);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { add, browse };

@@ -45,6 +45,7 @@ export type CategoryType = {
 };
 
 export type CommentaryType = {
+  id: number;
   rating: number;
   com_content: string;
   com_picture: string;
