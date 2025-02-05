@@ -7,8 +7,9 @@ import type { RecipeDataType } from "../../lib/definitions";
 class RecipeRepository {
   async readMostRecent() {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT *
+      `SELECT recipe.*, user.username
         FROM recipe
+        JOIN user ON recipe.user_id = user.id
         ORDER BY created_at DESC
         LIMIT 3`,
     );
