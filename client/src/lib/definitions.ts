@@ -36,6 +36,7 @@ export type RecipeDataType = {
   prep_time: number;
   cook_time: number;
   serving: number;
+  created_at: string;
   user_id: number;
   username: string;
 };

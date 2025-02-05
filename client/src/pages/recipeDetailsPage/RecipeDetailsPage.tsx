@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import type { RecipeDataType } from "../../lib/definitions";
+import { formatDate } from "../../services/dateFormatter";
 import style from "./recipeDetailsPage.module.css";
 
 export default function RecipeDetailsPage() {
@@ -29,12 +30,20 @@ export default function RecipeDetailsPage() {
     recipeData && (
       <main className={style.main}>
         <h2>{recipeData.title}</h2>
-        {/* <img
+        <figure
           className={style.recipePicture}
-          src={`../../../../server/public/assets/uploads/${recipeData.picture}`}
-          alt="recipe illustration"
+          style={{
+            backgroundImage: `url(${import.meta.env.VITE_API_URL}/${recipeData.picture})`,
+          }}
         />
-        <img src="../../../public/images/fond-nourriture-ingredients.jpg" /> */}
+        <p>{recipeData.summary}</p>
+        <p>{recipeData.prep_time}</p>
+        <p>{recipeData.cook_time}</p>
+        <p>{recipeData.serving}</p>
+        <p>
+          recette créée par <a href="/">{recipeData.username}</a> le{" "}
+          {formatDate(recipeData.created_at)}
+        </p>
       </main>
     )
   );
