@@ -70,6 +70,10 @@ export type RegistrerPopupProps = {
   closePopupRegistre: () => void;
 };
 
+export type IngredientPopupProps = {
+  closePopUp: () => void;
+};
+
 export type RecipeIngredientType = {
   id: number;
   quantity: number;

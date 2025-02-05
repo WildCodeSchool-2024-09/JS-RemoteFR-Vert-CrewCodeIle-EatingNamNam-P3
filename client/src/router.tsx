@@ -3,7 +3,6 @@ import App from "./App";
 import AdminRoleForm from "./components/adminRoleForm/AdminRoleForm";
 import CategoryForm from "./components/categoryForm/CategoryForm";
 import DietTypeForm from "./components/dietTypeForm/DietTypeForm";
-// import RecipeIngredient from "./components/recipeIngredient/RecipeIngredient";
 import UnitType from "./components/unitTypeForm/UnitType";
 import AdminPage from "./pages/adminPage/AdminPage";
 import DiscoveryLayout from "./pages/discoveryPage/DiscoveryLayout";
@@ -22,10 +21,6 @@ export const router = createBrowserRouter([
         path: "/creer-recette",
         element: <RecipeNewPage />,
       },
-      // {
-      //   path: "/ajout-ing",
-      //   element: <RecipeIngredient />,
-      // },
       {
         path: "/liste-recette",
         element: <RecipeListPage />,

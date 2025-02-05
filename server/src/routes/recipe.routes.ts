@@ -16,10 +16,6 @@ router.post(
   recipeActions.add,
   stepActions.add,
   recipeIngredientActions.add,
-  (req, res) => {
-    console.info(req.body);
-  },
 );
 
-// router.post("/ri", recipeIngredientActions.add);
 export default router;

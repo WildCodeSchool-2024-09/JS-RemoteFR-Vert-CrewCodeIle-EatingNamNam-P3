@@ -5,11 +5,15 @@ import type { SubmitHandler } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import type { IngredientType, RecipeDataType } from "../../lib/definitions.ts";
 import ImagePreview from "../imagePreview/ImagePreview.tsx";
+import IngredientForm from "../ingredient/IngredientForm.tsx";
 import style from "./recipeForm.module.css";
 
 export default function RecipeForm() {
   type RecipeDataTypeWithoutId = Omit<RecipeDataType, "id">;
-
+  const [isIngredient, setIsIngredient] = useState(false);
+  const handleClose = () => {
+    setIsIngredient(false);
+  };
   const {
     register,
     handleSubmit,
@@ -178,13 +182,29 @@ export default function RecipeForm() {
                 <label>
                   <input
                     type="number"
-                    {...register(`recipe_ingredient.${index}.quantity`)}
+                    step="0.1"
+                    placeholder="0.1"
+                    {...register(`recipe_ingredient.${index}.quantity`, {
+                      min: {
+                        value: 0.1,
+                        message: "quantité minimun 0.1",
+                      },
+                      max: {
+                        value: 1000,
+                        message: "quantité maximun 1000 ",
+                      },
+                    })}
                   />
+                  {errors.recipe_ingredient?.[index]?.quantity && (
+                    <p className={style.errors}>
+                      {errors.recipe_ingredient[index]?.quantity?.message}
+                    </p>
+                  )}
                   quantité
                 </label>
                 <label>
                   Choisir un ingrédient
-                  <select {...register(`recipe_ingredient.${index}.label`)}>
+                  <select {...register(`recipe_ingredient.${index}.label`, {})}>
                     {ingredientData.map((ingredient) => (
                       <option key={ingredient.id} value={ingredient.id}>
                         {ingredient.label}
@@ -198,21 +218,24 @@ export default function RecipeForm() {
                 >
                   X
                 </button>
-                <button
-                  type="button"
-                  onClick={() =>
-                    recipe_ingredientAppend({
-                      quantity: recipe_ingredientFields.length + 1,
-                      label: "",
-                    })
-                  }
-                >
-                  Ajouter un ingredient
-                </button>
               </section>
             </div>
           );
         })}
+        <button
+          type="button"
+          onClick={() =>
+            recipe_ingredientAppend({
+              quantity: recipe_ingredientFields.length + 1,
+              label: "",
+            })
+          }
+        >
+          Ajouter un ingredient
+        </button>
+        <button type="button" onClick={() => setIsIngredient(true)}>
+          créer ingredient
+        </button>
 
         <label className={style.label}>
           Temps de préparation*
@@ -309,6 +332,7 @@ export default function RecipeForm() {
         <span className={style.note}>* obligatoire</span>
       </form>
       <ToastContainer />
+      {isIngredient && <IngredientForm closePopUp={handleClose} />}
     </>
   );
 }
