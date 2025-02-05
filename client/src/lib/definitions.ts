@@ -29,10 +29,15 @@ export type RecipeDataType = {
   title: string;
   picture: string;
   summary: string;
+  step: {
+    step_order: number;
+    content: string;
+  }[];
   prep_time: number;
   cook_time: number;
   serving: number;
   user_id: number;
+  username: string;
 };
 
 export type CategoryType = {
@@ -45,4 +50,27 @@ export type CommentaryType = {
   com_picture: string;
   user_id: number;
   recipe_id: number;
+};
+
+export type UnitTypeType = {
+  label: string;
+};
+
+export type UserType = {
+  id: number;
+  username: string;
+  email: string;
+  password_hash: string;
+  confirmPassword: string;
+  avatar: string;
+  birth_date: Date;
+  localisation: string;
+  profession: string;
+  firstname: string;
+  lastname: string;
+  roleId: number;
+};
+
+export type RegistrerPopupProps = {
+  closePopupRegistre: () => void;
 };

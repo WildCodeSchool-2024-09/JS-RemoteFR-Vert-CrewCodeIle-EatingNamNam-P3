@@ -8,6 +8,7 @@ const AdminPage = () => {
       <Link to="/admin/creer-role">Role</Link>
       <Link to="/admin/creer-categorie">Categorie</Link>
       <Link to="/admin/creer-diet">Type de Diet</Link>
+      <Link to="/admin/creer-unite">Unités de Mesure</Link>
       <Outlet />
     </>
   );
