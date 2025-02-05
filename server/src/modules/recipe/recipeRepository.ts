@@ -16,6 +16,18 @@ class RecipeRepository {
     return rows as RecipeDataType[];
   }
 
+  async read(id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT r.*, u.username
+      FROM recipe AS r
+      JOIN user AS u ON r.user_id = u.id
+      WHERE r.id = ?`,
+      [id],
+    );
+
+    return rows[0] as RecipeDataType;
+  }
+
   async readAll() {
     const [rows] = await databaseClient.query<Rows>(
       `

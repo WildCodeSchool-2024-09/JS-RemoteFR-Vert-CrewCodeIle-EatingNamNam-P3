@@ -6,6 +6,7 @@ import DietTypeForm from "./components/dietTypeForm/DietTypeForm";
 import UnitType from "./components/unitTypeForm/UnitType";
 import AdminPage from "./pages/adminPage/AdminPage";
 import DiscoveryLayout from "./pages/discoveryPage/DiscoveryLayout";
+import RecipeDetailsPage from "./pages/recipeDetailsPage/RecipeDetailsPage";
 import RecipeListPage from "./pages/recipeListPage/RecipeListPage";
 import RecipeNewPage from "./pages/recipePages/RecipeNewPage";
 
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: "/liste-recette",
         element: <RecipeListPage />,
+      },
+      {
+        path: "/recette-details/:id",
+        element: <RecipeDetailsPage />,
       },
     ],
   },

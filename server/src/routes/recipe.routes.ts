@@ -9,6 +9,7 @@ import stepActions from "../modules/step/stepActions";
 
 router.get("/top3", recipeActions.browseMostRecent);
 router.get("/", recipeActions.readByTitle);
+router.get("/:id", recipeActions.read);
 router.post(
   "/",
   imageUploadActions.uploadController,
