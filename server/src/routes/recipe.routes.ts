@@ -17,6 +17,6 @@ router.post(
   recipeActions.add,
   stepActions.add,
 );
-router.delete("/:id", recipeActions.destroy);
+router.delete("/:id", stepActions.destroy, recipeActions.destroy);
 
 export default router;

@@ -25,8 +25,31 @@ const DeleteRecipeForm = () => {
     fetchData();
   }, []);
 
+  const handleDelete = async (recipeId: number) => {
+    const isConfirmed = window.confirm(
+      "Supprimer la recette ? Cette action est irréversible.",
+    );
+    if (!isConfirmed) return;
+
+    try {
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/api/recipes/${recipeId}`,
+      );
+
+      setRecipeData((previousRecipeData) =>
+        previousRecipeData.filter((recipe) => recipe.id !== recipeId),
+      );
+
+      toast.success("Recette supprimée avec succès !");
+    } catch (error) {
+      toast.error(
+        "Erreur lors de la suppression, veuillez réesayer plus tard.",
+      );
+    }
+  };
+
   return (
-    <section>
+    <>
       {recipeData?.map((currentRecipeData: RecipeDataAdminList) => (
         <section className={style.recipeFrame} key={currentRecipeData.id}>
           <ul className={style.recipeList}>
@@ -37,12 +60,16 @@ const DeleteRecipeForm = () => {
             <li>créée par {currentRecipeData.username}</li>
             <li>le {formatDate(currentRecipeData.created_at)}</li>
           </ul>
-          <button type="button" className={style.deleteButton}>
+          <button
+            type="button"
+            className={style.deleteButton}
+            onClick={() => handleDelete(currentRecipeData.id)}
+          >
             Supprimer la recette
           </button>
         </section>
       ))}
-    </section>
+    </>
   );
 };
 
