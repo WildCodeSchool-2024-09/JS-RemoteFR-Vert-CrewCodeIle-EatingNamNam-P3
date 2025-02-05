@@ -9,7 +9,7 @@ class IngredientRepository {
     const [result] = await databaseClient.query<Result>(
       `
             INSERT INTO ingredient (label, protein_amount, carb_amount, fat_amount, calorie_amount, user_id, unit_type_id)
-            VALUE (?,?,?,?,?,1,1)`,
+            VALUE (?,?,?,?,?,?,?)`,
       [
         ingredient.label,
         ingredient.protein_amount,
