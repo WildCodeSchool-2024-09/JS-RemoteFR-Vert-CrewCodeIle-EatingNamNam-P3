@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import type { RecipeDataAdminList } from "../../lib/definitions";
+import { formatDate } from "../../services/dateFormatter";
 import style from "./deleteRecipeForm.module.css";
 
 const DeleteRecipeForm = () => {
@@ -34,11 +35,11 @@ const DeleteRecipeForm = () => {
             </li>
             <li>{currentRecipeData.title}</li>
             <li>créée par {currentRecipeData.username}</li>
-            <li>
-              le {new Date(currentRecipeData.created_at).toLocaleString()}
-            </li>
+            <li>le {formatDate(currentRecipeData.created_at)}</li>
           </ul>
-          <button type="button">X</button>
+          <button type="button" className={style.deleteButton}>
+            Supprimer la recette
+          </button>
         </section>
       ))}
     </section>

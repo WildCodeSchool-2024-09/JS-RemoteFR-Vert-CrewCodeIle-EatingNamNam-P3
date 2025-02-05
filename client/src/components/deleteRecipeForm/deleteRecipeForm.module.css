@@ -12,3 +12,10 @@
   margin: 0.5em;
   background-color: var(--color-primary);
 }
+
+.deleteButton {
+  color: var(--color-accent);
+  &:hover {
+    text-decoration: underline;
+  }
+}
