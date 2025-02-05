@@ -39,6 +39,13 @@ export type RecipeDataType = {
   user_id: number;
 };
 
+export type RecipeDataAdminList = {
+  id: number;
+  title: string;
+  created_at: string;
+  username: string;
+};
+
 export type CategoryType = {
   label: string;
 };

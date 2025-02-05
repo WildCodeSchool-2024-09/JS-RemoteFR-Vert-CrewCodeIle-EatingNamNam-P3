@@ -1,0 +1,14 @@
+.recipeFrame {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+}
+
+.recipeList {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding: 0.5em;
+  margin: 0.5em;
+  background-color: var(--color-primary);
+}
