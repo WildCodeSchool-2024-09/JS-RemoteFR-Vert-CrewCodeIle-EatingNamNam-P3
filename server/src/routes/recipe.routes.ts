@@ -7,8 +7,9 @@ import imageUploadActions from "../modules/imageUpload/imageUploadActions";
 import recipeActions from "../modules/recipe/recipeActions";
 import stepActions from "../modules/step/stepActions";
 
-router.get("/top3", recipeActions.browseMostRecent);
+router.get("/discoveries", recipeActions.browseMostRecent);
 router.get("/", recipeActions.readByTitle);
+
 router.post(
   "/",
   imageUploadActions.uploadController,
