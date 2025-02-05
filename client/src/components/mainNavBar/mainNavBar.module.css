@@ -1,0 +1,10 @@
+.navBar {
+  background-image: url("images/healthy-vegetables-wooden-table.jpg");
+  background-position: 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.logo {
+  width: 10em;
+}

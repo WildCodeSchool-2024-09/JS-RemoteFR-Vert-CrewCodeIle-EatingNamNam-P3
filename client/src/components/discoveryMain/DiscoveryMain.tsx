@@ -12,13 +12,12 @@ export default function DiscoveryMain() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/recipes/top3`,
+          `${import.meta.env.VITE_API_URL}/api/recipes/discoveries`,
         );
         setRecipeData(response.data);
       } catch (error) {
         toast.error(
           "Impossible de charger les données des recettes, veuillez essayer ultérieurement.",
-          {},
         );
       }
     };

@@ -37,6 +37,7 @@ export type RecipeDataType = {
   cook_time: number;
   serving: number;
   user_id: number;
+  username: string;
 };
 
 export type RecipeDataAdminList = {
