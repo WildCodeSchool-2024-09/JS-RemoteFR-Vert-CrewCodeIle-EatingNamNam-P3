@@ -53,6 +53,16 @@ class RecipeRepository {
 
     return result.insertId;
   }
+
+  async delete(id: number) {
+    const [result] = await databaseClient.query<Result>(
+      `DELETE FROM recipe
+      WHERE id = ?`,
+      [id],
+    );
+
+    return result.affectedRows;
+  }
 }
 
 export default new RecipeRepository();
