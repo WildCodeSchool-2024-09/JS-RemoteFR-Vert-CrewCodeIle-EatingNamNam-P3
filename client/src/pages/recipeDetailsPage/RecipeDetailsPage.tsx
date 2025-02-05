@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import type { RecipeDataType } from "../../lib/definitions";
 import { formatDate } from "../../services/dateFormatter";
@@ -29,21 +29,42 @@ export default function RecipeDetailsPage() {
   return (
     recipeData && (
       <main className={style.main}>
-        <h2>{recipeData.title}</h2>
-        <figure
-          className={style.recipePicture}
-          style={{
-            backgroundImage: `url(${import.meta.env.VITE_API_URL}/${recipeData.picture})`,
-          }}
-        />
-        <p>{recipeData.summary}</p>
-        <p>{recipeData.prep_time}</p>
-        <p>{recipeData.cook_time}</p>
-        <p>{recipeData.serving}</p>
-        <p>
-          recette créée par <a href="/">{recipeData.username}</a> le{" "}
-          {formatDate(recipeData.created_at)}
-        </p>
+        <section className={style.container}>
+          <h2 className={style.recipeTitle}>{recipeData.title}</h2>
+          <figure
+            className={style.recipePicture}
+            style={{
+              backgroundImage: `url(${import.meta.env.VITE_API_URL}/${recipeData.picture})`,
+            }}
+          />
+          <p className={style.recipeSummary}>{recipeData.summary}</p>
+          <p className={style.author}>
+            recette créée par{" "}
+            <Link
+              to={"/"}
+              className={style.authorLink}
+              rel="créateur de la recette"
+            >
+              {recipeData.username}
+            </Link>
+            <p>le {formatDate(recipeData.created_at)}</p>
+          </p>
+          <h3 className={style.subTitle}>TEMPS DE PRÉPARATION</h3>
+          <p>{recipeData.prep_time} minutes</p>
+          <h3 className={style.subTitle}>TEMPS DE CUISSON</h3>
+          <p>{recipeData.cook_time} minutes</p>
+          <h3 className={style.subTitle}>
+            INGRÉDIENTS ( pour {recipeData.serving} parts)
+          </h3>
+          <h3 className={style.subTitle}>INSTRUCTIONS</h3>
+          <ol>
+            <li>a</li>
+          </ol>
+          <h3 className={style.subTitle}>DONNÉES NUTRITIONNELLES</h3>
+        </section>
+        <section className={style.container}>
+          <h4 className={style.commentsTitle}>Commentaires</h4>
+        </section>
       </main>
     )
   );
