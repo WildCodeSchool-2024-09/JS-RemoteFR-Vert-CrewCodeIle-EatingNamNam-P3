@@ -2,11 +2,14 @@ import axios from "axios";
 import type { ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
-import type { AddIngredientData } from "../../lib/definitions";
+import { toast } from "react-toastify";
+import type {
+  AddIngredientData,
+  IngredientPopupProps,
+} from "../../lib/definitions";
 import style from "./ingredient.module.css";
 
-export default function IngredientForm() {
+export default function IngredientForm({ closePopUp }: IngredientPopupProps) {
   const {
     register,
     handleSubmit,
@@ -27,7 +30,6 @@ export default function IngredientForm() {
 
   return (
     <section className={style.formingredient}>
-      <ToastContainer />
       <form className={style.form} onSubmit={handleSubmit(formSubmit)}>
         <h2 className={style.title}>Ajouter un Ingrédient</h2>
         <label htmlFor="label" className={style.champ}>
@@ -155,6 +157,9 @@ export default function IngredientForm() {
         </label>
         <button type="submit" className={style.btn}>
           Ajouter
+        </button>
+        <button type="button" onClick={closePopUp}>
+          Fermer
         </button>
       </form>
     </section>

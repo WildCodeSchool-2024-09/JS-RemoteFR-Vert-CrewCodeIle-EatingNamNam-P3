@@ -1,6 +1,6 @@
 import databaseClient from "../../../database/client";
 
-import type { Result } from "../../../database/client";
+import type { Result, Rows } from "../../../database/client";
 
 import type { IngredientType } from "../../lib/definitions";
 
@@ -21,6 +21,17 @@ class IngredientRepository {
       ],
     );
     return result.insertId;
+  }
+
+  async readAll() {
+    const [rows] = await databaseClient.query<Rows>(
+      `
+        SELECT id, label
+        FROM ingredient
+
+      `,
+    );
+    return rows as IngredientType[];
   }
 }
 

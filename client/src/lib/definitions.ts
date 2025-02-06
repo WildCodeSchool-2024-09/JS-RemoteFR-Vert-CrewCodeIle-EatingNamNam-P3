@@ -33,10 +33,15 @@ export type RecipeDataType = {
     step_order: number;
     content: string;
   }[];
+  recipe_ingredient: {
+    quantity: number;
+    label: string;
+  }[];
   prep_time: number;
   cook_time: number;
   serving: number;
   user_id: number;
+  username: string;
 };
 
 export type CategoryType = {
@@ -64,4 +69,15 @@ export type UserType = {
 
 export type RegistrerPopupProps = {
   closePopupRegistre: () => void;
+};
+
+export type IngredientPopupProps = {
+  closePopUp: () => void;
+};
+
+export type RecipeIngredientType = {
+  id: number;
+  quantity: number;
+  recipe_id: number;
+  ingredient_id: number;
 };
