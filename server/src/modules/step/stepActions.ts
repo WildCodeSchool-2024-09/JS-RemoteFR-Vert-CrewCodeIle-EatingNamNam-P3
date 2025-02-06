@@ -11,7 +11,7 @@ const add: RequestHandler = async (req, res, next) => {
         await stepRepository.create(recipeStep);
       }
     }
-    res.status(200);
+    next();
   } catch (err) {
     next(err);
   }

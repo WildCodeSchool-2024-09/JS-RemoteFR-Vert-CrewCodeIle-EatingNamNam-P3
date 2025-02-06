@@ -5,6 +5,7 @@ const router = express.Router();
 import { validateRecipeSchema } from "../helpers/validators/recipe.validator";
 import imageUploadActions from "../modules/imageUpload/imageUploadActions";
 import recipeActions from "../modules/recipe/recipeActions";
+import recipeIngredientActions from "../modules/recipeIngredient/recipeIngredientActions";
 import stepActions from "../modules/step/stepActions";
 
 router.get("/discoveries", recipeActions.browseMostRecent);
@@ -16,6 +17,7 @@ router.post(
   validateRecipeSchema,
   recipeActions.add,
   stepActions.add,
+  recipeIngredientActions.add,
 );
 
 export default router;
