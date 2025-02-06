@@ -8,6 +8,8 @@ import AdminPage from "./pages/adminPage/AdminPage";
 import DiscoveryLayout from "./pages/discoveryPage/DiscoveryLayout";
 import RecipeListPage from "./pages/recipeListPage/RecipeListPage";
 import RecipeNewPage from "./pages/recipePages/RecipeNewPage";
+import UserDetailPage from "./pages/userDetailPage/UserDetailPage";
+import UserListPage from "./pages/userListPage/UserListPage";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +26,14 @@ export const router = createBrowserRouter([
       {
         path: "/liste-recette",
         element: <RecipeListPage />,
+      },
+      {
+        path: "/liste-utilisateur",
+        element: <UserListPage />,
+      },
+      {
+        path: "/liste-utilisateur/:id",
+        element: <UserDetailPage />,
       },
     ],
   },
