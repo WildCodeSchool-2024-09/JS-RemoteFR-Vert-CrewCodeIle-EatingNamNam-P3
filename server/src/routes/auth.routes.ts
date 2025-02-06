@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post(
   "/login",
-  userActions.readByUserName,
+  userActions.readPasswordByUserName,
   passwordComparison,
   authActions.login,
 );

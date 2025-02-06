@@ -49,6 +49,15 @@ export type RoleType = {
   label: string;
 };
 
+export type commentaryType = {
+  id: number;
+  rating: number;
+  com_content: string;
+  com_picture: string;
+  user_id: number;
+  recipe_id: number;
+};
+
 export type StepType = {
   id: number;
   content: string;

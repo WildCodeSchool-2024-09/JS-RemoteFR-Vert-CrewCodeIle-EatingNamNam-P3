@@ -5,6 +5,8 @@ import userActions from "../modules/user/userActions";
 
 const router = express.Router();
 
+router.get("/", userActions.readByUserName);
+router.get("/:id", userActions.readById);
 router.post("/", validateUserSchema, hashPassword, userActions.add);
 
 export default router;

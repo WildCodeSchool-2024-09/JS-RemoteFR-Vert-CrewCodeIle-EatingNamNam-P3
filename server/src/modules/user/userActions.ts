@@ -1,6 +1,7 @@
 import type { RequestHandler } from "express";
 
-import type { UserLoginType, UserType } from "../../lib/definitions";
+import type { UserType } from "../../lib/definitions";
+
 import userRepository from "./userRepository";
 
 const add: RequestHandler = async (req, res, next) => {
@@ -18,7 +19,7 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-const readByUserName: RequestHandler = async (req, res, next) => {
+const readPasswordByUserName: RequestHandler = async (req, res, next) => {
   try {
     const userFromDB: UserType | null = await userRepository.readUserName(
       req.body.username,
@@ -35,4 +36,35 @@ const readByUserName: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { add, readByUserName };
+const readById: RequestHandler = async (req, res, next) => {
+  try {
+    const userId = Number(req.params.id);
+    const userDataFromDb = await userRepository.readById(userId);
+
+    if (userDataFromDb == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(userDataFromDb);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+const readByUserName: RequestHandler = async (req, res, next) => {
+  try {
+    const userNameFromDB: UserType[] = await userRepository.readAll();
+    if (req.query.q) {
+      const filteredUserName = userNameFromDB.filter((element) =>
+        element.username.toLowerCase().includes(req.query.q as string),
+      );
+      res.json(filteredUserName);
+    } else {
+      res.json(userNameFromDB);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { add, readPasswordByUserName, readByUserName, readById };
