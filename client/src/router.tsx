@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import AdminRoleForm from "./components/adminRoleForm/AdminRoleForm";
 import CategoryForm from "./components/categoryForm/CategoryForm";
+import Commentary from "./components/commentary/Commentary";
 import DeleteRecipeForm from "./components/deleteRecipeForm/DeleteRecipeForm";
 import DietTypeForm from "./components/dietTypeForm/DietTypeForm";
 import UnitType from "./components/unitTypeForm/UnitType";
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "/creer-recette",
         element: <RecipeNewPage />,
+      },
+      {
+        path: "/com",
+        element: <Commentary />,
       },
       {
         path: "/liste-recette",
