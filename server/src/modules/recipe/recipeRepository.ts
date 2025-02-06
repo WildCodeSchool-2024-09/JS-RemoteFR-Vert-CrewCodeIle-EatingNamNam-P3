@@ -38,6 +38,19 @@ class RecipeRepository {
     return rows as RecipeDataType[];
   }
 
+  async readByUserId(userId: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      `
+      SELECT recipe.*, user.username
+      FROM recipe
+      JOIN user ON recipe.user_id = user.id
+      WHERE user_id = ?
+      `,
+      [userId],
+    );
+    return rows as RecipeDataType[];
+  }
+
   async create(recipe: Omit<RecipeDataType, "id">) {
     const [result] = await databaseClient.query<Result>(
       `INSERT INTO recipe

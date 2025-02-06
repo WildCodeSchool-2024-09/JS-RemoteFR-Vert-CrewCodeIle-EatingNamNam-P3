@@ -38,6 +38,17 @@ const readByTitle: RequestHandler = async (req, res, next) => {
   }
 };
 
+const readByUserId: RequestHandler = async (req, res, next) => {
+  try {
+    const userId = Number(req.params.userId);
+    const userRecipes = await recipeRepository.readByUserId(userId);
+
+    res.json(userRecipes);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add: RequestHandler = async (req, res, next) => {
   try {
     const newRecipe = {
@@ -84,5 +95,6 @@ export default {
   browseAdminRecipeList,
   browseMostRecent,
   readByTitle,
+  readByUserId,
   destroy,
 };
