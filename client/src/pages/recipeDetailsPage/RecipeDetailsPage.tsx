@@ -8,7 +8,8 @@ import style from "./recipeDetailsPage.module.css";
 
 export default function RecipeDetailsPage() {
   const { id } = useParams();
-  const [recipeData, setRecipeData] = useState<RecipeDetailsDataType>();
+  const [recipeDetailsData, setRecipeDetailsData] =
+    useState<RecipeDetailsDataType | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,7 +17,7 @@ export default function RecipeDetailsPage() {
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/api/recipes/${id}`,
         );
-        setRecipeData(response.data);
+        setRecipeDetailsData(response.data);
       } catch (error) {
         toast.error(
           "Impossible de charger les données des recettes, veuillez essayer ultérieurement.",
@@ -26,18 +27,23 @@ export default function RecipeDetailsPage() {
 
     fetchData();
   }, [id]);
+
+  if (!recipeDetailsData) return <p>Chargement...</p>;
+
+  const { recipe, steps } = recipeDetailsData;
+
   return (
-    recipeData && (
+    recipeDetailsData && (
       <main className={style.main}>
         <section className={style.container}>
-          <h2 className={style.recipeTitle}>{recipeData.title}</h2>
+          <h2 className={style.recipeTitle}>{recipe.title}</h2>
           <figure
             className={style.recipePicture}
             style={{
-              backgroundImage: `url(${import.meta.env.VITE_API_URL}/${recipeData.picture})`,
+              backgroundImage: `url(${import.meta.env.VITE_API_URL}/${recipe.picture})`,
             }}
           />
-          <p className={style.recipeSummary}>{recipeData.summary}</p>
+          <p className={style.recipeSummary}>{recipe.summary}</p>
           <p className={style.author}>
             recette créée par{" "}
             <Link
@@ -45,20 +51,20 @@ export default function RecipeDetailsPage() {
               className={style.authorLink}
               rel="créateur de la recette"
             >
-              {recipeData.username}
+              {recipe.username}
             </Link>
-            <p>le {formatDate(recipeData.created_at)}</p>
+            <p>le {formatDate(recipe.created_at)}</p>
           </p>
           <h3 className={style.subTitle}>TEMPS DE PRÉPARATION</h3>
-          <p>{recipeData.prep_time} minutes</p>
+          <p>{recipe.prep_time} minutes</p>
           <h3 className={style.subTitle}>TEMPS DE CUISSON</h3>
-          <p>{recipeData.cook_time} minutes</p>
+          <p>{recipe.cook_time} minutes</p>
           <h3 className={style.subTitle}>
-            INGRÉDIENTS ( pour {recipeData.serving} parts)
+            INGRÉDIENTS ( pour {recipe.serving} parts)
           </h3>
           <h3 className={style.subTitle}>INSTRUCTIONS</h3>
           <ol className={style.steps}>
-            {recipeData.steps?.map((step) => (
+            {steps.map((step) => (
               <li className={style.stepList} key={step.step_order}>
                 {step.content}
               </li>

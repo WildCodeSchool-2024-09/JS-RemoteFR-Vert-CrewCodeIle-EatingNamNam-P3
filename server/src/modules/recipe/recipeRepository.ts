@@ -19,25 +19,14 @@ class RecipeRepository {
 
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT r.*, u.username,
-      JSON_ARRAYAGG(
-        JSON_OBJECT(
-          'id', s.id, 
-          'content', s.content, 
-          'step_order', s.step_order
-          )
-        ) AS steps
-      FROM recipe AS r
-      JOIN user AS u ON r.user_id = u.id
-      LEFT JOIN step AS s ON r.id = s.recipe_id
-      WHERE r.id = ?
-      GROUP BY r.id, u.username`,
+      `SELECT recipe.*, user.username
+      FROM recipe
+      JOIN user ON recipe.user_id = user.id
+      WHERE recipe.id = ?`,
       [id],
     );
 
-    return rows[0] as RecipeDataType & {
-      steps: { id: number; step_order: number; content: string }[];
-    };
+    return rows[0] as RecipeDataType;
   }
 
   async readAll() {

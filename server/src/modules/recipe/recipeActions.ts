@@ -1,5 +1,6 @@
 import type { RequestHandler } from "express";
 
+import stepRepository from "../step/stepRepository";
 import recipeRepository from "./recipeRepository";
 
 const browseMostRecent: RequestHandler = async (req, res, next) => {
@@ -15,13 +16,15 @@ const browseMostRecent: RequestHandler = async (req, res, next) => {
 const read: RequestHandler = async (req, res, next) => {
   try {
     const recipeId = Number(req.params.id);
-    const recipe = await recipeRepository.read(recipeId);
 
+    const recipe = await recipeRepository.read(recipeId);
     if (recipe == null) {
       res.sendStatus(404);
-    } else {
-      res.json(recipe);
     }
+
+    const steps = await stepRepository.read(recipeId);
+
+    res.json({ recipe, steps });
   } catch (err) {
     next(err);
   }
