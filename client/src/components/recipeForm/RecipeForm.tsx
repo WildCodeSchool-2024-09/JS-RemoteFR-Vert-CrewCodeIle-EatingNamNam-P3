@@ -1,15 +1,19 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
-import type { RecipeDataType } from "../../lib/definitions.ts";
+import type { IngredientType, RecipeDataType } from "../../lib/definitions.ts";
 import ImagePreview from "../imagePreview/ImagePreview.tsx";
+import IngredientForm from "../ingredient/IngredientForm.tsx";
 import style from "./recipeForm.module.css";
 
 export default function RecipeForm() {
   type RecipeDataTypeWithoutId = Omit<RecipeDataType, "id">;
-
+  const [isIngredient, setIsIngredient] = useState(false);
+  const handleClose = () => {
+    setIsIngredient(false);
+  };
   const {
     register,
     handleSubmit,
@@ -23,14 +27,50 @@ export default function RecipeForm() {
           content: "",
         },
       ],
+      recipe_ingredient: [
+        {
+          quantity: 1,
+          label: "",
+        },
+      ],
     },
   });
+  const [ingredientData, setIngredientData] = useState<IngredientType[]>([]);
 
-  const { fields, append, remove } = useFieldArray({
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/ingredients`,
+          {},
+        );
+        setIngredientData(response.data);
+      } catch (error) {
+        toast.error(
+          "Impossible de charger les données des ingredient, veuillez essayer ultérieurement.",
+          {},
+        );
+      }
+    };
+    fetchData();
+  }, []);
+  const {
+    fields: stepFields,
+    append: stepAppend,
+    remove: stepRemove,
+  } = useFieldArray({
     name: "step",
     control,
   });
 
+  const {
+    fields: recipe_ingredientFields,
+    append: recipe_ingredientAppend,
+    remove: recipe_ingredientRemove,
+  } = useFieldArray({
+    name: "recipe_ingredient",
+    control,
+  });
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,24 +80,32 @@ export default function RecipeForm() {
   };
 
   const formSubmit: SubmitHandler<RecipeDataTypeWithoutId> = async (data) => {
+    const formData = new FormData();
+
+    formData.append("file", data.picture[0]);
+    formData.append("title", data.title);
+    formData.append("summary", data.summary);
+    formData.append("prep_time", data.prep_time.toString());
+    formData.append("cook_time", data.cook_time.toString());
+    formData.append("serving", data.serving.toString());
+
+    for (const [index, step] of Object.entries(data.step)) {
+      formData.append(`step[${index}][step_order]`, step.step_order.toString());
+      formData.append(`step[${index}][content]`, step.content);
+    }
+    for (const [index, recipe_ingredient] of Object.entries(
+      data.recipe_ingredient,
+    )) {
+      formData.append(
+        `recipe_ingredient[${index}][quantity]`,
+        recipe_ingredient.quantity.toString(),
+      );
+      formData.append(
+        `recipe_ingredient[${index}][label]`,
+        recipe_ingredient.label,
+      );
+    }
     try {
-      const formData = new FormData();
-
-      formData.append("file", data.picture[0]);
-      formData.append("title", data.title);
-      formData.append("summary", data.summary);
-      formData.append("prep_time", data.prep_time.toString());
-      formData.append("cook_time", data.cook_time.toString());
-      formData.append("serving", data.serving.toString());
-
-      for (const [index, step] of Object.entries(data.step)) {
-        formData.append(
-          `step[${index}][step_order]`,
-          step.step_order.toString(),
-        );
-        formData.append(`step[${index}][content]`, step.content);
-      }
-
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/recipes/`,
         formData,
@@ -126,6 +174,69 @@ export default function RecipeForm() {
           />
           {errors.summary && <span>{errors.summary.message}</span>}
         </label>
+
+        {recipe_ingredientFields.map((field, index) => {
+          return (
+            <div key={field.id}>
+              <section key={field.id}>
+                <label>
+                  <input
+                    type="number"
+                    step="0.1"
+                    placeholder="0.1"
+                    {...register(`recipe_ingredient.${index}.quantity`, {
+                      min: {
+                        value: 0.1,
+                        message: "quantité minimun 0.1",
+                      },
+                      max: {
+                        value: 1000,
+                        message: "quantité maximun 1000 ",
+                      },
+                    })}
+                  />
+                  {errors.recipe_ingredient?.[index]?.quantity && (
+                    <p className={style.errors}>
+                      {errors.recipe_ingredient[index]?.quantity?.message}
+                    </p>
+                  )}
+                  quantité
+                </label>
+                <label>
+                  Choisir un ingrédient
+                  <select {...register(`recipe_ingredient.${index}.label`, {})}>
+                    {ingredientData.map((ingredient) => (
+                      <option key={ingredient.id} value={ingredient.id}>
+                        {ingredient.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <button
+                  type="button"
+                  onClick={() => recipe_ingredientRemove(index)}
+                >
+                  X
+                </button>
+              </section>
+            </div>
+          );
+        })}
+        <button
+          type="button"
+          onClick={() =>
+            recipe_ingredientAppend({
+              quantity: recipe_ingredientFields.length + 1,
+              label: "",
+            })
+          }
+        >
+          Ajouter un ingredient
+        </button>
+        <button type="button" onClick={() => setIsIngredient(true)}>
+          créer ingredient
+        </button>
+
         <label className={style.label}>
           Temps de préparation*
           <input
@@ -153,7 +264,7 @@ export default function RecipeForm() {
           />
           {errors.serving && <span>{errors.serving.message}</span>}
         </label>
-        {fields.map((field, index) => {
+        {stepFields.map((field, index) => {
           return (
             <div key={field.id}>
               <section key={field.id}>
@@ -197,7 +308,7 @@ export default function RecipeForm() {
                     {errors.step[index]?.content?.message}
                   </p>
                 )}
-                <button type="button" onClick={() => remove(index)}>
+                <button type="button" onClick={() => stepRemove(index)}>
                   X
                 </button>
               </section>
@@ -207,8 +318,8 @@ export default function RecipeForm() {
         <button
           type="button"
           onClick={() =>
-            append({
-              step_order: fields.length + 1,
+            stepAppend({
+              step_order: stepFields.length + 1,
               content: "",
             })
           }
@@ -221,6 +332,7 @@ export default function RecipeForm() {
         <span className={style.note}>* obligatoire</span>
       </form>
       <ToastContainer />
+      {isIngredient && <IngredientForm closePopUp={handleClose} />}
     </>
   );
 }

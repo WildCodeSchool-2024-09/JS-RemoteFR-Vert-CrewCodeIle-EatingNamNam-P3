@@ -22,5 +22,20 @@ const add: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+const readBylabel: RequestHandler = async (req, res, next) => {
+  try {
+    const recipeFromDB = await ingredientRepository.readAll();
+    if (req.query.q) {
+      const filteredRecipe = recipeFromDB.filter((element) =>
+        element.label.toLowerCase().includes(req.query.q as string),
+      );
+      res.json(filteredRecipe);
+    } else {
+      res.json(recipeFromDB);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
 
-export default { add };
+export default { add, readBylabel };

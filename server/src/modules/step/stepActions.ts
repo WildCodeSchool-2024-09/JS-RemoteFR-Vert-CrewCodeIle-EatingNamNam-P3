@@ -11,10 +11,24 @@ const add: RequestHandler = async (req, res, next) => {
         await stepRepository.create(recipeStep);
       }
     }
-    res.status(200);
+    next();
   } catch (err) {
     next(err);
   }
 };
 
-export default { add };
+const destroy: RequestHandler = async (req, res, next) => {
+  try {
+    const recipeId = Number(req.params.id);
+
+    await stepRepository.delete(recipeId);
+
+    res.sendStatus(204);
+
+    next();
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { add, destroy };
