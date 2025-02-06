@@ -12,7 +12,7 @@ router.get("/discoveries", recipeActions.browseMostRecent);
 router.get("/recipe-list", recipeActions.browseAdminRecipeList);
 router.get("/", recipeActions.readByTitle);
 router.get("/:id", recipeActions.read);
-
+router.get("/:userId", recipeActions.readByUserId);
 router.post(
   "/",
   imageUploadActions.uploadController,

@@ -76,6 +76,16 @@ export type CategoryType = {
   label: string;
 };
 
+export type CommentaryType = {
+  id: number;
+  rating: number;
+  com_content: string;
+  com_picture: string;
+  user_id: number;
+  recipe_id: number;
+  username: string;
+};
+
 export type UnitTypeType = {
   label: string;
 };
