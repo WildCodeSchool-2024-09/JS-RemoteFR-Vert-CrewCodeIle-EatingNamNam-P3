@@ -33,11 +33,22 @@ export type RecipeDataType = {
     step_order: number;
     content: string;
   }[];
+  recipe_ingredient: {
+    quantity: number;
+    label: string;
+  }[];
   prep_time: number;
   cook_time: number;
   serving: number;
   created_at: string;
   user_id: number;
+  username: string;
+};
+
+export type RecipeDataAdminList = {
+  id: number;
+  title: string;
+  created_at: string;
   username: string;
 };
 
@@ -86,4 +97,15 @@ export type UserType = {
 
 export type RegistrerPopupProps = {
   closePopupRegistre: () => void;
+};
+
+export type IngredientPopupProps = {
+  closePopUp: () => void;
+};
+
+export type RecipeIngredientType = {
+  id: number;
+  quantity: number;
+  recipe_id: number;
+  ingredient_id: number;
 };

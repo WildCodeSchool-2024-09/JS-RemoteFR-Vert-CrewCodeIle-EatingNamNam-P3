@@ -30,6 +30,16 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
+const browseAdminRecipeList: RequestHandler = async (req, res, next) => {
+  try {
+    const recipes = await recipeRepository.readForAdmin();
+
+    res.json(recipes);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const readByTitle: RequestHandler = async (req, res, next) => {
   try {
     const recipeFromDB = await recipeRepository.readAll();
@@ -75,4 +85,23 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { add, browseMostRecent, read, readByTitle };
+const destroy: RequestHandler = async (req, res, next) => {
+  try {
+    const recipeId = Number(req.params.id);
+
+    await recipeRepository.delete(recipeId);
+
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default {
+  add,
+  browseMostRecent,
+  browseAdminRecipeList,
+  read,
+  readByTitle,
+  destroy,
+};

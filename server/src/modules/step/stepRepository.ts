@@ -27,6 +27,16 @@ class StepRepository {
 
     return result.insertId;
   }
+
+  async delete(recipe_id: number) {
+    const [result] = await databaseClient.query<Result>(
+      `DELETE FROM step
+      WHERE recipe_id = ?`,
+      [recipe_id],
+    );
+
+    return result.affectedRows;
+  }
 }
 
 export default new StepRepository();
