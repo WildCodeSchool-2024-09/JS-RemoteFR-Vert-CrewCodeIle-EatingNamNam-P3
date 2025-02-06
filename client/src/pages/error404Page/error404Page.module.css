@@ -1,0 +1,38 @@
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-light);
+  height: 100%;
+  font-family: var(--text-font);
+  margin: auto;
+  height: 100%;
+  background-image: url(public/images/fond-404.jpg);
+  background-size: cover;
+  background-repeat: none;
+  padding: 1em;
+  gap: 1em;
+}
+
+.title {
+  font-family: var(--title-font);
+  font-size: 13em;
+  color: var(--color-secondary);
+}
+
+.textA {
+  width: 60%;
+  font-size: 1.5em;
+}
+
+.textB {
+  width: 50%;
+}
+
+.link {
+  color: var(--color-accent);
+  margin: 1em;
+  margin-bottom: 5em;
+  &:hover {
+    text-decoration: underline;
+  }
+}
