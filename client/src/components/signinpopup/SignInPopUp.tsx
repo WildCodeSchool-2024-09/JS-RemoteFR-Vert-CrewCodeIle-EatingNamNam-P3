@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import type { UserType } from "../../lib/definitions";
 import style from "./signInPopUp.module.css";
@@ -18,12 +18,21 @@ export default function SignInPopup() {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/login`,
         data,
+        {
+          withCredentials: true,
+        },
       );
       toast.success(response.data.message);
+
+      setTimeout(() => {
+        navigate("/liste-recette");
+      }, 1000);
     } catch (err) {
       toast.error("Erreur dans la connexion");
     }
   };
+
+  const navigate = useNavigate();
 
   return (
     <>

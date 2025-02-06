@@ -1,5 +1,5 @@
 import express from "express";
-import { passwordComparison } from "../middleware/hashPassword.middleware";
+import { passwordComparison } from "../middlewares/hashPassword.middleware";
 import authActions from "../modules/auth/authActions";
 import userActions from "../modules/user/userActions";
 
@@ -11,5 +11,7 @@ router.post(
   passwordComparison,
   authActions.login,
 );
+router.use(authActions.verifyToken, authActions.authWall);
+router.get("/adminChecking", userActions.readTokenRoleByUsername);
 
 export default router;

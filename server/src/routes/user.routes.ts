@@ -1,6 +1,6 @@
 import express from "express";
 import { validateUserSchema } from "../helpers/validators/user.validator";
-import { hashPassword } from "../middleware/hashPassword.middleware";
+import { hashPassword } from "../middlewares/hashPassword.middleware";
 import userActions from "../modules/user/userActions";
 
 const router = express.Router();

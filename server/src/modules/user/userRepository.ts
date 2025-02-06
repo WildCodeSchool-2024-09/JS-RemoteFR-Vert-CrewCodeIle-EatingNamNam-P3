@@ -72,6 +72,19 @@ class userRepository {
     );
     return rows as UserType[];
   }
+
+  async readRoleByUsername(payloadUsername: string) {
+    const [rows] = await databaseClient.query<Rows>(
+      `
+        SELECT role_id
+        FROM user
+        WHERE username = ?
+      `,
+      [payloadUsername],
+    );
+
+    return rows[0].role_id as number;
+  }
 }
 
 export default new userRepository();

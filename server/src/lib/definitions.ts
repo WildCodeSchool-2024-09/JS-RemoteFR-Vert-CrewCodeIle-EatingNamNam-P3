@@ -3,6 +3,12 @@ export type CategoryType = {
   label: string;
 };
 
+export type DecodedTokenType = {
+  username: string;
+  iat: number;
+  exp: number;
+};
+
 export type DietTypeType = {
   id: number;
   label: string;
