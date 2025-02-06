@@ -23,9 +23,9 @@ const add: RequestHandler = async (req, res, next) => {
 };
 const browse: RequestHandler = async (req, res, next) => {
   try {
-    const recipes = await commentaryRepository.read();
+    const commentary = await commentaryRepository.read();
 
-    res.json(recipes);
+    res.json(commentary);
   } catch (err) {
     next(err);
   }

@@ -51,6 +51,7 @@ export type CommentaryType = {
   com_picture: string;
   user_id: number;
   recipe_id: number;
+  username: string;
 };
 
 export type UnitTypeType = {
