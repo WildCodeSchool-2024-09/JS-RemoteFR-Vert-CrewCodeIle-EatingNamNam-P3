@@ -50,12 +50,22 @@
 .subTitle {
   font-family: var(--title-font);
   color: var(--color-secondary);
-  border-bottom: dashed 2px var(--color-tertiary);
   padding-bottom: 0.3em;
 }
 
+.stepsTitle {
+  border-style: dashed;
+  border-width: 3px 3px 0 3px;
+  border-color: var(--color-tertiary);
+  width: 100%;
+  text-align: center;
+  padding: 1em;
+}
+
 .steps {
-  border: dashed 3px var(--color-tertiary);
+  border-style: dashed;
+  border-width: 0 3px 3px 3px;
+  border-color: var(--color-tertiary);
   padding: 2em;
 }
 
