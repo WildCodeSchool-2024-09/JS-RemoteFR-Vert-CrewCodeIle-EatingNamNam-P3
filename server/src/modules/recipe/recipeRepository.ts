@@ -30,8 +30,9 @@ class RecipeRepository {
   async readByUserId(userId: number) {
     const [rows] = await databaseClient.query<Rows>(
       `
-      SELECT * 
+      SELECT recipe.*, user.username
       FROM recipe
+      JOIN user ON recipe.user_id = user.id
       WHERE user_id = ?
       `,
       [userId],
