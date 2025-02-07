@@ -9,11 +9,19 @@ const MainNavBar = () => {
         src="/images/logo-header.png"
         alt="Logo EatingNamNam"
       />
-      <nav>
-        <Link to="/mon-profil">Mon Profil</Link>
-        <Link to="/creer-recette">Créer une recette</Link>
-        <Link to="/liste-recette">Toutes les recettes</Link>
-        <Link to="/liste-utilisateur">Tous les utilisateurs</Link>
+      <nav className={style.navbar}>
+        <Link className={style.link} to="/mon-profil">
+          Mon Profil
+        </Link>
+        <Link className={style.link} to="/creer-recette">
+          Créer une recette
+        </Link>
+        <Link className={style.link} to="/liste-recette">
+          Toutes les recettes
+        </Link>
+        <Link className={style.link} to="/liste-utilisateur">
+          Tous les utilisateurs
+        </Link>
       </nav>
     </header>
   );

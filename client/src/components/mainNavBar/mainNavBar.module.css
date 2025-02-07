@@ -9,10 +9,10 @@
 }
 
 .eatIcon {
-  margin-top: 0.8em;
   width: 6.5em;
   border-radius: 1.5em;
   backdrop-filter: blur(2px);
+  margin: 1em;
 
   @media (767px <= width <=991px) {
     width: 9em;
@@ -20,5 +20,29 @@
 
   @media (width > 990px) {
     width: 10em;
+  }
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 1em;
+  font-family: var(--title-font);
+  font-size: 1.3em;
+  margin: 1em;
+  color: var(--color-secondary);
+  background-color: var(--color-light);
+  width: 100%;
+  padding: 0.5em;
+  border-style: dashed;
+  border-width: 2px 0 2px 0;
+  border-color: var(--color-tertiary);
+}
+
+.link {
+  &:hover {
+    color: var(--color-accent);
+    transform: scale(1.1);
   }
 }
