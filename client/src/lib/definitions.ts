@@ -19,6 +19,10 @@ export type AddIngredientData = {
   unit_type_id: number;
 };
 
+export type AuthType = {
+  authentified: boolean;
+};
+
 export type DietTypeType = {
   id: number;
   label: string;

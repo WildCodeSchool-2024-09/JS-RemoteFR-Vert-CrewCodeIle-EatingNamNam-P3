@@ -52,6 +52,10 @@ export const router = createBrowserRouter([
   {
     path: "/admin",
     element: <AdminPage />,
+    loader: () =>
+      fetch(`${import.meta.env.VITE_API_URL}/api/auth/adminChecking`, {
+        credentials: "include",
+      }),
     children: [
       {
         path: "/admin/creer-role",

@@ -38,6 +38,19 @@ class userRepository {
     return result.insertId;
   }
 
+  async readUserName(userName: string) {
+    const [rows] = await databaseClient.query<Rows>(
+      `
+        SELECT username, password_hash
+        FROM user 
+        WHERE username = ?
+      `,
+      [userName],
+    );
+
+    return rows.length ? (rows[0] as UserType) : null;
+  }
+
   async readById(id: number) {
     const [rows] = await databaseClient.query<Rows>(
       `
@@ -58,6 +71,19 @@ class userRepository {
       `,
     );
     return rows as UserType[];
+  }
+
+  async readRoleByUsername(payloadUsername: string) {
+    const [rows] = await databaseClient.query<Rows>(
+      `
+        SELECT role_id
+        FROM user
+        WHERE username = ?
+      `,
+      [payloadUsername],
+    );
+
+    return rows[0].role_id as number;
   }
 }
 

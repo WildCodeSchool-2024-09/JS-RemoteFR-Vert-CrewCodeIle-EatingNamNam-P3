@@ -34,6 +34,10 @@ import unitTypeRouter from "./routes/unitType.routes";
 
 router.use("/api/unittypes", unitTypeRouter);
 
+import authRouter from "./routes/auth.routes";
+
+router.use("/api/auth", authRouter);
+
 router.use(express.static("public/assets/uploads/"));
 
 export default router;
