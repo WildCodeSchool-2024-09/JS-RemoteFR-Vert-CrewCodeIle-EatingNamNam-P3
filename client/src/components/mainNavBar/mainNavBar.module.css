@@ -1,10 +1,24 @@
-.navBar {
+.headerContainer {
   background-image: url("/images/header-background.jpg");
-  background-position: 0%;
-  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.logo {
-  width: 10em;
+.eatIcon {
+  margin-top: 0.8em;
+  width: 6.5em;
+  border-radius: 1.5em;
+  backdrop-filter: blur(2px);
+
+  @media (767px <= width <=991px) {
+    width: 9em;
+  }
+
+  @media (width > 990px) {
+    width: 10em;
+  }
 }
