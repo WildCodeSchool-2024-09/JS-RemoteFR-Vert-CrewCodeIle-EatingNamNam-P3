@@ -8,6 +8,7 @@ import DietTypeForm from "./components/dietTypeForm/DietTypeForm";
 import UnitType from "./components/unitTypeForm/UnitType";
 import AdminPage from "./pages/adminPage/AdminPage";
 import DiscoveryLayout from "./pages/discoveryPage/DiscoveryLayout";
+import RecipeDetailsPage from "./pages/recipeDetailsPage/RecipeDetailsPage";
 import RecipeListPage from "./pages/recipeListPage/RecipeListPage";
 import RecipeNewPage from "./pages/recipePages/RecipeNewPage";
 import UserDetailPage from "./pages/userDetailPage/UserDetailPage";
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
         element: <RecipeListPage />,
       },
       {
+        path: "/recette-details/:id",
+        element: <RecipeDetailsPage />,
+      },
+      {
         path: "/liste-utilisateur",
         element: <UserListPage />,
       },
@@ -46,6 +51,10 @@ export const router = createBrowserRouter([
   {
     path: "/admin",
     element: <AdminPage />,
+    loader: () =>
+      fetch(`${import.meta.env.VITE_API_URL}/api/auth/adminChecking`, {
+        credentials: "include",
+      }),
     children: [
       {
         path: "/admin/creer-role",

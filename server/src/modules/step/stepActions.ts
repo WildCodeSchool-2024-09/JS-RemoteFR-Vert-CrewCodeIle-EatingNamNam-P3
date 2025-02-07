@@ -1,6 +1,17 @@
 import type { RequestHandler } from "express";
 import stepRepository from "./stepRepository";
 
+const read: RequestHandler = async (req, res, next) => {
+  try {
+    const recipeId = Number(req.params.id);
+    const steps = await stepRepository.read(recipeId);
+
+    res.json(steps);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add: RequestHandler = async (req, res, next) => {
   try {
     const step = req.body.step;
@@ -31,4 +42,4 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { add, destroy };
+export default { add, read, destroy };
