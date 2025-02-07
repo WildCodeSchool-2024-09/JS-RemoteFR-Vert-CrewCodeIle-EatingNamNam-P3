@@ -7,27 +7,31 @@ const Footer = () => {
       <footer className={style.footer}>
         <section className={style.main}>
           <section className={style.logos}>
-            <img src="images/logo_white.png" className={style.eatlogo} alt="" />
+            <img
+              src="/images/logo-footer.png"
+              className={style.eatlogo}
+              alt="logo EatingNamNam"
+            />
             <article className={style.social}>
               <Link to="https://instagram.com/">
                 <img
-                  src="images/logo-instagram.png"
+                  src="/images/logo-instagram.png"
                   className={style.icon}
-                  alt=""
+                  alt="Icone Instagram"
                 />
               </Link>
               <Link to="https://www.linkedin.com/">
                 <img
-                  src="images/logo-linkedin.png"
+                  src="/images/logo-linkedin.png"
                   className={style.icon}
-                  alt=""
+                  alt="Icone LinkedIn"
                 />
               </Link>
               <Link to="https://www.youtube.com/">
                 <img
-                  src="images/logo-youtube.png"
+                  src="/images/logo-youtube.png"
                   className={style.icon}
-                  alt=""
+                  alt="Icone YouTube"
                 />
               </Link>
             </article>
