@@ -20,6 +20,11 @@ router.post(
   stepActions.add,
   recipeIngredientActions.add,
 );
-router.delete("/:id", stepActions.destroy, recipeActions.destroy);
+router.delete(
+  "/:id",
+  stepActions.destroy,
+  recipeIngredientActions.destroy,
+  recipeActions.destroy,
+);
 
 export default router;

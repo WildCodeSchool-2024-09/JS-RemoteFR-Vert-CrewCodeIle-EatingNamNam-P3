@@ -20,6 +20,7 @@ class RecipeIngredientRepository {
 
     return result.insertId;
   }
+  async delete(id: number) {}
 }
 
 export default new RecipeIngredientRepository();

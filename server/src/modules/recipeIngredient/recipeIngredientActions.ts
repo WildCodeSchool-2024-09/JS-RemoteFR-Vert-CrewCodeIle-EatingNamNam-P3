@@ -21,4 +21,14 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { add };
+const destroy: RequestHandler = async (req, res, next) => {
+  try {
+    const recipeId: number = Number(req.body.id);
+
+    await recipeIngredientRepository.delete(recipeId);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { add, destroy };
