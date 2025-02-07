@@ -8,6 +8,7 @@ import DietTypeForm from "./components/dietTypeForm/DietTypeForm";
 import UnitType from "./components/unitTypeForm/UnitType";
 import AdminPage from "./pages/adminPage/AdminPage";
 import DiscoveryLayout from "./pages/discoveryPage/DiscoveryLayout";
+import Error404Page from "./pages/error404Page/Error404Page";
 import RecipeDetailsPage from "./pages/recipeDetailsPage/RecipeDetailsPage";
 import RecipeListPage from "./pages/recipeListPage/RecipeListPage";
 import RecipeNewPage from "./pages/recipePages/RecipeNewPage";
@@ -77,5 +78,9 @@ export const router = createBrowserRouter([
         element: <DeleteRecipeForm />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <Error404Page />,
   },
 ]);
