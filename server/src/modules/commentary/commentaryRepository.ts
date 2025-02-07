@@ -30,6 +30,15 @@ class CommentaryRepository {
     );
     return rows as commentaryType[];
   }
+
+  async delete(id: number) {
+    const [result] = await databaseClient.query<Result>(
+      `DELETE FROM user_com_recipe
+      WHERE recipe_id = ?`,
+      [id],
+    );
+    return result.affectedRows;
+  }
 }
 
 export default new CommentaryRepository();

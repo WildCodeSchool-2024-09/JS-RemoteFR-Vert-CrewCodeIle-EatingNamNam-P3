@@ -23,9 +23,11 @@ const add: RequestHandler = async (req, res, next) => {
 
 const destroy: RequestHandler = async (req, res, next) => {
   try {
-    const recipeId: number = Number(req.body.id);
+    const recipeId: number = Number(req.params.id);
 
     await recipeIngredientRepository.delete(recipeId);
+
+    next();
   } catch (err) {
     next(err);
   }

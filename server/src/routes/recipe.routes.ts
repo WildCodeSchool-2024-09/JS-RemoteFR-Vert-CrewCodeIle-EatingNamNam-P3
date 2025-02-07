@@ -3,6 +3,7 @@ import express from "express";
 const router = express.Router();
 
 import { validateRecipeSchema } from "../helpers/validators/recipe.validator";
+import commentaryAction from "../modules/commentary/commentaryAction";
 import imageUploadActions from "../modules/imageUpload/imageUploadActions";
 import recipeActions from "../modules/recipe/recipeActions";
 import recipeIngredientActions from "../modules/recipeIngredient/recipeIngredientActions";
@@ -25,6 +26,7 @@ router.delete(
   "/:id",
   stepActions.destroy,
   recipeIngredientActions.destroy,
+  commentaryAction.destroy,
   recipeActions.destroy,
 );
 
