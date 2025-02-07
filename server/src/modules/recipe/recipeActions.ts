@@ -1,5 +1,6 @@
 import type { RequestHandler } from "express";
 
+import stepRepository from "../step/stepRepository";
 import recipeRepository from "./recipeRepository";
 
 const browseMostRecent: RequestHandler = async (req, res, next) => {
@@ -7,6 +8,23 @@ const browseMostRecent: RequestHandler = async (req, res, next) => {
     const recipes = await recipeRepository.readMostRecent();
 
     res.json(recipes);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const read: RequestHandler = async (req, res, next) => {
+  try {
+    const recipeId = Number(req.params.id);
+
+    const recipe = await recipeRepository.read(recipeId);
+    if (recipe == null) {
+      res.sendStatus(404);
+    }
+
+    const steps = await stepRepository.read(recipeId);
+
+    res.json({ recipe, steps });
   } catch (err) {
     next(err);
   }
@@ -33,6 +51,17 @@ const readByTitle: RequestHandler = async (req, res, next) => {
     } else {
       res.json(recipeFromDB);
     }
+  } catch (err) {
+    next(err);
+  }
+};
+
+const readByUserId: RequestHandler = async (req, res, next) => {
+  try {
+    const userId = Number(req.params.userId);
+    const userRecipes = await recipeRepository.readByUserId(userId);
+
+    res.json(userRecipes);
   } catch (err) {
     next(err);
   }
@@ -81,8 +110,10 @@ const destroy: RequestHandler = async (req, res, next) => {
 
 export default {
   add,
-  browseAdminRecipeList,
   browseMostRecent,
+  browseAdminRecipeList,
+  read,
   readByTitle,
+  readByUserId,
   destroy,
 };

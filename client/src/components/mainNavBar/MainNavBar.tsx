@@ -6,8 +6,8 @@ const MainNavBar = () => {
     <section className={style.navBar}>
       <img
         className={style.logo}
-        src="/images/logo_white.png"
-        alt="eating nam nam"
+        src="/images/logo-header.png"
+        alt="Logo EatingNamNam"
       />
       <Link to="/mon-profil">Mon Profil</Link>
       <Link to="/creer-recette">Créer une recette</Link>

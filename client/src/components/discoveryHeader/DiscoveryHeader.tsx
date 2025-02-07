@@ -12,7 +12,7 @@ const DiscoveryHeader = () => {
       <section className={style.header}>
         <img
           className={style.eatIcon}
-          src="favicon/image.png"
+          src="/images/logo-header.png"
           alt="logo EatingNamNam"
         />
         <article className={style.slogan}>

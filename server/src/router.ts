@@ -26,6 +26,10 @@ import categoryRouter from "./routes/category.routes";
 
 router.use("/api/category", categoryRouter);
 
+import commentaryRouter from "./routes/commentary.routes";
+
+router.use("/api/commentary", commentaryRouter);
+
 import unitTypeRouter from "./routes/unitType.routes";
 
 router.use("/api/unittypes", unitTypeRouter);

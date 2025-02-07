@@ -40,6 +40,7 @@ export type RecipeDataType = {
   prep_time: number;
   cook_time: number;
   serving: number;
+  created_at: string;
   user_id: number;
   username: string;
 };
@@ -51,8 +52,38 @@ export type RecipeDataAdminList = {
   username: string;
 };
 
+export type RecipeDetailsDataType = {
+  recipe: {
+    id: number;
+    title: string;
+    picture: string;
+    summary: string;
+    prep_time: number;
+    cook_time: number;
+    serving: number;
+    created_at: string;
+    user_id: number;
+    username: string;
+  };
+  steps: {
+    id: number;
+    step_order: number;
+    content: string;
+  }[];
+};
+
 export type CategoryType = {
   label: string;
+};
+
+export type CommentaryType = {
+  id: number;
+  rating: number;
+  com_content: string;
+  com_picture: string;
+  user_id: number;
+  recipe_id: number;
+  username: string;
 };
 
 export type UnitTypeType = {
