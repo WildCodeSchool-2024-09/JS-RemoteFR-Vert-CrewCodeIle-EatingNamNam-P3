@@ -24,6 +24,7 @@ export default function RecipeCard({
           {recipeDataProps.username}
         </Link>
       </p>
+      <p>{recipeDataProps.average_rating}/5</p>
       <ul>
         <li className={style.prepTime}>
           Temps de préparation : {recipeDataProps.prep_time} min

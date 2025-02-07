@@ -42,6 +42,7 @@ export type RecipeDataType = {
   serving: number;
   user_id: number;
   username: string;
+  average_rating: number;
 };
 
 export type RecipeDataAdminList = {

@@ -7,9 +7,11 @@ import type { RecipeDataType } from "../../lib/definitions";
 class RecipeRepository {
   async readMostRecent() {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT recipe.*, user.username
+      `SELECT recipe.*, user.username, CEIL(AVG(com.rating)) AS average_rating
         FROM recipe
+        JOIN user_com_recipe AS com ON recipe.id = com.recipe_id
         JOIN user ON recipe.user_id = user.id
+        GROUP BY recipe.id
         ORDER BY created_at DESC
         LIMIT 3`,
     );
@@ -30,9 +32,11 @@ class RecipeRepository {
 
   async readAll() {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT recipe.*, user.username
+      `SELECT recipe.*, user.username, CEIL(AVG(com.rating)) AS average_rating
       FROM recipe
+      JOIN user_com_recipe AS com ON recipe.id = com.recipe_id
       JOIN user ON recipe.user_id = user.id
+      GROUP BY recipe.id
       ORDER BY created_at DESC`,
     );
     return rows as RecipeDataType[];
