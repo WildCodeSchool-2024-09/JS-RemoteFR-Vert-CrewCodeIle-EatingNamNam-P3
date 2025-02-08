@@ -32,7 +32,7 @@ const UserDetailPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/recipes/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/recipes/user/${id}`,
         );
         setRecipeData(response.data);
       } catch (error) {
