@@ -90,10 +90,33 @@ const readTokenRoleByUsername: RequestHandler = async (req, res, next) => {
   }
 };
 
+const readIdByTokenUsername: RequestHandler = async (req, res, next) => {
+  try {
+    const decodedToken = authActions.decodeToken(
+      req.cookies.auth_token,
+    ) as DecodedTokenType;
+
+    const userId = await userRepository.readIdByUsername(
+      decodedToken?.username,
+    );
+
+    if (!userId) {
+      res.status(404).json({ message: "Vous n'êtes pas connecté" });
+    }
+
+    req.body.user_id = userId;
+
+    next();
+  } catch (err) {
+    next(err);
+  }
+};
+
 export default {
   add,
   readPasswordByUserName,
   readTokenRoleByUsername,
+  readIdByTokenUsername,
   readByUserName,
   readById,
 };
