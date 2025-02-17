@@ -1,0 +1,28 @@
+.userDetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.userName {
+  margin: auto;
+  width: fit-content;
+  margin-bottom: 2em;
+}
+
+.userDescription {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5em;
+}
+
+.userRecipeContainer {
+  padding-bottom: 2em;
+}
+
+.recipeTitle {
+  text-align: center;
+}

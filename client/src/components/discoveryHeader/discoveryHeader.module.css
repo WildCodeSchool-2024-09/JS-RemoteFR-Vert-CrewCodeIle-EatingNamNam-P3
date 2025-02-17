@@ -1,0 +1,94 @@
+.bgimage {
+  background-image: url("/images/header-background.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0em;
+  gap: 4em;
+  height: 25em;
+  color: var(--color-light);
+  font-family: var(--text-font);
+
+  @media (767px <= width <=991px) {
+    height: 35em;
+  }
+
+  @media (width > 990px) {
+    height: 40em;
+  }
+}
+
+.slogan {
+  filter: drop-shadow(1px 1px black);
+  font-size: 1.8em;
+
+  @media (767px <= width <=991px) {
+    font-size: 3em;
+  }
+
+  @media (width > 990px) {
+    font-size: 4em;
+  }
+}
+
+.eatIcon {
+  margin-top: 0.8em;
+  width: 6.5em;
+  border-radius: 1.5em;
+  backdrop-filter: blur(2px);
+
+  @media (767px <= width <=991px) {
+    width: 9em;
+  }
+
+  @media (width > 990px) {
+    width: 10em;
+  }
+}
+
+.buttonsGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  margin-bottom: 1em;
+
+  @media (767px <= width <=991px) {
+    flex-direction: row;
+    gap: 2em;
+    margin-bottom: 3em;
+  }
+
+  @media (width > 990px) {
+    flex-direction: row;
+    gap: 2em;
+    margin-bottom: 3em;
+  }
+}
+
+.button {
+  background-color: var(--color-accent);
+  padding: 0.5em;
+  border-radius: 1em;
+  color: var(--color-light);
+  font-family: var(--text-font);
+  cursor: pointer;
+
+  @media (767px <= width <=991px) {
+    padding: 0.8em;
+    font-size: 1.2em;
+    border-radius: 2em;
+  }
+
+  @media (width > 990px) {
+    padding: 0.8em;
+    font-size: 1.2em;
+    border-radius: 2em;
+  }
+}
