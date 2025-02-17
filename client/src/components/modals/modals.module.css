@@ -1,6 +1,6 @@
 .overlay {
   background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
   position: fixed;
   top: 0;
   left: 0;
@@ -13,13 +13,11 @@
 }
 
 .modal {
-  background-color: var(--color-background);
-  padding: 20px;
-  border: solid 0.3em var(--color-primary);
-  outline: solid 0.5em var(--color-background);
-  border-radius: 8px;
+  background-color: var(--color-primary);
+  padding: 2em;
   width: 400px;
   max-width: 90%;
+  box-shadow: 0.1em 0.2em 0.1em 0 var(--color-hint);
 }
 
 .modalContent {
@@ -29,35 +27,36 @@
   word-break: keep-all;
 }
 
+.message {
+  padding-bottom: 1em;
+}
+
 .actions {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 20px;
+  margin-top: 1.5em;
 }
 
 .confirmButton,
 .cancelButton {
   width: 7em;
-  padding: 10px 20px;
-  border: none;
+  padding: 0.7em 1em 0.7em 1em;
   cursor: pointer;
-  border-radius: 5px;
-  border: solid 0.1em var(--color-background);
+  border-radius: 1em;
 }
 
 .confirmButton {
-  outline: solid 0.2em var(--color-accent);
-  background-color: var(--color-accent);
-  color: var(--color-background);
+  background-color: var(--color-tertiary);
+  color: var(--color-primary);
 }
 
 .cancelButton {
-  outline: solid 0.2em var(--color-alert);
-  background-color: var(--color-alert);
-  color: var(--color-background);
+  background-color: var(--color-accent);
+  color: var(--color-primary);
 }
 
 .confirmButton:hover,
 .cancelButton:hover {
   opacity: 0.8;
+  transform: translateY(1px);
 }

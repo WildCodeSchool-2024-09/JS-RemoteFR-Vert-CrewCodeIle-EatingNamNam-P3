@@ -17,7 +17,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
       overlayClassName={style.overlay}
     >
       <div className={style.modalContent}>
-        <p>{message}</p>
+        <p className={style.message}>{message}</p>
         <div className={style.actions}>
           <button
             type="button"

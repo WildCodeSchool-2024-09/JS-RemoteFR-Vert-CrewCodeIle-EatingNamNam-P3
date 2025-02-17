@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import type { RecipeDataAdminList } from "../../lib/definitions";
 import { formatDate } from "../../services/dateFormatter";
+import ConfirmationModal from "../modals/ConfirmationModal";
 import style from "./deleteRecipeForm.module.css";
 
 const DeleteRecipeForm = () => {
   const [recipeData, setRecipeData] = useState<RecipeDataAdminList[]>([]);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [recipeIdToDelete, setRecipeIdToDelete] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,36 +19,39 @@ const DeleteRecipeForm = () => {
         );
         setRecipeData(response.data);
       } catch (error) {
-        toast.error(
-          "Impossible de charger les données des recettes, veuillez essayer ultérieurement.",
-        );
+        toast.error("Impossible de charger les données des recettes");
       }
     };
 
     fetchData();
   }, []);
 
-  const handleDelete = async (recipeId: number) => {
-    const isConfirmed = window.confirm(
-      "Supprimer la recette ? Cette action est irréversible.",
-    );
-    if (!isConfirmed) return;
+  const handleDelete = async () => {
+    if (recipeIdToDelete === null) return;
 
     try {
       await axios.delete(
-        `${import.meta.env.VITE_API_URL}/api/recipes/${recipeId}`,
+        `${import.meta.env.VITE_API_URL}/api/recipes/${recipeIdToDelete}`,
       );
 
       setRecipeData((previousRecipeData) =>
-        previousRecipeData.filter((recipe) => recipe.id !== recipeId),
+        previousRecipeData.filter((recipe) => recipe.id !== recipeIdToDelete),
       );
 
       toast.success("Recette supprimée avec succès !");
+      closeModal();
     } catch (error) {
-      toast.error(
-        "Erreur lors de la suppression, veuillez réesayer plus tard.",
-      );
+      toast.error("Nous n'avons pas pu supprimer la recette.");
     }
+  };
+
+  const openModal = (recipeId: number) => {
+    setRecipeIdToDelete(recipeId);
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setRecipeIdToDelete(null);
+    setModalOpen(false);
   };
 
   return (
@@ -63,12 +69,18 @@ const DeleteRecipeForm = () => {
           <button
             type="button"
             className={style.deleteButton}
-            onClick={() => handleDelete(currentRecipeData.id)}
+            onClick={() => openModal(currentRecipeData.id)}
           >
-            Supprimer la recette
+            Supprimer la recette ?
           </button>
         </section>
       ))}
+      <ConfirmationModal
+        isOpen={isModalOpen}
+        message="Êtes-vous sûr de vouloir supprimer cette recette ? Cette action est irréversible."
+        onConfirm={handleDelete}
+        onCancel={closeModal}
+      />
     </>
   );
 };
