@@ -1,62 +1,128 @@
-import { Link } from "react-router-dom";
 import style from "./footer.module.css";
 
 const Footer = () => {
   return (
-    <>
-      <footer className={style.footer}>
-        <section className={style.main}>
-          <section className={style.logos}>
+    <footer className={style.footerContainer}>
+      <img
+        src="/images/logo-footer.png"
+        className={style.eatlogo}
+        alt="Logo de la marque EatingNamNam"
+      />
+      <ul className={style.social}>
+        <li>
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
-              src="/images/logo-footer.png"
-              className={style.eatlogo}
-              alt="logo EatingNamNam"
+              src="/images/logo-instagram.png"
+              className={style.socialIcon}
+              alt="Icone Instagram"
             />
-            <article className={style.social}>
-              <Link to="https://instagram.com/">
-                <img
-                  src="/images/logo-instagram.png"
-                  className={style.icon}
-                  alt="Icone Instagram"
-                />
-              </Link>
-              <Link to="https://www.linkedin.com/">
-                <img
-                  src="/images/logo-linkedin.png"
-                  className={style.icon}
-                  alt="Icone LinkedIn"
-                />
-              </Link>
-              <Link to="https://www.youtube.com/">
-                <img
-                  src="/images/logo-youtube.png"
-                  className={style.icon}
-                  alt="Icone YouTube"
-                />
-              </Link>
-            </article>
-          </section>
-          <section className={style.footertext}>
-            <article className={style.contact}>
-              <h3>Contact :</h3>
-              <p>eatnamnam.namager@gmail.com</p>
-              <p>06-56-09-09-09.1</p>
-            </article>
-            <article className={style.mention}>
-              <h3>Mentions :</h3>
-              <p>CLUF</p>
-              <p>Conditions Générales d'Utilisation</p>
-            </article>
-            <article className={style.adress}>
-              <h3>Adresse :</h3>
-              <p>36 rue du Plougastel</p>
-              <p>34658 Rocalambourd</p>
-            </article>
-          </section>
-        </section>
-        <p className={style.copyright}> &copy; Wild Code School</p>
-      </footer>
-    </>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.linkedin.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/images/logo-linkedin.png"
+              className={style.socialIcon}
+              alt="Icone LinkedIn"
+            />
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/images/logo-youtube.png"
+              className={style.socialIcon}
+              alt="Icone YouTube"
+            />
+          </a>
+        </li>
+      </ul>
+      <ul className={style.fakeContacts}>
+        <li>namnamager@eatingnamnam.com</li>
+        <li>+331 072 061 702</li>
+        <li>36 rue du Plougastel</li>
+        <li>34658 Rocalambourg</li>
+      </ul>
+      <p className={style.textInfo}>
+        Ce site est le résultat d'un projet réalisé à trois, dans le cadre de
+        notre formation en développement web à la Wild Code School.
+      </p>
+      <p className={style.textInfo}>
+        Vous pourrez suivre l'avancée de nos travaux en suivant les liens GitHub
+        :
+      </p>
+      <ul className={style.credits}>
+        <li>
+          <a
+            href="https://github.com/deknuydtbenjamin"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={style.creditsList}
+          >
+            <img
+              src="images/logo-github.png"
+              className={style.gitHubIcon}
+              alt="Icone GitHub"
+            />
+            @deknuydtbenjamin
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://github.com/marcoRojouan"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={style.creditsList}
+          >
+            <img
+              src="images/logo-github.png"
+              className={style.gitHubIcon}
+              alt="Icone GitHub"
+            />
+            @marcoRojouan
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://github.com/victorSanLopez"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={style.creditsList}
+          >
+            <img
+              src="images/logo-github.png"
+              className={style.gitHubIcon}
+              alt="Icone GitHub"
+            />
+            @victorSanLopez
+          </a>
+        </li>
+      </ul>
+      <p className={style.textInfo}>
+        Les images utilisées sur ce site proviennent de{" "}
+        <a
+          href="https://www.freepik.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={style.link}
+        >
+          Freepik
+        </a>
+      </p>
+      <p className={style.copyright}> &copy; Wild Code School</p>
+    </footer>
   );
 };
 

@@ -1,29 +1,15 @@
-.footer {
+.footerContainer {
   background-color: var(--color-secondary);
-}
-.main {
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  color: var(--color-light);
+  font-family: var(--text-font);
+  padding: 1em;
   @media (width > 990px) {
     flex-direction: row;
     justify-content: center;
     justify-content: space-evenly;
-  }
-}
-
-.logos {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-
-  @media (width > 990px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-left: 1em;
   }
 }
 
@@ -34,45 +20,39 @@
 .social {
   display: flex;
   flex-direction: row;
-  gap: 4em;
+  justify-content: space-around;
+  gap: 3em;
+  padding-bottom: 2em;
 
   @media (767px <= width <=991px) {
     gap: 2em;
   }
 
   @media (width > 990px) {
-    padding-bottom: 2em;
     width: 16em;
   }
 }
 
-.icon {
+.socialIcon,
+.gitHubIcon {
+  width: 2.5em;
   height: 2.5em;
+  cursor: pointer;
 }
 
-.footertext {
+.fakeContacts {
+  font-size: 1.1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  @media (767px <= width <=991px) {
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  @media (width > 990px) {
-    padding-bottom: 2em;
-    flex-direction: row;
-  }
+  align-items: center;
+  gap: 0.5em;
 }
 
-.contact {
-  max-width: 20em;
-  min-width: 20em;
+.textInfo {
+  font-size: 0.9em;
+  padding: 2em;
   text-align: center;
-  margin: 2em;
-  font-family: var(--text-font);
-  font-size: 0.8em;
-  color: var(--color-light);
 }
 
 .mention {
@@ -85,20 +65,43 @@
   color: var(--color-light);
 }
 
-.adress {
-  max-width: 20em;
-  min-width: 20em;
-  text-align: center;
-  margin: 2em;
-  font-family: var(--text-font);
-  font-size: 0.8em;
-  color: var(--color-light);
+.credits {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.creditsList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em;
+  cursor: pointer;
 }
 
 .copyright {
   text-align: center;
-  margin: 0em;
-  font-family: var(--text-font);
-  font-size: 0.8em;
-  color: var(--color-light);
+  padding-bottom: 1em;
+  font-size: 0.7em;
+}
+
+.socialIcon:hover,
+.creditsList:hover,
+.link:hover {
+  opacity: 0.8;
+  color: var(--color-accent);
+  transform: translateY(1px);
+  text-decoration: underline;
+}
+
+.socialIcon:hover {
+  background-color: var(--color-accent);
+  border-radius: 10px;
+}
+
+.gitHubIcon:hover {
+  background-color: var(--color-accent);
+  border-radius: 25px;
 }
