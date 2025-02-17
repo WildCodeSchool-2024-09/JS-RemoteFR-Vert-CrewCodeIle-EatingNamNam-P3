@@ -79,7 +79,6 @@ const add: RequestHandler = async (req, res, next) => {
       user_id: Number.parseInt(req.body.user_id),
     };
 
-    console.info(req.body);
     const insertId = await recipeRepository.create(newRecipe);
 
     req.body.recipeId = insertId;
