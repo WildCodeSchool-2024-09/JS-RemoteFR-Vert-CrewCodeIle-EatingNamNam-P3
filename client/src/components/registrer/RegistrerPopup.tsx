@@ -3,12 +3,10 @@ import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 import type { UserType } from "../../lib/definitions";
-import type { RegistrerPopupProps } from "../../lib/definitions";
+import type { PopupProps } from "../../lib/definitions";
 import style from "./registrerPopup.module.css";
 
-export default function RegistrerPopup({
-  closePopupRegistre,
-}: RegistrerPopupProps) {
+export default function RegistrerPopup({ closePopup, openPopup }: PopupProps) {
   const {
     register,
     handleSubmit,
@@ -229,16 +227,12 @@ export default function RegistrerPopup({
           </button>
           <p className={style.font}>
             Vous avez déjà un compte?
-            <a href="/" className={style.lien}>
+            <button type="button" className={style.lien} onClick={openPopup}>
               Connectez-vous
-            </a>
+            </button>
           </p>
         </div>
-        <button
-          type="button"
-          className={style.btnclose}
-          onClick={closePopupRegistre}
-        >
+        <button type="button" className={style.btnclose} onClick={closePopup}>
           Fermer
         </button>
       </form>

@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import type { UserType } from "../../lib/definitions";
+import type { PopupProps } from "../../lib/definitions";
 import style from "./signInPopUp.module.css";
 
-export default function SignInPopup() {
+export default function SignInPopup({ closePopup, openPopup }: PopupProps) {
   const {
     register,
     handleSubmit,
@@ -44,7 +45,7 @@ export default function SignInPopup() {
           </p>
           <section className={style.champ}>
             <label htmlFor="username">
-              Email
+              Identifiant
               <input
                 type="text"
                 className={style.bloc}
@@ -94,11 +95,14 @@ export default function SignInPopup() {
             </button>
             <p className={style.text}>
               Pas de compte ?
-              <Link to="/registrerpopup" className={style.lien}>
+              <button type="button" className={style.lien} onClick={openPopup}>
                 Créer un compte
-              </Link>
+              </button>
             </p>
           </section>
+          <button type="button" onClick={closePopup}>
+            Fermer
+          </button>
         </form>
       </section>
     </>
