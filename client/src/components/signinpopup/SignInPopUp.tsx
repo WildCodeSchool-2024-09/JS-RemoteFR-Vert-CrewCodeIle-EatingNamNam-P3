@@ -100,7 +100,7 @@ export default function SignInPopup({ closePopup, openPopup }: PopupProps) {
               </button>
             </p>
           </section>
-          <button type="button" onClick={closePopup}>
+          <button type="button" onClick={closePopup} className={style.close}>
             Fermer
           </button>
         </form>
