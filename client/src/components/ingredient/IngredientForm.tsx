@@ -21,9 +21,6 @@ export default function IngredientForm({ closePopUp }: IngredientPopupProps) {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/ingredients`,
         data,
-        {
-          withCredentials: true,
-        },
       );
       toast.success(response.data.message, {});
     } catch (err) {
