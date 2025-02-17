@@ -123,3 +123,10 @@ export type RecipeIngredientType = {
   recipe_id: number;
   ingredient_id: number;
 };
+
+export type ConfirmationModalProps = {
+  isOpen: boolean;
+  message: string;
+  onConfirm: () => void;
+  onCancel: () => void;
+};
