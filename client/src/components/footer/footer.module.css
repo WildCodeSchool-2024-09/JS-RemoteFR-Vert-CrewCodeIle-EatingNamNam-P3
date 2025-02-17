@@ -6,15 +6,29 @@
   color: var(--color-light);
   font-family: var(--text-font);
   padding: 1em;
+
   @media (width > 990px) {
-    flex-direction: row;
-    justify-content: center;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-areas:
+      "contacts logo social"
+      "infos infos infos"
+      "credits credits credits"
+      "creditsLink creditsLink creditsLink"
+      "textImages textImages textImages"
+      "copyright copyright copyright";
+    align-items: center;
+    justify-items: center;
   }
 }
 
 .eatlogo {
   width: 12em;
+  grid-area: logo;
+
+  @media (width > 990px) {
+    padding-bottom: 3em;
+  }
 }
 
 .social {
@@ -23,13 +37,15 @@
   justify-content: space-around;
   gap: 3em;
   padding-bottom: 2em;
+  grid-area: social;
 
   @media (767px <= width <=991px) {
     gap: 2em;
   }
 
   @media (width > 990px) {
-    width: 16em;
+    gap: 3em;
+    padding-bottom: 3em;
   }
 }
 
@@ -47,22 +63,34 @@
   justify-content: center;
   align-items: center;
   gap: 0.5em;
+
+  @media (width > 990px) {
+    padding-bottom: 3em;
+  }
 }
 
-.textInfo {
+.textInfo,
+.textCredits,
+.textImages {
   font-size: 0.9em;
   padding: 2em;
   text-align: center;
+  @media (767px <= width <=991px) {
+    font-size: 1em;
+    width: 80%;
+  }
 }
 
-.mention {
-  max-width: 20em;
-  min-width: 20em;
-  text-align: center;
-  margin: 2em;
-  font-family: var(--text-font);
-  font-size: 0.8em;
-  color: var(--color-light);
+.textInfo {
+  grid-area: infos;
+}
+
+.textCredits {
+  grid-area: credits;
+}
+
+.textImages {
+  grid-area: textImages;
 }
 
 .credits {
@@ -70,6 +98,10 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  grid-area: creditsLink;
+  @media (767px <= width <=991px) {
+    gap: 1.5em;
+  }
 }
 
 .creditsList {
@@ -85,6 +117,7 @@
   text-align: center;
   padding-bottom: 1em;
   font-size: 0.7em;
+  grid-area: copyright;
 }
 
 .socialIcon:hover,
@@ -97,11 +130,14 @@
 }
 
 .socialIcon:hover {
+  opacity: 0.8;
   background-color: var(--color-accent);
   border-radius: 10px;
 }
 
+.creditsList:hover .gitHubIcon,
 .gitHubIcon:hover {
+  opacity: 0.8;
   background-color: var(--color-accent);
   border-radius: 25px;
 }

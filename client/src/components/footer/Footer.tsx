@@ -59,7 +59,7 @@ const Footer = () => {
         Ce site est le résultat d'un projet réalisé à trois, dans le cadre de
         notre formation en développement web à la Wild Code School.
       </p>
-      <p className={style.textInfo}>
+      <p className={style.textCredits}>
         Vous pourrez suivre l'avancée de nos travaux en suivant les liens GitHub
         :
       </p>
@@ -110,7 +110,7 @@ const Footer = () => {
           </a>
         </li>
       </ul>
-      <p className={style.textInfo}>
+      <p className={style.textImages}>
         Les images utilisées sur ce site proviennent de{" "}
         <a
           href="https://www.freepik.com"
