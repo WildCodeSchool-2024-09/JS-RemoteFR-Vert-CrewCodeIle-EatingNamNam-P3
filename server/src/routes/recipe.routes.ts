@@ -24,5 +24,4 @@ router.post(
   recipeIngredientActions.add,
 );
 router.delete("/:id", stepActions.destroy, recipeActions.destroy);
-
 export default router;
