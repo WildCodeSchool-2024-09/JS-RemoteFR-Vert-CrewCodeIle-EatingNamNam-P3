@@ -20,6 +20,15 @@ class RecipeIngredientRepository {
 
     return result.insertId;
   }
+  async delete(id: number) {
+    const [result] = await databaseClient.query<Result>(
+      `DELETE FROM recipe_ingredient
+      WHERE recipe_id = ?`,
+      [id],
+    );
+
+    return result.affectedRows;
+  }
 }
 
 export default new RecipeIngredientRepository();

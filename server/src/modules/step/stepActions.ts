@@ -34,8 +34,6 @@ const destroy: RequestHandler = async (req, res, next) => {
 
     await stepRepository.delete(recipeId);
 
-    res.sendStatus(204);
-
     next();
   } catch (err) {
     next(err);
