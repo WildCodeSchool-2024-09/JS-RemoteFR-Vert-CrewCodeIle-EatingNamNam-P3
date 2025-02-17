@@ -109,8 +109,9 @@ export type UserType = {
   roleId: number;
 };
 
-export type RegistrerPopupProps = {
-  closePopupRegistre: () => void;
+export type PopupProps = {
+  closePopup: () => void;
+  openPopup: () => void;
 };
 
 export type IngredientPopupProps = {
