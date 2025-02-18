@@ -21,7 +21,7 @@ const AdminRoleForm = () => {
       );
       toast.success(response.data.message);
     } catch (err) {
-      toast.error("Réessayer plus tard");
+      toast.error("Impossible de créer le rôle. Réessayez plus tard.");
     }
   };
 

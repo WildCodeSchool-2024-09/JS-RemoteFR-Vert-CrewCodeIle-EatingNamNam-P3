@@ -22,9 +22,9 @@ export default function IngredientForm({ closePopUp }: IngredientPopupProps) {
         `${import.meta.env.VITE_API_URL}/api/ingredients`,
         data,
       );
-      toast.success(response.data.message, {});
+      toast.success(response.data.message);
     } catch (err) {
-      toast.error("Une erreur est survenue", {});
+      toast.error("Impossible de créer l'ingrédient. Réessayez plus tard.");
     }
   };
 

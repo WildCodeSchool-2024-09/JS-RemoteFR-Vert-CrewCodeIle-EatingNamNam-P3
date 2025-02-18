@@ -16,9 +16,7 @@ const DeleteRecipeForm = () => {
         );
         setRecipeData(response.data);
       } catch (error) {
-        toast.error(
-          "Impossible de charger les données des recettes, veuillez essayer ultérieurement.",
-        );
+        toast.error("Impossible de récupérer les données.");
       }
     };
 

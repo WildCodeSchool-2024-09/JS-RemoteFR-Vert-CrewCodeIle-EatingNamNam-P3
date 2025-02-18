@@ -19,9 +19,9 @@ export default function UnitType() {
         `${import.meta.env.VITE_API_URL}/api/unittypes`,
         data,
       );
-      toast.success(response.data.message, {});
+      toast.success(response.data.message);
     } catch (err) {
-      toast.error("Erreur lors de l'ajout de l'unité de mesure'", {});
+      toast.error("Impossible de récupérer les données.");
     }
   };
 
