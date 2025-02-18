@@ -56,7 +56,7 @@ export default function RecipeDetailsPage() {
           </p>
           <p className={style.date}>le {formatDateMini(recipe.created_at)}</p>
           <h3 className={style.prepTitle}>TEMPS DE PRÉPARATION</h3>
-          <p>{recipe.prep_time} minutes</p>
+          <p className={style.prepTime}>{recipe.prep_time} minutes</p>
           <h3 className={style.cookTitle}>TEMPS DE CUISSON</h3>
           <p className={style.cookTime}>{recipe.cook_time} minutes</p>
           <h3 className={style.ingredientsTitle}>INGRÉDIENTS</h3>

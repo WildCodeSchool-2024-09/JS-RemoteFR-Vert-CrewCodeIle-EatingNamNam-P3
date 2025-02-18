@@ -1,23 +1,49 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-self: center;
+  margin-left: auto;
+  margin-right: auto;
   font-family: var(--text-font);
+  @media screen and (min-width: 768px) {
+    max-width: 75%;
+  }
 }
 
 .container {
+  background-color: var(--color-primary);
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 0 2px 10px 0 var(--color-hint);
   padding: 1em;
   margin: 1em;
+
+  @media screen and (min-width: 990px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "title  picture"
+      "summary picture"
+      "prepTitle picture"
+      "prep author"
+      ". date"
+      "cookTitle ."
+      "cook ."
+      "ingredientsTitle stepsTitle"
+      "ingredients steps";
+  }
 }
 
 .recipeTitle {
   font-family: var(--title-font);
+  text-align: center;
   font-size: 1.7em;
   padding: 1em;
+  grid-area: title;
+  @media screen and (min-width: 768px) {
+    font-size: 2.2em;
+    padding: 0.5em;
+  }
 }
 
 .recipeSummary {
@@ -25,6 +51,10 @@
   word-wrap: break-word;
   border: dashed 2px var(--color-tertiary);
   padding: 1em;
+  grid-area: summary;
+  @media screen and (min-width: 768px) {
+    font-size: 1.1em;
+  }
 }
 
 .recipePicture {
@@ -35,6 +65,12 @@
   width: 100%;
   height: 15em;
   margin: 1em;
+  grid-area: picture;
+  @media screen and (min-width: 768px) {
+    justify-self: right;
+    width: 90%;
+    height: 25em;
+  }
 }
 
 .author,
@@ -43,6 +79,14 @@
   align-items: right;
   font-size: 0.8em;
   text-align: right;
+  grid-area: author;
+  @media screen and (min-width: 768px) {
+    font-size: 1em;
+  }
+}
+
+.date {
+  grid-area: date;
 }
 
 .authorLink {
@@ -59,10 +103,18 @@
   padding-top: 1em;
   margin-top: 1em;
   width: 100%;
+  @media screen and (min-width: 768px) {
+    font-size: 1.3em;
+  }
 }
 
 .prepTitle {
   border-top: dashed 2px var(--color-tertiary);
+  grid-area: prepTitle;
+}
+
+.cookTitle {
+  grid-area: cookTitle;
 }
 
 .cookTime {
@@ -73,6 +125,12 @@
   margin-bottom: 1em;
   border-bottom: dashed 2px var(--color-tertiary);
   width: 100%;
+  grid-area: cook;
+}
+
+.prepTime {
+  grid-area: prep;
+  justify-self: center;
 }
 
 .ingredientsTitle {
@@ -81,6 +139,10 @@
   padding: 1em 0 1em 0;
   font-family: var(--title-font);
   color: var(--color-secondary);
+  grid-area: ingredientsTitle;
+  @media screen and (min-width: 768px) {
+    font-size: 1.3em;
+  }
 }
 
 .ingredients {
@@ -90,10 +152,19 @@
   text-align: left;
   word-break: keep-all;
   width: 100%;
+  grid-area: ingredients;
+  @media screen and (min-width: 768px) {
+    justify-content: start;
+    height: 100%;
+    font-size: 1.1em;
+  }
 }
 
 .ingredientsList {
   margin-left: 2em;
+  @media screen and (min-width: 768px) {
+    margin-left: 1em;
+  }
 }
 
 .stepsTitle {
@@ -102,6 +173,10 @@
   padding: 1em 0 1em 0;
   font-family: var(--title-font);
   color: var(--color-secondary);
+  grid-area: stepsTitle;
+  @media screen and (min-width: 768px) {
+    font-size: 1.3em;
+  }
 }
 
 .steps {
@@ -111,6 +186,10 @@
   text-align: left;
   word-break: keep-all;
   margin-bottom: 2em;
+  grid-area: steps;
+  @media screen and (min-width: 768px) {
+    font-size: 1.1em;
+  }
 }
 
 .stepList {
