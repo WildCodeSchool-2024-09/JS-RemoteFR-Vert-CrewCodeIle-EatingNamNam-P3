@@ -69,6 +69,11 @@ export type RecipeDetailsDataType = {
     user_id: number;
     username: string;
   };
+  ingredients: {
+    recipe_ingredient_id: number;
+    quantity: number;
+    label: string;
+  }[];
   steps: {
     id: number;
     step_order: number;
