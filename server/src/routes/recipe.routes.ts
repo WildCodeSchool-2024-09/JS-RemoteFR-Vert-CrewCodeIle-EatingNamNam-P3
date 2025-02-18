@@ -3,6 +3,7 @@ import express from "express";
 const router = express.Router();
 
 import { validateRecipeSchema } from "../helpers/validators/recipe.validator";
+import commentaryAction from "../modules/commentary/commentaryAction";
 import imageUploadActions from "../modules/imageUpload/imageUploadActions";
 import recipeActions from "../modules/recipe/recipeActions";
 import recipeIngredientActions from "../modules/recipeIngredient/recipeIngredientActions";
@@ -13,7 +14,7 @@ router.get("/discoveries", recipeActions.browseMostRecent);
 router.get("/recipe-list", recipeActions.browseAdminRecipeList);
 router.get("/", recipeActions.readByTitle);
 router.get("/:id", recipeActions.read);
-router.get("/:userId", recipeActions.readByUserId);
+router.get("/user/:userId", recipeActions.readByUserId);
 router.post(
   "/",
   imageUploadActions.uploadController,
@@ -23,5 +24,11 @@ router.post(
   stepActions.add,
   recipeIngredientActions.add,
 );
-router.delete("/:id", stepActions.destroy, recipeActions.destroy);
+router.delete(
+  "/:id",
+  stepActions.destroy,
+  recipeIngredientActions.destroy,
+  commentaryAction.destroy,
+  recipeActions.destroy,
+);
 export default router;

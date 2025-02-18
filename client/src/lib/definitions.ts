@@ -109,8 +109,9 @@ export type UserType = {
   roleId: number;
 };
 
-export type RegistrerPopupProps = {
-  closePopupRegistre: () => void;
+export type PopupProps = {
+  closePopup: () => void;
+  openPopup: () => void;
 };
 
 export type IngredientPopupProps = {
@@ -122,4 +123,11 @@ export type RecipeIngredientType = {
   quantity: number;
   recipe_id: number;
   ingredient_id: number;
+};
+
+export type ConfirmationModalProps = {
+  isOpen: boolean;
+  message: string;
+  onConfirm: () => void;
+  onCancel: () => void;
 };

@@ -47,7 +47,7 @@ export default function RecipeDetailsPage() {
           <p className={style.author}>
             recette créée par{" "}
             <Link
-              to={"/"}
+              to={`/liste-utilisateur/${recipe.user_id}`}
               className={style.authorLink}
               rel="créateur de la recette"
             >
