@@ -28,7 +28,7 @@ const AdminRoleForm = () => {
 
   return (
     <>
-      <h2 className={style.title}>Créer un rôle</h2>
+      <h2 className={style.title}>Créer un nouveau rôle</h2>
       <form
         className={style.formContainer}
         onSubmit={handleSubmit(handleRoleSubmit)}
@@ -36,6 +36,8 @@ const AdminRoleForm = () => {
         <label htmlFor="label" className={style.label}>
           Nom du Rôle
           <input
+            type="text"
+            placeholder="Admin, Utilisateur..."
             {...register("label", {
               required: true,
               minLength: 2,

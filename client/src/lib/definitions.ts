@@ -52,6 +52,7 @@ export type RecipeDataType = {
 export type RecipeDataAdminList = {
   id: number;
   title: string;
+  picture: string;
   created_at: string;
   username: string;
 };

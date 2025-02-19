@@ -28,18 +28,19 @@ export default function DietTypeForm() {
   return (
     <>
       <ToastContainer />
-      <form className={style.form} onSubmit={handleSubmit(formSubmit)}>
-        <label className={style.label}>
-          Je choisis un nom pour un nouveau type de régime alimentaire* :
+      <h2 className={style.title}>Créer un nouveau type de régime</h2>
+      <form className={style.formContainer} onSubmit={handleSubmit(formSubmit)}>
+        <label htmlFor="label" className={style.label}>
+          Nom du type de régime :
           <input
             type="text"
-            className={style.input}
-            placeholder="Saisissez un nom"
+            placeholder="Vegan, sans gluten, pescétarien..."
             {...register("label", {
               required: true,
               minLength: 3,
               maxLength: 30,
             })}
+            className={style.input}
           />
           {errors.label && (
             <span>
@@ -47,10 +48,9 @@ export default function DietTypeForm() {
             </span>
           )}
         </label>
-        <button className={style.button} type="submit">
+        <button type="submit" className={style.submitButton}>
           Ajouter le type
         </button>
-        <span className={style.note}>* obligatoire</span>
       </form>
     </>
   );

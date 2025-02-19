@@ -18,13 +18,13 @@ const AdminPage = () => {
 
   return (
     <>
-      <ToastContainer />
       <header className={style.header}>
         <AdminNavBar />
       </header>
       <main className={style.mainContainer}>
         <Outlet />
       </main>
+      <ToastContainer />
     </>
   );
 };

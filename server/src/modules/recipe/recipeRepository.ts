@@ -31,7 +31,7 @@ class RecipeRepository {
 
   async readForAdmin() {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT r.id, r.title, r.created_at, u.username
+      `SELECT r.id, r.title, r.picture, r.created_at, u.username
       FROM recipe AS r
       JOIN user AS u ON r.user_id = u.id
       ORDER BY created_at DESC`,

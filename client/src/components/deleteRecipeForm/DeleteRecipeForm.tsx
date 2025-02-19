@@ -40,7 +40,7 @@ const DeleteRecipeForm = () => {
 
       toast.success("Recette supprimée avec succès !");
       closeModal();
-    } catch (error) {
+    } catch (err) {
       toast.error("Nous n'avons pas pu supprimer la recette.");
     }
   };
@@ -56,25 +56,36 @@ const DeleteRecipeForm = () => {
 
   return (
     <>
-      {recipeData?.map((currentRecipeData: RecipeDataAdminList) => (
-        <section className={style.recipeFrame} key={currentRecipeData.id}>
-          <ul className={style.recipeList}>
-            <li className={style.recipeRow}>
-              Recette {currentRecipeData.id} :
-            </li>
-            <li>{currentRecipeData.title}</li>
-            <li>créée par {currentRecipeData.username}</li>
-            <li>le {formatDate(currentRecipeData.created_at)}</li>
-          </ul>
-          <button
-            type="button"
-            className={style.deleteButton}
-            onClick={() => openModal(currentRecipeData.id)}
-          >
-            Supprimer la recette ?
-          </button>
-        </section>
-      ))}
+      <h2 className={style.title}>Gérer les recettes</h2>
+      <section className={style.recipeListFrame}>
+        {recipeData?.map((currentRecipeData: RecipeDataAdminList) => (
+          <article className={style.recipeFrame} key={currentRecipeData.id}>
+            <figure
+              className={style.recipePicture}
+              style={{
+                backgroundImage: `url(${import.meta.env.VITE_API_URL}/${currentRecipeData.picture})`,
+              }}
+            />
+            <ul className={style.recipeList}>
+              <li className={style.recipeRow}>id {currentRecipeData.id} :</li>
+              <li className={style.recipeRow}>{currentRecipeData.title}</li>
+              <li className={style.recipeRow}>
+                créée par {currentRecipeData.username}
+              </li>
+              <li className={style.recipeRow}>
+                le {formatDate(currentRecipeData.created_at)}
+              </li>
+            </ul>
+            <button
+              type="button"
+              className={style.deleteButton}
+              onClick={() => openModal(currentRecipeData.id)}
+            >
+              Supprimer ?
+            </button>
+          </article>
+        ))}
+      </section>
       <ConfirmationModal
         isOpen={isModalOpen}
         message="Êtes-vous sûr de vouloir supprimer cette recette ? Cette action est irréversible."

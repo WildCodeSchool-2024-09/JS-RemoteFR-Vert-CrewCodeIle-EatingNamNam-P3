@@ -29,7 +29,7 @@ export default function AdminNavBar() {
             Créer une unité de mesure
           </Link>
           <Link to="/admin/supprimer-recette" className={style.link}>
-            Supprimer une recette
+            Gérer les recettes
           </Link>
         </ul>
       </nav>
