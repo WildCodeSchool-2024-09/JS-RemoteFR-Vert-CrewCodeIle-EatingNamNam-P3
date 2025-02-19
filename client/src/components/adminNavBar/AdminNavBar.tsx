@@ -5,11 +5,13 @@ export default function AdminNavBar() {
   return (
     <header className={style.container}>
       <div className={style.blur}>
-        <img
-          src="/images/logo-header.png"
-          alt="Logo du site"
-          className={style.logo}
-        />
+        <Link to="/liste-recette" className={style.logoLink}>
+          <img
+            src="/images/logo-header.png"
+            alt="Logo du site"
+            className={style.logo}
+          />
+        </Link>
         <h1 className={style.title}>Tableau de bord</h1>
       </div>
       <nav className={style.navContainer}>

@@ -85,3 +85,17 @@
     width: auto;
   }
 }
+
+.link:hover {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px var(--color-hint);
+}
+
+.link:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 2px var(--color-hint);
+}
+
+.logo:hover {
+  transform: translateX(-3px) rotate(-5deg);
+}
