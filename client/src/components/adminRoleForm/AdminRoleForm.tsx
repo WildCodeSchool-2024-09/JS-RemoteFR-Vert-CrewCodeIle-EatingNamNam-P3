@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import style from "./adminRoleForm.module.css";
 
 const AdminRoleForm = () => {
   type RoleType = {
@@ -26,9 +27,13 @@ const AdminRoleForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(handleRoleSubmit)}>
-        <label htmlFor="label">
+    <>
+      <h2 className={style.title}>Créer un rôle</h2>
+      <form
+        className={style.formContainer}
+        onSubmit={handleSubmit(handleRoleSubmit)}
+      >
+        <label htmlFor="label" className={style.label}>
           Nom du Rôle
           <input
             {...register("label", {
@@ -36,6 +41,7 @@ const AdminRoleForm = () => {
               minLength: 2,
               maxLength: 15,
             })}
+            className={style.input}
           />
           {errors.label && errors.label.type === "required" && (
             <span>Champ obligatoire</span>
@@ -47,9 +53,11 @@ const AdminRoleForm = () => {
             <span>Caractères requis : entre 2 et 15</span>
           )}
         </label>
-        <button type="submit">Ajouter</button>
+        <button type="submit" className={style.submitButton}>
+          Valider
+        </button>
       </form>
-    </div>
+    </>
   );
 };
 
