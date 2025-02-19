@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-
+import recipeIngredientRepository from "../recipeIngredient/recipeIngredientRepository";
 import stepRepository from "../step/stepRepository";
 import recipeRepository from "./recipeRepository";
 
@@ -22,9 +22,11 @@ const read: RequestHandler = async (req, res, next) => {
       res.sendStatus(404);
     }
 
+    const ingredients = await recipeIngredientRepository.read(recipeId);
+
     const steps = await stepRepository.read(recipeId);
 
-    res.json({ recipe, steps });
+    res.json({ recipe, ingredients, steps });
   } catch (err) {
     next(err);
   }

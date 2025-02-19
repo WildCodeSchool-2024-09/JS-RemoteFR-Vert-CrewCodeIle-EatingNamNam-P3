@@ -4,6 +4,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 import type { IngredientType, RecipeDataType } from "../../lib/definitions.ts";
+import { recipeValidation } from "../../validations/recipeFormValidation.ts";
 import ImagePreview from "../imagePreview/ImagePreview.tsx";
 import IngredientForm from "../ingredient/IngredientForm.tsx";
 import style from "./recipeForm.module.css";
@@ -110,6 +111,7 @@ export default function RecipeForm() {
         `${import.meta.env.VITE_API_URL}/api/recipes/`,
         formData,
         {
+          withCredentials: true,
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -129,18 +131,8 @@ export default function RecipeForm() {
           <input
             type="text"
             className={style.input}
-            placeholder="Saisissez un titre"
-            {...register("title", {
-              required: "Champ obligatoire",
-              minLength: {
-                value: 3,
-                message: "Ce champ doit contenir au moins 3 lettres",
-              },
-              maxLength: {
-                value: 60,
-                message: "Ce champ doit contenir moins de 60 lettres",
-              },
-            })}
+            placeholder="Salade de quinoa aux légumes grillés"
+            {...register("title", recipeValidation.title)}
           />
           {errors.title && <span>{errors.title.message}</span>}
         </label>
@@ -159,22 +151,11 @@ export default function RecipeForm() {
           Présentation*
           <textarea
             className={`${style.input} ${style.summary}`}
-            placeholder="Créez un résumé de votre recette, il apparaîtra sur la fiche recette."
-            {...register("summary", {
-              required: "Champ obligatoire",
-              minLength: {
-                value: 40,
-                message: "Ce champ doit contenir au moins 40 lettres",
-              },
-              maxLength: {
-                value: 255,
-                message: "Ce champ doit contenir moins de 255 lettres",
-              },
-            })}
+            placeholder="Salade de quinoa avec légumes grillés, assaisonnée d'huile d'olive et de citron. Simple et savoureuse !"
+            {...register("summary", recipeValidation.summary)}
           />
           {errors.summary && <span>{errors.summary.message}</span>}
         </label>
-
         {recipe_ingredientFields.map((field, index) => {
           return (
             <div key={field.id}>
@@ -184,16 +165,10 @@ export default function RecipeForm() {
                     type="number"
                     step="0.1"
                     placeholder="0.1"
-                    {...register(`recipe_ingredient.${index}.quantity`, {
-                      min: {
-                        value: 0.1,
-                        message: "quantité minimun 0.1",
-                      },
-                      max: {
-                        value: 1000,
-                        message: "quantité maximun 1000 ",
-                      },
-                    })}
+                    {...register(
+                      `recipe_ingredient.${index}.quantity`,
+                      recipeValidation.quantity,
+                    )}
                   />
                   {errors.recipe_ingredient?.[index]?.quantity && (
                     <p className={style.errors}>
@@ -236,13 +211,12 @@ export default function RecipeForm() {
         <button type="button" onClick={() => setIsIngredient(true)}>
           créer ingredient
         </button>
-
         <label className={style.label}>
           Temps de préparation*
           <input
             type="number"
             className={style.input}
-            {...register("prep_time", { required: "Ce champ est obligatoire" })}
+            {...register("prep_time", recipeValidation.prep_time)}
           />
           {errors.prep_time && <span>{errors.prep_time.message}</span>}
         </label>
@@ -251,18 +225,18 @@ export default function RecipeForm() {
           <input
             type="number"
             className={style.input}
-            {...register("cook_time", { required: "Ce champ est obligatoire" })}
+            {...register("cook_time", recipeValidation.prep_time)}
           />
-          {errors.cook_time && <span>{errors.cook_time.message}</span>}
+          {errors.prep_time && <span>{errors.prep_time.message}</span>}
         </label>
         <label className={style.label}>
           Nombre de parts*
           <input
             type="number"
             className={style.input}
-            {...register("serving", { required: "Ce champ est obligatoire" })}
+            {...register("serving", recipeValidation.prep_time)}
           />
-          {errors.serving && <span>{errors.serving.message}</span>}
+          {errors.prep_time && <span>{errors.prep_time.message}</span>}
         </label>
         {stepFields.map((field, index) => {
           return (
@@ -271,16 +245,10 @@ export default function RecipeForm() {
                 <input
                   placeholder="order"
                   type="number"
-                  {...register(`step.${index}.step_order`, {
-                    min: {
-                      value: 1,
-                      message: "Les étapes doivent être supérieur a 1",
-                    },
-                    max: {
-                      value: 21,
-                      message: "Les étapes ne peuvent pas dépasser 21",
-                    },
-                  })}
+                  {...register(
+                    `step.${index}.step_order`,
+                    recipeValidation.step_order,
+                  )}
                 />
                 {errors.step?.[index]?.step_order && (
                   <p className={style.errors}>
@@ -288,20 +256,11 @@ export default function RecipeForm() {
                   </p>
                 )}
                 <textarea
-                  placeholder="content"
-                  {...register(`step.${index}.content`, {
-                    required: "Ce champ est obligatoire",
-                    minLength: {
-                      value: 10,
-                      message:
-                        "Les instructions doivent contenir 10 lettres minimum",
-                    },
-                    maxLength: {
-                      value: 400,
-                      message:
-                        "Les instructions doivent contenir 400 lettres minimum",
-                    },
-                  })}
+                  placeholder="Coupez les légumes en morceaux ..."
+                  {...register(
+                    `step.${index}.content`,
+                    recipeValidation.content,
+                  )}
                 />
                 {errors.step?.[index]?.content && (
                   <p className={style.errors}>
