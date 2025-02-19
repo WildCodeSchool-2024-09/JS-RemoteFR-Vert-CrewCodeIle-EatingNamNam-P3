@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import type { IngredientType, RecipeDataType } from "../../lib/definitions.ts";
 import { recipeValidation } from "../../validations/recipeFormValidation.ts";
@@ -15,6 +16,7 @@ export default function RecipeForm() {
   const handleClose = () => {
     setIsIngredient(false);
   };
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -118,6 +120,9 @@ export default function RecipeForm() {
         },
       );
       toast.success(response.data.message);
+      setTimeout(() => {
+        navigate("/liste-recette");
+      }, 1000);
     } catch (err) {
       toast.error("Erreur lors de l'ajout de la recette.");
     }
