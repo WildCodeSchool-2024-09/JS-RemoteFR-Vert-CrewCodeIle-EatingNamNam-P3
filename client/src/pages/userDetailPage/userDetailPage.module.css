@@ -3,13 +3,32 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2em;
+  font-family: var(--text-font);
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 2em;
+  }
 }
 
 .userName {
   margin: auto;
   width: fit-content;
-  margin-bottom: 2em;
+  margin-bottom: 0.5em;
+  font-family: var(--title-font);
+  font-size: 1.7em;
+
+  @media screen and (min-width: 768px) {
+    font-size: 2em;
+    padding: 0.5em 0em 0.5em 0em;
+  }
 }
 
 .userDescription {
@@ -17,6 +36,12 @@
   flex-direction: row;
   justify-content: center;
   gap: 5em;
+  padding: 1em;
+  margin: 1em;
+  border: dashed 2px var(--color-tertiary);
+  @media screen and (min-width: 768px) {
+    font-size: 1.3em;
+  }
 }
 
 .userRecipeContainer {
@@ -25,4 +50,21 @@
 
 .recipeTitle {
   text-align: center;
+  margin: 1em 0em 2em 0em;
+  padding: 1em 0em 1em 0em;
+  border-top: dashed 2px var(--color-tertiary);
+  border-bottom: dashed 2px var(--color-tertiary);
+  font-family: var(--title-font);
+  font-size: 1.5em;
+
+  @media screen and (min-width: 768px) {
+    font-size: 2em;
+    padding: 0.5em 0em 0.5em 0em;
+  }
+}
+
+.userRecipe {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
 }
