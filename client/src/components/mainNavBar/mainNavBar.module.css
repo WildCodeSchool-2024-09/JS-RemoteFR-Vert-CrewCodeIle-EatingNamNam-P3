@@ -1,14 +1,22 @@
 .headerContainer {
-  background-image: url("/images/header-background.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--color-secondary);
+  background-image: url(/images/header-background.jpg);
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: var(--title-font);
+  box-shadow: 0 2px 10px 0 var(--color-hint);
+
+  @media (width > 767px) {
+    background-position: center;
+  }
 }
 
-.eatIcon {
+.logo {
   width: 6.5em;
   border-radius: 1.5em;
   backdrop-filter: blur(2px);
@@ -23,26 +31,67 @@
   }
 }
 
-.navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  gap: 1em;
-  font-family: var(--title-font);
-  font-size: 1.3em;
-  margin: 1em;
-  color: var(--color-secondary);
-  background-color: var(--color-light);
+.navContainer {
   width: 100%;
-  padding: 0.5em;
-  border-style: dashed;
-  border-width: 2px 0 2px 0;
-  border-color: var(--color-tertiary);
+  @media (767px <= width <=991px) {
+    width: 75%;
+  }
+  @media (width > 990px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.linksList {
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  margin-bottom: 1em;
+  width: 90%;
+
+  @media (width > 767px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: space-evenly;
+  }
 }
 
 .link {
-  &:hover {
-    color: var(--color-accent);
-    transform: scale(1.1);
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 0.7em;
+  width: 100%;
+  font-size: 1.2em;
+  color: var(--color-secondary);
+  background-color: var(--color-primary);
+  box-shadow: 0 2px 10px 0 var(--color-secondary);
+
+  @media (767px <= width <=991px) {
+    width: 13em;
   }
+
+  @media (width > 990px) {
+    width: 17em;
+  }
+}
+
+.link:hover {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px var(--color-secondary);
+}
+
+.link:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 2px var(--color-secondary);
+}
+
+.logo:hover {
+  transform: translateX(-3px) rotate(-5deg);
 }
