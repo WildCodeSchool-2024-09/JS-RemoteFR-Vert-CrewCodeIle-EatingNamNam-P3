@@ -37,7 +37,9 @@ Eating Nam Nam est un site web où les utilisateurs peuvent partager et découvr
 
 Cloner le repository :
 
-git clone https://github.com/votre-repository/woody-gallery.git cd woody-gallery
+git clone git@github.com:WildCodeSchool-2024-09/JS-RemoteFR-Vert-CrewCodeIle-EatingNamNam-P3.git
+
+cd JS-RemoteFR-Vert-CrewCodeIle-EatingNamNam-P3
 
 Créer les variables d'environnement (.git) selon les .env.sample
 
