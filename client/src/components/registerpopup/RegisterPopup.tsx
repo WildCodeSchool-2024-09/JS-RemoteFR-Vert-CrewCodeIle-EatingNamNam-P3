@@ -4,9 +4,9 @@ import type { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 import type { UserType } from "../../lib/definitions";
 import type { PopupProps } from "../../lib/definitions";
-import style from "./registrerPopup.module.css";
+import style from "./registerPopup.module.css";
 
-export default function RegistrerPopup({ closePopup, openPopup }: PopupProps) {
+export default function RegisterPopup({ closePopup, openPopup }: PopupProps) {
   const {
     register,
     handleSubmit,
