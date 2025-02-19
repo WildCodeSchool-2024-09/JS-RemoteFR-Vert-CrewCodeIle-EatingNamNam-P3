@@ -29,7 +29,7 @@ export default function SignInPopup({ closePopup, openPopup }: PopupProps) {
         navigate("/liste-recette");
       }, 1000);
     } catch (err) {
-      toast.error("Erreur dans la connexion");
+      toast.error("Échec de connexion. Vérifiez vos identifiants.");
     }
   };
 

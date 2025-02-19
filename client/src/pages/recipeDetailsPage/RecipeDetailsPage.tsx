@@ -19,9 +19,7 @@ export default function RecipeDetailsPage() {
         );
         setRecipeDetailsData(response.data);
       } catch (error) {
-        toast.error(
-          "Impossible de charger les données des recettes, veuillez essayer ultérieurement.",
-        );
+        toast.error("Impossible de récupérer les données.");
       }
     };
 

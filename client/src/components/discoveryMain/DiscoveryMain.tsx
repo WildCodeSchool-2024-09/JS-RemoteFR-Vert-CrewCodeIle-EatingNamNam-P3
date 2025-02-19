@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import type { RecipeDataType } from "../../lib/definitions";
 import RecipeCard from "../recipeCard/RecipeCard";
 import style from "./discoveryMain.module.css";
@@ -16,9 +16,7 @@ export default function DiscoveryMain() {
         );
         setRecipeData(response.data);
       } catch (error) {
-        toast.error(
-          "Impossible de charger les données des recettes, veuillez essayer ultérieurement.",
-        );
+        toast.error("Impossible de récupérer les données.");
       }
     };
 
@@ -26,16 +24,13 @@ export default function DiscoveryMain() {
   }, []);
 
   return (
-    <>
-      <main className={style.main}>
-        {recipeData?.map((currentRecipeData: RecipeDataType) => (
-          <RecipeCard
-            key={currentRecipeData.id}
-            recipeDataProps={currentRecipeData}
-          />
-        ))}
-      </main>
-      <ToastContainer />
-    </>
+    <main className={style.main}>
+      {recipeData?.map((currentRecipeData: RecipeDataType) => (
+        <RecipeCard
+          key={currentRecipeData.id}
+          recipeDataProps={currentRecipeData}
+        />
+      ))}
+    </main>
   );
 }

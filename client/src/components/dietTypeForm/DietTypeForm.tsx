@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import type { DietTypeType } from "../../lib/definitions.ts";
 import style from "./dietTypeForm.module.css";
 
@@ -21,13 +21,12 @@ export default function DietTypeForm() {
       );
       toast.success(response.data.message);
     } catch (err) {
-      toast.error("Une erreur est survenue.");
+      toast.error("Impossible de créer le type. Réessayez plus tard.");
     }
   };
 
   return (
     <>
-      <ToastContainer />
       <h2 className={style.title}>Créer un nouveau type de régime</h2>
       <form className={style.formContainer} onSubmit={handleSubmit(formSubmit)}>
         <label htmlFor="label" className={style.label}>

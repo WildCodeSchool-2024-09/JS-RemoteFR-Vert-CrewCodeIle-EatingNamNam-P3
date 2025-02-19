@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import type { CategoryType } from "../../lib/definitions";
 import style from "./category.module.css";
 
@@ -54,7 +54,6 @@ export default function CategoryForm() {
           Valider
         </button>
       </form>
-      <ToastContainer />
     </>
   );
 }

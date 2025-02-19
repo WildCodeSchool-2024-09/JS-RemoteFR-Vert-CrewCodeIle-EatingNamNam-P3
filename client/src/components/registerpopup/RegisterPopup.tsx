@@ -23,7 +23,7 @@ export default function RegisterPopup({ closePopup, openPopup }: PopupProps) {
       );
       toast.success(response.data.message);
     } catch (err) {
-      toast.error("Veuillez réessayer plus tard");
+      toast.error("Impossible de créer le compte. Réessayez plus tard.");
     }
   };
 

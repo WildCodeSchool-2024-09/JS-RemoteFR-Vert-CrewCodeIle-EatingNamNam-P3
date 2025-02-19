@@ -19,7 +19,7 @@ const DeleteRecipeForm = () => {
         );
         setRecipeData(response.data);
       } catch (error) {
-        toast.error("Impossible de charger les données des recettes");
+        toast.error("Impossible de récupérer les données.");
       }
     };
 
@@ -38,10 +38,10 @@ const DeleteRecipeForm = () => {
         previousRecipeData.filter((recipe) => recipe.id !== recipeIdToDelete),
       );
 
-      toast.success("Recette supprimée avec succès !");
+      toast.success("Recette supprimée.");
       closeModal();
-    } catch (err) {
-      toast.error("Nous n'avons pas pu supprimer la recette.");
+    } catch (error) {
+      toast.error("Impossible de supprimer la recette.");
     }
   };
 

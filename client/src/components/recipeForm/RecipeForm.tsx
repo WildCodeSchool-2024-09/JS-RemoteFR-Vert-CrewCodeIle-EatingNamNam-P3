@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import type { IngredientType, RecipeDataType } from "../../lib/definitions.ts";
 import { recipeValidation } from "../../validations/recipeFormValidation.ts";
 import ImagePreview from "../imagePreview/ImagePreview.tsx";
@@ -124,7 +124,7 @@ export default function RecipeForm() {
         navigate("/liste-recette");
       }, 1000);
     } catch (err) {
-      toast.error("Erreur lors de l'ajout de la recette.");
+      toast.error("Impossible de créer la recette. Réessayez plus tard.");
     }
   };
 
@@ -324,7 +324,6 @@ export default function RecipeForm() {
         </button>
         <span className={style.note}>* obligatoire</span>
       </form>
-      <ToastContainer />
       {isIngredient && <IngredientForm closePopUp={handleClose} />}
     </main>
   );

@@ -28,13 +28,15 @@ export default function Commentary() {
         `${import.meta.env.VITE_API_URL}/api/commentary`,
         data,
       );
-      toast.success(response.data.message, {});
+      toast.success(response.data.message);
       setComData((prevComData) => [
         ...prevComData,
         { ...data, id: response.data.id },
       ]);
     } catch (err) {
-      toast.error("Erreur lors de l'ajout du commentaire", {});
+      toast.error(
+        "Impossible d'ajouter le commentaire. Veuillez réessayer plus tard.",
+      );
     }
   };
   useEffect(() => {
@@ -47,7 +49,7 @@ export default function Commentary() {
 
         setComData(response.data);
       } catch (error) {
-        toast.error("Impossible de charger les com", {});
+        toast.error("Impossible de récupérer les données.");
       }
     };
     fetchData();
