@@ -9,3 +9,12 @@ export const formatDate = (date: string | Date): string => {
     timeZone: "Europe/Paris",
   });
 };
+
+export const formatDateMini = (date: string | Date): string => {
+  return new Date(date).toLocaleString("fr-FR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "Europe/Paris",
+  });
+};

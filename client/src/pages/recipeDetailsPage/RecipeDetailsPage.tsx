@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import type { RecipeDetailsDataType } from "../../lib/definitions";
-import { formatDate } from "../../services/dateFormatter";
+import { formatDateMini } from "../../services/dateFormatter";
 import style from "./recipeDetailsPage.module.css";
 
 export default function RecipeDetailsPage() {
@@ -30,22 +30,22 @@ export default function RecipeDetailsPage() {
 
   if (!recipeDetailsData) return <p>Chargement...</p>;
 
-  const { recipe, steps } = recipeDetailsData;
+  const { recipe, ingredients, steps } = recipeDetailsData;
 
   return (
     recipeDetailsData && (
       <main className={style.main}>
         <section className={style.container}>
           <h2 className={style.recipeTitle}>{recipe.title}</h2>
+          <p className={style.recipeSummary}>{recipe.summary}</p>
           <figure
             className={style.recipePicture}
             style={{
               backgroundImage: `url(${import.meta.env.VITE_API_URL}/${recipe.picture})`,
             }}
           />
-          <p className={style.recipeSummary}>{recipe.summary}</p>
           <p className={style.author}>
-            recette créée par{" "}
+            recette écrite par{" "}
             <Link
               to={`/liste-utilisateur/${recipe.user_id}`}
               className={style.authorLink}
@@ -53,15 +53,23 @@ export default function RecipeDetailsPage() {
             >
               {recipe.username}
             </Link>
-            <p>le {formatDate(recipe.created_at)}</p>
           </p>
-          <h3 className={style.subTitle}>TEMPS DE PRÉPARATION</h3>
-          <p>{recipe.prep_time} minutes</p>
-          <h3 className={style.subTitle}>TEMPS DE CUISSON</h3>
-          <p>{recipe.cook_time} minutes</p>
-          <h3 className={style.subTitle}>
-            INGRÉDIENTS ( pour {recipe.serving} parts)
-          </h3>
+          <p className={style.date}>le {formatDateMini(recipe.created_at)}</p>
+          <h3 className={style.prepTitle}>TEMPS DE PRÉPARATION</h3>
+          <p className={style.prepTime}>{recipe.prep_time} minutes</p>
+          <h3 className={style.cookTitle}>TEMPS DE CUISSON</h3>
+          <p className={style.cookTime}>{recipe.cook_time} minutes</p>
+          <h3 className={style.ingredientsTitle}>INGRÉDIENTS</h3>
+          <ul className={style.ingredients}>
+            {ingredients.map((ing) => (
+              <li
+                className={style.ingredientsList}
+                key={ing.recipe_ingredient_id}
+              >
+                {ing.quantity} x {ing.label}
+              </li>
+            ))}
+          </ul>
           <h3 className={style.stepsTitle}>INSTRUCTIONS</h3>
           <ol className={style.steps}>
             {steps.map((step) => (
