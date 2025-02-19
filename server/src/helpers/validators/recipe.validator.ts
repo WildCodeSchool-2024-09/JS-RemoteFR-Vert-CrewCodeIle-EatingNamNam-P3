@@ -21,11 +21,11 @@ const schema = joi.object({
 
   summary: joi.string().min(40).max(255).required(),
 
-  prep_time: joi.number().integer().min(1).max(20).required(),
+  prep_time: joi.number().integer().min(0).max(300).required(),
 
-  cook_time: joi.number().integer().min(1).max(20).required(),
+  cook_time: joi.number().integer().min(0).max(300).required(),
 
-  serving: joi.number().integer().min(1).max(20).required(),
+  serving: joi.number().integer().min(1).max(12).required(),
 });
 
 export const validateRecipeSchema: RequestHandler = (req, res, next) => {

@@ -253,9 +253,9 @@ export default function RecipeForm() {
             <input
               type="number"
               className={style.inputnumber}
-              {...register("serving", recipeValidation.prep_time)}
+              {...register("serving", recipeValidation.serving)}
             />
-            {errors.prep_time && <span>{errors.prep_time.message}</span>}
+            {errors.serving && <span>{errors.serving.message}</span>}
           </label>
         </div>
         <div className={style.etape}>
