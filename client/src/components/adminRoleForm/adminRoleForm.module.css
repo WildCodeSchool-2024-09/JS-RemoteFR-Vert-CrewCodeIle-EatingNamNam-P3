@@ -1,0 +1,71 @@
+.title {
+  font-family: var(--title-font);
+  color: var(--color-secondary);
+  font-size: 1.5em;
+  margin: 1em;
+
+  @media (width > 767px) {
+    font-size: 2em;
+    margin: 2em;
+  }
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--text-font);
+  padding: 1em;
+  margin: 1em;
+  gap: 1em;
+
+  @media (767px <= width <=991px) {
+    width: 75%;
+  }
+  @media (width > 990px) {
+    width: 50%;
+  }
+}
+
+.label {
+  font-size: 1.3em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--title-font);
+}
+
+.input {
+  background-color: var(--color-light);
+  box-shadow: inset 1px 0px 3px 0px var(--color-hint);
+  margin: 1em;
+  padding: 0.3em;
+}
+
+.submitButton {
+  background-color: var(--color-accent);
+  border-radius: 1em;
+  border: none;
+  height: 2.3em;
+  width: 80%;
+  margin-top: 1em;
+  color: var(--color-light);
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px var(--color-hint);
+}
+
+.submitButton:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 2px var(--color-hint);
+}
+
+span {
+  color: red;
+  font-style: italic;
+  font-size: 0.7em;
+}

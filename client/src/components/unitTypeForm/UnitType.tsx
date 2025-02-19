@@ -1,5 +1,4 @@
 import axios from "axios";
-import type { ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -26,29 +25,31 @@ export default function UnitType() {
   };
 
   return (
-    <section className={style.formunit}>
-      <form className={style.form} onSubmit={handleSubmit(formSubmit)}>
-        <label htmlFor="label">
-          Nom de l'unite de mesure
+    <>
+      <h2 className={style.title}>Créer une nouvelle unité de mesure</h2>
+      <form className={style.formContainer} onSubmit={handleSubmit(formSubmit)}>
+        <label htmlFor="label" className={style.label}>
+          Nom de l'unité de mesure
           <input
-            className={style.bloc}
             type="text"
+            placeholder="g, cl, u..."
             {...register("label", {
               required: "Champ obligatoire",
               maxLength: {
                 value: 3,
-                message: "l'unité de mesure ne doit contenir que 3 caractère",
+                message: "l'unité de mesure ne doit contenir que 3 caractères",
               },
             })}
+            className={style.input}
           />
-          {errors.label && (
-            <p className={style.error}>{errors.label.message as ReactNode}</p>
+          {errors.label && errors.label.type === "required" && (
+            <span>Champ obligatoire</span>
           )}
         </label>
-        <button type="submit" className={style.btn}>
-          Ajouter
+        <button type="submit" className={style.submitButton}>
+          Valider
         </button>
       </form>
-    </section>
+    </>
   );
 }

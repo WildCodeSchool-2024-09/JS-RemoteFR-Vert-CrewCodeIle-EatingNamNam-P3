@@ -25,37 +25,35 @@ export default function CategoryForm() {
   };
 
   return (
-    <section className={style.formcategory}>
-      <form onSubmit={handleSubmit(formSubmit)} className={style.form}>
-        <label htmlFor="label">
+    <>
+      <h2 className={style.title}>Créer une nouvelle catégorie</h2>
+      <form className={style.formContainer} onSubmit={handleSubmit(formSubmit)}>
+        <label htmlFor="label" className={style.label}>
           Nom de la catégorie
           <input
-            className={style.bloc}
             type="text"
+            placeholder="Petit-déjeuner, boissons, apéro entre amis..."
             {...register("label", {
               required: true,
               minLength: 3,
               maxLength: 20,
             })}
+            className={style.input}
           />
           {errors.label && errors.label.type === "required" && (
-            <span className={style.error}>Champ obligatoire</span>
+            <span>Champ obligatoire</span>
           )}
           {errors.label && errors.label.type === "minLength" && (
-            <span className={style.error}>
-              le champ doit contenir au minimum 3 caractères
-            </span>
+            <span>le champ doit contenir au minimum 3 caractères</span>
           )}
           {errors.label && errors.label.type === "maxLength" && (
-            <span className={style.error}>
-              le champ doit contenir au maximum 20 caractères
-            </span>
+            <span>le champ doit contenir au maximum 20 caractères</span>
           )}
         </label>
-        <button type="submit" className={style.btn}>
-          Ajouter
+        <button type="submit" className={style.submitButton}>
+          Valider
         </button>
       </form>
-    </section>
+    </>
   );
 }

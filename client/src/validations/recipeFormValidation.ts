@@ -32,6 +32,25 @@ export const recipeValidation = {
     },
   },
   prep_time: {
+    min: {
+      value: 0,
+      message: "Temps minimum : 0",
+    },
+    max: {
+      value: 300,
+      message: "Temps maximum : 300",
+    },
+    required: "Veuillez remplir ce champ",
+  },
+  serving: {
+    min: {
+      value: 1,
+      message: "Portions minimum : 1",
+    },
+    max: {
+      value: 12,
+      message: "Portions maximum : 12",
+    },
     required: "Veuillez remplir ce champ",
   },
   step_order: {

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import type { IngredientType, RecipeDataType } from "../../lib/definitions.ts";
 import { recipeValidation } from "../../validations/recipeFormValidation.ts";
@@ -15,6 +16,7 @@ export default function RecipeForm() {
   const handleClose = () => {
     setIsIngredient(false);
   };
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -118,6 +120,9 @@ export default function RecipeForm() {
         },
       );
       toast.success(response.data.message);
+      setTimeout(() => {
+        navigate("/liste-recette");
+      }, 1000);
     } catch (err) {
       toast.error("Impossible de créer la recette. Réessayez plus tard.");
     }
@@ -253,9 +258,9 @@ export default function RecipeForm() {
             <input
               type="number"
               className={style.inputnumber}
-              {...register("serving", recipeValidation.prep_time)}
+              {...register("serving", recipeValidation.serving)}
             />
-            {errors.prep_time && <span>{errors.prep_time.message}</span>}
+            {errors.serving && <span>{errors.serving.message}</span>}
           </label>
         </div>
         <div className={style.etape}>
