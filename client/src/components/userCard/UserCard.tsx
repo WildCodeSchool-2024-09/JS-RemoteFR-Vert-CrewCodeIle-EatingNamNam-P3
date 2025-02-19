@@ -8,7 +8,7 @@ const UserCard = ({ userDataProps }: { userDataProps: UserType }) => {
     <article>
       <Link to={`/liste-utilisateur/${id}`} className={style.userCard}>
         <img src="/images/avatar.png" alt="Avatar" className={style.avatar} />
-        <p>{username}</p>
+        <p className={style.userName}>{username}</p>
       </Link>
     </article>
   );
