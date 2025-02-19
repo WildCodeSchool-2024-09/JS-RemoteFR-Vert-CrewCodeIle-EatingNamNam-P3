@@ -164,7 +164,7 @@ export default function RecipeForm() {
         <div className={style.legumes}>
           {recipe_ingredientFields.map((field, index) => {
             return (
-              <div key={field.id}>
+              <div key={field.id} className={style.forming}>
                 <section key={field.id}>
                   <label className={style.quantity}>
                     <input
@@ -218,14 +218,15 @@ export default function RecipeForm() {
               })
             }
           >
-            Ajouter un ingredient
+            <span className={style.btnplus}>+</span>Ajouter un ingredient
           </button>
           <button
             type="button"
             onClick={() => setIsIngredient(true)}
-            className={style.linking}
+            className={style.info}
           >
-            créer ingredient
+            Votre ingrédient n'existe pas ?
+            <span className={style.linking}>Créez-le ici!</span>
           </button>
         </div>
         <div className={style.time}>
@@ -261,7 +262,7 @@ export default function RecipeForm() {
           {stepFields.map((field, index) => {
             return (
               <div key={field.id}>
-                <section key={field.id}>
+                <section key={field.id} className={style.align}>
                   <input
                     className={style.inputnumber}
                     placeholder="order"
@@ -310,11 +311,11 @@ export default function RecipeForm() {
               })
             }
           >
-            Ajouter une étape
+            <span className={style.btnplus}>+</span> Ajouter une étape
           </button>
         </div>
-        <button className={style.add} type="submit">
-          Ajouter la recette
+        <button className={style.btncreate} type="submit">
+          Créez votre recette
         </button>
         <span className={style.note}>* obligatoire</span>
       </form>
