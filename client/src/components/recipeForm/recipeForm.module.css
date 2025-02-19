@@ -14,11 +14,11 @@ main {
   width: 70%;
 }
 
-@media (max-width: 990px) {
+/* @media (max-width: 990px) {
   .form {
     grid-template-columns: repeat(1fr);
   }
-}
+} */
 
 .label {
   display: flex;

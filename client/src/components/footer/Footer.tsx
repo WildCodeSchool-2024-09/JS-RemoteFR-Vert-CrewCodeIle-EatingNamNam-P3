@@ -72,7 +72,7 @@ const Footer = () => {
             className={style.creditsList}
           >
             <img
-              src="images/logo-github.png"
+              src="/images/logo-github.png"
               className={style.gitHubIcon}
               alt="Icone GitHub"
             />
@@ -87,7 +87,7 @@ const Footer = () => {
             className={style.creditsList}
           >
             <img
-              src="images/logo-github.png"
+              src="/images/logo-github.png"
               className={style.gitHubIcon}
               alt="Icone GitHub"
             />
@@ -102,7 +102,7 @@ const Footer = () => {
             className={style.creditsList}
           >
             <img
-              src="images/logo-github.png"
+              src="/images/logo-github.png"
               className={style.gitHubIcon}
               alt="Icone GitHub"
             />

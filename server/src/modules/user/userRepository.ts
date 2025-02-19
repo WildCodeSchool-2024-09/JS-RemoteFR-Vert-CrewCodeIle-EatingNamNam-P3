@@ -85,6 +85,19 @@ class userRepository {
 
     return rows[0].role_id as number;
   }
+
+  async readIdByUsername(payloadUsername: string) {
+    const [rows] = await databaseClient.query<Rows>(
+      `
+        SELECT id
+        FROM user
+        WHERE username = ?
+      `,
+      [payloadUsername],
+    );
+
+    return rows[0].id as number;
+  }
 }
 
 export default new userRepository();
