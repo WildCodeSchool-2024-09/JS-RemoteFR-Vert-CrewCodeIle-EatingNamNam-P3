@@ -16,7 +16,7 @@ class IngredientRepository {
         ingredient.carb_amount,
         ingredient.fat_amount,
         ingredient.calorie_amount,
-        2,
+        ingredient.user_id,
         1,
       ],
     );
