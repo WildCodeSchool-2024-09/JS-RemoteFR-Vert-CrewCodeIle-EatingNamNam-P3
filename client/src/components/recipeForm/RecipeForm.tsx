@@ -124,174 +124,203 @@ export default function RecipeForm() {
   };
 
   return (
-    <>
+    <main>
       <form className={style.form} onSubmit={handleSubmit(formSubmit)}>
-        <label className={style.label}>
-          Je choisis un titre*
-          <input
-            type="text"
-            className={style.input}
-            placeholder="Salade de quinoa aux légumes grillés"
-            {...register("title", recipeValidation.title)}
-          />
-          {errors.title && <span>{errors.title.message}</span>}
-        </label>
-        <label className={style.imageUploader}>
-          Je choisis une image
-          <input
-            type="file"
-            className="style.uploader"
-            accept="image/*"
-            {...register("picture")}
-            onChange={handleImageChange}
-          />
-        </label>
-        <ImagePreview image={selectedImage} />
-        <label className={style.label}>
-          Présentation*
-          <textarea
-            className={`${style.input} ${style.summary}`}
-            placeholder="Salade de quinoa avec légumes grillés, assaisonnée d'huile d'olive et de citron. Simple et savoureuse !"
-            {...register("summary", recipeValidation.summary)}
-          />
-          {errors.summary && <span>{errors.summary.message}</span>}
-        </label>
-        {recipe_ingredientFields.map((field, index) => {
-          return (
-            <div key={field.id}>
-              <section key={field.id}>
-                <label>
+        <div>
+          <label className={style.label}>
+            Je choisis un titre*
+            <input
+              type="text"
+              className={style.input}
+              placeholder="Salade de quinoa aux légumes grillés"
+              {...register("title", recipeValidation.title)}
+            />
+            {errors.title && <span>{errors.title.message}</span>}
+          </label>
+
+          <label className={style.label}>
+            Présentation*
+            <textarea
+              className={`${style.input} ${style.summary}`}
+              placeholder="Salade de quinoa avec légumes grillés, assaisonnée d'huile d'olive et de citron. Simple et savoureuse !"
+              {...register("summary", recipeValidation.summary)}
+            />
+            {errors.summary && <span>{errors.summary.message}</span>}
+          </label>
+        </div>
+        <div className={style.img}>
+          <ImagePreview image={selectedImage} />
+          <label className={style.imageUploader}>
+            <input
+              type="file"
+              className="style.uploader"
+              accept="image/*"
+              {...register("picture")}
+              onChange={handleImageChange}
+            />
+          </label>
+        </div>
+
+        <div className={style.legumes}>
+          {recipe_ingredientFields.map((field, index) => {
+            return (
+              <div key={field.id} className={style.forming}>
+                <section key={field.id}>
+                  <label className={style.quantity}>
+                    <input
+                      className={style.inputnumber}
+                      type="number"
+                      step="0.1"
+                      placeholder="0.1"
+                      {...register(
+                        `recipe_ingredient.${index}.quantity`,
+                        recipeValidation.quantity,
+                      )}
+                    />
+                    {errors.recipe_ingredient?.[index]?.quantity && (
+                      <p className={style.errors}>
+                        {errors.recipe_ingredient[index]?.quantity?.message}
+                      </p>
+                    )}
+                    quantité
+                  </label>
+                  <label>
+                    Choisir un ingrédient
+                    <select
+                      className={style.leg}
+                      {...register(`recipe_ingredient.${index}.label`, {})}
+                    >
+                      {ingredientData.map((ingredient) => (
+                        <option key={ingredient.id} value={ingredient.id}>
+                          {ingredient.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <button
+                    className={style.btnremove}
+                    type="button"
+                    onClick={() => recipe_ingredientRemove(index)}
+                  >
+                    X
+                  </button>
+                </section>
+              </div>
+            );
+          })}
+          <button
+            className={style.add}
+            type="button"
+            onClick={() =>
+              recipe_ingredientAppend({
+                quantity: recipe_ingredientFields.length + 1,
+                label: "",
+              })
+            }
+          >
+            <span className={style.btnplus}>+</span>Ajouter un ingredient
+          </button>
+          <button
+            type="button"
+            onClick={() => setIsIngredient(true)}
+            className={style.info}
+          >
+            Votre ingrédient n'existe pas ?
+            <span className={style.linking}>Créez-le ici!</span>
+          </button>
+        </div>
+        <div className={style.time}>
+          <label className={style.label}>
+            Temps de préparation*
+            <input
+              type="number"
+              className={style.inputnumber}
+              {...register("prep_time", recipeValidation.prep_time)}
+            />
+            {errors.prep_time && <span>{errors.prep_time.message}</span>}
+          </label>
+          <label className={style.label}>
+            Temps de cuisson*
+            <input
+              type="number"
+              className={style.inputnumber}
+              {...register("cook_time", recipeValidation.prep_time)}
+            />
+            {errors.prep_time && <span>{errors.prep_time.message}</span>}
+          </label>
+          <label className={style.label}>
+            Nombre de parts*
+            <input
+              type="number"
+              className={style.inputnumber}
+              {...register("serving", recipeValidation.prep_time)}
+            />
+            {errors.prep_time && <span>{errors.prep_time.message}</span>}
+          </label>
+        </div>
+        <div className={style.etape}>
+          {stepFields.map((field, index) => {
+            return (
+              <div key={field.id}>
+                <section key={field.id} className={style.align}>
                   <input
+                    className={style.inputnumber}
+                    placeholder="order"
                     type="number"
-                    step="0.1"
-                    placeholder="0.1"
                     {...register(
-                      `recipe_ingredient.${index}.quantity`,
-                      recipeValidation.quantity,
+                      `step.${index}.step_order`,
+                      recipeValidation.step_order,
                     )}
                   />
-                  {errors.recipe_ingredient?.[index]?.quantity && (
+                  {errors.step?.[index]?.step_order && (
                     <p className={style.errors}>
-                      {errors.recipe_ingredient[index]?.quantity?.message}
+                      {errors.step[index]?.step_order?.message}
                     </p>
                   )}
-                  quantité
-                </label>
-                <label>
-                  Choisir un ingrédient
-                  <select {...register(`recipe_ingredient.${index}.label`, {})}>
-                    {ingredientData.map((ingredient) => (
-                      <option key={ingredient.id} value={ingredient.id}>
-                        {ingredient.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <button
-                  type="button"
-                  onClick={() => recipe_ingredientRemove(index)}
-                >
-                  X
-                </button>
-              </section>
-            </div>
-          );
-        })}
-        <button
-          type="button"
-          onClick={() =>
-            recipe_ingredientAppend({
-              quantity: recipe_ingredientFields.length + 1,
-              label: "",
-            })
-          }
-        >
-          Ajouter un ingredient
-        </button>
-        <button type="button" onClick={() => setIsIngredient(true)}>
-          créer ingredient
-        </button>
-        <label className={style.label}>
-          Temps de préparation*
-          <input
-            type="number"
-            className={style.input}
-            {...register("prep_time", recipeValidation.prep_time)}
-          />
-          {errors.prep_time && <span>{errors.prep_time.message}</span>}
-        </label>
-        <label className={style.label}>
-          Temps de cuisson*
-          <input
-            type="number"
-            className={style.input}
-            {...register("cook_time", recipeValidation.prep_time)}
-          />
-          {errors.prep_time && <span>{errors.prep_time.message}</span>}
-        </label>
-        <label className={style.label}>
-          Nombre de parts*
-          <input
-            type="number"
-            className={style.input}
-            {...register("serving", recipeValidation.prep_time)}
-          />
-          {errors.prep_time && <span>{errors.prep_time.message}</span>}
-        </label>
-        {stepFields.map((field, index) => {
-          return (
-            <div key={field.id}>
-              <section key={field.id}>
-                <input
-                  placeholder="order"
-                  type="number"
-                  {...register(
-                    `step.${index}.step_order`,
-                    recipeValidation.step_order,
+                  <textarea
+                    className={style.inputtext}
+                    placeholder="Coupez les légumes en morceaux ..."
+                    {...register(
+                      `step.${index}.content`,
+                      recipeValidation.content,
+                    )}
+                  />
+                  {errors.step?.[index]?.content && (
+                    <p className={style.errors}>
+                      {errors.step[index]?.content?.message}
+                    </p>
                   )}
-                />
-                {errors.step?.[index]?.step_order && (
-                  <p className={style.errors}>
-                    {errors.step[index]?.step_order?.message}
-                  </p>
-                )}
-                <textarea
-                  placeholder="Coupez les légumes en morceaux ..."
-                  {...register(
-                    `step.${index}.content`,
-                    recipeValidation.content,
-                  )}
-                />
-                {errors.step?.[index]?.content && (
-                  <p className={style.errors}>
-                    {errors.step[index]?.content?.message}
-                  </p>
-                )}
-                <button type="button" onClick={() => stepRemove(index)}>
-                  X
-                </button>
-              </section>
-            </div>
-          );
-        })}
-        <button
-          type="button"
-          onClick={() =>
-            stepAppend({
-              step_order: stepFields.length + 1,
-              content: "",
-            })
-          }
-        >
-          Ajouter une étape
-        </button>
-        <button className={style.button} type="submit">
-          Ajouter la recette
+                  <button
+                    className={style.btnremove}
+                    type="button"
+                    onClick={() => stepRemove(index)}
+                  >
+                    X
+                  </button>
+                </section>
+              </div>
+            );
+          })}
+          <button
+            className={style.add}
+            type="button"
+            onClick={() =>
+              stepAppend({
+                step_order: stepFields.length + 1,
+                content: "",
+              })
+            }
+          >
+            <span className={style.btnplus}>+</span> Ajouter une étape
+          </button>
+        </div>
+        <button className={style.btncreate} type="submit">
+          Créez votre recette
         </button>
         <span className={style.note}>* obligatoire</span>
       </form>
       <ToastContainer />
       {isIngredient && <IngredientForm closePopUp={handleClose} />}
-    </>
+    </main>
   );
 }
