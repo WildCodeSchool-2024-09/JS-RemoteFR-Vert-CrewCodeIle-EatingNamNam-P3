@@ -18,9 +18,9 @@ export default function CategoryForm() {
         `${import.meta.env.VITE_API_URL}/api/category`,
         data,
       );
-      toast.success(response.data.message, {});
+      toast.success(response.data.message);
     } catch (err) {
-      toast.error("Erreur lors de l'ajout de la catégorie", {});
+      toast.error("Erreur lors de l'ajout de la catégorie");
     }
   };
 
