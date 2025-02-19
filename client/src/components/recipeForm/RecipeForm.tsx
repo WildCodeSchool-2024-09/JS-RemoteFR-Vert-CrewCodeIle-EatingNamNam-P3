@@ -122,217 +122,246 @@ export default function RecipeForm() {
   };
 
   return (
-    <>
+    <main>
       <form className={style.form} onSubmit={handleSubmit(formSubmit)}>
-        <label className={style.label}>
-          Je choisis un titre*
-          <input
-            type="text"
-            className={style.input}
-            placeholder="Saisissez un titre"
-            {...register("title", {
-              required: "Champ obligatoire",
-              minLength: {
-                value: 3,
-                message: "Ce champ doit contenir au moins 3 lettres",
-              },
-              maxLength: {
-                value: 60,
-                message: "Ce champ doit contenir moins de 60 lettres",
-              },
-            })}
-          />
-          {errors.title && <span>{errors.title.message}</span>}
-        </label>
-        <label className={style.imageUploader}>
-          Je choisis une image
-          <input
-            type="file"
-            className="style.uploader"
-            accept="image/*"
-            {...register("picture")}
-            onChange={handleImageChange}
-          />
-        </label>
-        <ImagePreview image={selectedImage} />
-        <label className={style.label}>
-          Présentation*
-          <textarea
-            className={`${style.input} ${style.summary}`}
-            placeholder="Créez un résumé de votre recette, il apparaîtra sur la fiche recette."
-            {...register("summary", {
-              required: "Champ obligatoire",
-              minLength: {
-                value: 40,
-                message: "Ce champ doit contenir au moins 40 lettres",
-              },
-              maxLength: {
-                value: 255,
-                message: "Ce champ doit contenir moins de 255 lettres",
-              },
-            })}
-          />
-          {errors.summary && <span>{errors.summary.message}</span>}
-        </label>
+        <div>
+          <label className={style.label}>
+            Je choisis un titre*
+            <input
+              type="text"
+              className={style.input}
+              placeholder="Saisissez un titre"
+              {...register("title", {
+                required: "Champ obligatoire",
+                minLength: {
+                  value: 3,
+                  message: "Ce champ doit contenir au moins 3 lettres",
+                },
+                maxLength: {
+                  value: 60,
+                  message: "Ce champ doit contenir moins de 60 lettres",
+                },
+              })}
+            />
+            {errors.title && <span>{errors.title.message}</span>}
+          </label>
 
-        {recipe_ingredientFields.map((field, index) => {
-          return (
-            <div key={field.id}>
-              <section key={field.id}>
-                <label>
+          <label className={style.label}>
+            Présentation*
+            <textarea
+              className={`${style.input} ${style.summary}`}
+              placeholder="Créez un résumé de votre recette, il apparaîtra sur la fiche recette."
+              {...register("summary", {
+                required: "Champ obligatoire",
+                minLength: {
+                  value: 40,
+                  message: "Ce champ doit contenir au moins 40 lettres",
+                },
+                maxLength: {
+                  value: 255,
+                  message: "Ce champ doit contenir moins de 255 lettres",
+                },
+              })}
+            />
+            {errors.summary && <span>{errors.summary.message}</span>}
+          </label>
+        </div>
+        <div className={style.img}>
+          <ImagePreview image={selectedImage} />
+          <label className={style.imageUploader}>
+            <input
+              type="file"
+              className="style.uploader"
+              accept="image/*"
+              {...register("picture")}
+              onChange={handleImageChange}
+            />
+          </label>
+        </div>
+        <div className={style.legumes}>
+          {recipe_ingredientFields.map((field, index) => {
+            return (
+              <div key={field.id}>
+                <section key={field.id}>
+                  <label className={style.quantity}>
+                    <input
+                      className={style.inputnumber}
+                      type="number"
+                      step="0.1"
+                      placeholder="0.1"
+                      {...register(`recipe_ingredient.${index}.quantity`, {
+                        min: {
+                          value: 0.1,
+                          message: "quantité minimun 0.1",
+                        },
+                        max: {
+                          value: 1000,
+                          message: "quantité maximun 1000 ",
+                        },
+                      })}
+                    />
+                    {errors.recipe_ingredient?.[index]?.quantity && (
+                      <p className={style.errors}>
+                        {errors.recipe_ingredient[index]?.quantity?.message}
+                      </p>
+                    )}
+                    quantité
+                  </label>
+                  <label>
+                    Choisir un ingrédient
+                    <select
+                      className={style.leg}
+                      {...register(`recipe_ingredient.${index}.label`, {})}
+                    >
+                      {ingredientData.map((ingredient) => (
+                        <option key={ingredient.id} value={ingredient.id}>
+                          {ingredient.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <button
+                    className={style.btnremove}
+                    type="button"
+                    onClick={() => recipe_ingredientRemove(index)}
+                  >
+                    X
+                  </button>
+                </section>
+              </div>
+            );
+          })}
+          <button
+            className={style.add}
+            type="button"
+            onClick={() =>
+              recipe_ingredientAppend({
+                quantity: recipe_ingredientFields.length + 1,
+                label: "",
+              })
+            }
+          >
+            Ajouter un ingredient
+          </button>
+          <button
+            type="button"
+            className={style.linking}
+            onClick={() => setIsIngredient(true)}
+          >
+            Créer ingredient
+          </button>
+        </div>
+        <div className={style.time}>
+          <label className={style.label}>
+            Temps de préparation*
+            <input
+              type="number"
+              className={style.inputnumber}
+              {...register("prep_time", {
+                required: "Ce champ est obligatoire",
+              })}
+            />
+            {errors.prep_time && <span>{errors.prep_time.message}</span>}
+          </label>
+          <label className={style.label}>
+            Temps de cuisson*
+            <input
+              type="number"
+              className={style.inputnumber}
+              {...register("cook_time", {
+                required: "Ce champ est obligatoire",
+              })}
+            />
+            {errors.cook_time && <span>{errors.cook_time.message}</span>}
+          </label>
+          <label className={style.label}>
+            Nombre de parts*
+            <input
+              type="number"
+              className={style.inputnumber}
+              {...register("serving", { required: "Ce champ est obligatoire" })}
+            />
+            {errors.serving && <span>{errors.serving.message}</span>}
+          </label>
+        </div>
+        <div className={style.etape}>
+          {stepFields.map((field, index) => {
+            return (
+              <div key={field.id}>
+                <section key={field.id} className={style.content}>
                   <input
+                    className={style.inputnumber}
+                    placeholder="order"
                     type="number"
-                    step="0.1"
-                    placeholder="0.1"
-                    {...register(`recipe_ingredient.${index}.quantity`, {
+                    {...register(`step.${index}.step_order`, {
                       min: {
-                        value: 0.1,
-                        message: "quantité minimun 0.1",
+                        value: 1,
+                        message: "Les étapes doivent être supérieur a 1",
                       },
                       max: {
-                        value: 1000,
-                        message: "quantité maximun 1000 ",
+                        value: 21,
+                        message: "Les étapes ne peuvent pas dépasser 21",
                       },
                     })}
                   />
-                  {errors.recipe_ingredient?.[index]?.quantity && (
-                    <p className={style.errors}>
-                      {errors.recipe_ingredient[index]?.quantity?.message}
-                    </p>
+                  {errors.step?.[index]?.step_order && (
+                    <span className={style.errors}>
+                      {errors.step[index]?.step_order?.message}
+                    </span>
                   )}
-                  quantité
-                </label>
-                <label>
-                  Choisir un ingrédient
-                  <select {...register(`recipe_ingredient.${index}.label`, {})}>
-                    {ingredientData.map((ingredient) => (
-                      <option key={ingredient.id} value={ingredient.id}>
-                        {ingredient.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <button
-                  type="button"
-                  onClick={() => recipe_ingredientRemove(index)}
-                >
-                  X
-                </button>
-              </section>
-            </div>
-          );
-        })}
-        <button
-          type="button"
-          onClick={() =>
-            recipe_ingredientAppend({
-              quantity: recipe_ingredientFields.length + 1,
-              label: "",
-            })
-          }
-        >
-          Ajouter un ingredient
-        </button>
-        <button type="button" onClick={() => setIsIngredient(true)}>
-          créer ingredient
-        </button>
-
-        <label className={style.label}>
-          Temps de préparation*
-          <input
-            type="number"
-            className={style.input}
-            {...register("prep_time", { required: "Ce champ est obligatoire" })}
-          />
-          {errors.prep_time && <span>{errors.prep_time.message}</span>}
-        </label>
-        <label className={style.label}>
-          Temps de cuisson*
-          <input
-            type="number"
-            className={style.input}
-            {...register("cook_time", { required: "Ce champ est obligatoire" })}
-          />
-          {errors.cook_time && <span>{errors.cook_time.message}</span>}
-        </label>
-        <label className={style.label}>
-          Nombre de parts*
-          <input
-            type="number"
-            className={style.input}
-            {...register("serving", { required: "Ce champ est obligatoire" })}
-          />
-          {errors.serving && <span>{errors.serving.message}</span>}
-        </label>
-        {stepFields.map((field, index) => {
-          return (
-            <div key={field.id}>
-              <section key={field.id}>
-                <input
-                  placeholder="order"
-                  type="number"
-                  {...register(`step.${index}.step_order`, {
-                    min: {
-                      value: 1,
-                      message: "Les étapes doivent être supérieur a 1",
-                    },
-                    max: {
-                      value: 21,
-                      message: "Les étapes ne peuvent pas dépasser 21",
-                    },
-                  })}
-                />
-                {errors.step?.[index]?.step_order && (
-                  <p className={style.errors}>
-                    {errors.step[index]?.step_order?.message}
-                  </p>
-                )}
-                <textarea
-                  placeholder="content"
-                  {...register(`step.${index}.content`, {
-                    required: "Ce champ est obligatoire",
-                    minLength: {
-                      value: 10,
-                      message:
-                        "Les instructions doivent contenir 10 lettres minimum",
-                    },
-                    maxLength: {
-                      value: 400,
-                      message:
-                        "Les instructions doivent contenir 400 lettres minimum",
-                    },
-                  })}
-                />
-                {errors.step?.[index]?.content && (
-                  <p className={style.errors}>
-                    {errors.step[index]?.content?.message}
-                  </p>
-                )}
-                <button type="button" onClick={() => stepRemove(index)}>
-                  X
-                </button>
-              </section>
-            </div>
-          );
-        })}
-        <button
-          type="button"
-          onClick={() =>
-            stepAppend({
-              step_order: stepFields.length + 1,
-              content: "",
-            })
-          }
-        >
-          Ajouter une étape
-        </button>
-        <button className={style.button} type="submit">
+                  <textarea
+                    className={style.inputtext}
+                    placeholder="content"
+                    {...register(`step.${index}.content`, {
+                      required: "Ce champ est obligatoire",
+                      minLength: {
+                        value: 10,
+                        message:
+                          "Les instructions doivent contenir 10 lettres minimum",
+                      },
+                      maxLength: {
+                        value: 400,
+                        message:
+                          "Les instructions doivent contenir 400 lettres minimum",
+                      },
+                    })}
+                  />
+                  {errors.step?.[index]?.content && (
+                    <span className={style.errors}>
+                      {errors.step[index]?.content?.message}
+                    </span>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => stepRemove(index)}
+                    className={style.btnremove}
+                  >
+                    X
+                  </button>
+                </section>
+              </div>
+            );
+          })}
+          <button
+            className={style.add}
+            type="button"
+            onClick={() =>
+              stepAppend({
+                step_order: stepFields.length + 1,
+                content: "",
+              })
+            }
+          >
+            Ajouter une étape
+          </button>
+        </div>
+        <button className={style.add} type="submit">
           Ajouter la recette
         </button>
         <span className={style.note}>* obligatoire</span>
       </form>
       <ToastContainer />
       {isIngredient && <IngredientForm closePopUp={handleClose} />}
-    </>
+    </main>
   );
 }

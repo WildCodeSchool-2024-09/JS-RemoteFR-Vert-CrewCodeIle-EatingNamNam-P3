@@ -1,20 +1,28 @@
-.form {
+main {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
+}
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1em;
-  margin: 3em;
+  margin: 5em;
   padding: 2em;
   background-color: var(--color-primary);
   box-shadow: 0 0.5em 1em 0 var(--color-hint);
   font-family: var(--text-font);
+  width: 70%;
+}
+
+@media (max-width: 990px) {
+  .form {
+    grid-template-columns: repeat(1fr);
+  }
 }
 
 .label {
   display: flex;
   flex-direction: column;
-  width: 80%;
 }
 
 .input {
@@ -23,17 +31,81 @@
   background-color: var(--color-light);
 }
 
-.button {
-  border: 3px solid black;
-  background-color: var(--color-secondary);
-  width: 80%;
+.inputnumber {
+  padding: 0.5em;
+  box-shadow: inset 1px 0 3px;
+  background-color: var(--color-light);
+  width: 4em;
+  text-align: center;
+  margin: 1em;
+}
+
+.quantity {
+  margin: 1em;
+}
+
+.legumes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.leg {
+  padding: 0.5em;
+  box-shadow: inset 1px 0 3px;
+  background-color: var(--color-light);
+  width: 7em;
+  text-align: center;
+  margin: 1em;
+}
+
+/* .button {
+	border: 3px solid black;
+	background-color: var(--color-secondary);
+	color: white;
+	height: 3em;
+	padding: 1em;
+	grid-column: span 2;
+	justify-self: center;
+} */
+
+.add {
+  background-color: var(--color-accent);
   color: white;
-  height: 3em;
-  padding: 1em;
+  height: 2.3em;
+  border-radius: 2em;
+  justify-self: center;
+  width: 11em;
+  cursor: pointer;
+  grid-column: span 2;
+  justify-self: center;
+}
+
+.linking {
+  margin-top: 1em;
+  color: var(--color-accent);
+  cursor: pointer;
+  font-size: 0.8em;
+}
+
+/* .btnadd {
+	color: var(--color-secondary);
+	font-weight: bolder;
+	font-size: 5em;
+	cursor: pointer;
+} */
+.btnadd:hover,
+.add:hover {
+  opacity: 0.8;
+  transform: translateY(1px);
 }
 
 .summary {
   height: 15em;
+}
+.img {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
 }
 
 .imagePreview {
@@ -49,4 +121,36 @@ span {
   color: var(--color-dark);
   font-style: italic;
   padding-top: 1.5em;
+}
+
+.title {
+  display: flex;
+}
+
+.etape {
+  grid-column: span 2;
+  justify-self: center;
+  gap: 2em;
+  margin: 1em;
+}
+
+.imageUploader input {
+  width: 100%;
+  grid-template-columns: 1fr;
+}
+.inputtext {
+  width: 40em;
+  height: 5em;
+  padding: 0.5em;
+  box-shadow: inset 1px 0 3px;
+  background-color: var(--color-light);
+}
+
+.btnremove {
+  color: red;
+}
+
+.time {
+  display: flex;
+  gap: 2em;
 }
