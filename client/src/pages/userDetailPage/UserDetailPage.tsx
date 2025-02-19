@@ -41,8 +41,8 @@ const UserDetailPage = () => {
 
   return (
     <section className={style.userDetail}>
-      <img src="/images/avatar.png" alt="avatar" />
       <section className={style.userInfo}>
+        <img src="/images/avatar.png" alt="avatar" />
         <h2 className={style.userName}>{userData?.username}</h2>
         <div className={style.userDescription}>
           <p>{userData?.localisation}</p>

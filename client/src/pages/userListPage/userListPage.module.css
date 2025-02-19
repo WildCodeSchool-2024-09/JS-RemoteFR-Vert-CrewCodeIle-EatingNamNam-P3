@@ -5,7 +5,7 @@
 }
 
 .form {
-  margin: 2em;
+  margin: 2em 0em 0.2em 0em;
   padding: 0.2em;
   display: flex;
   flex-direction: row-reverse;
@@ -20,6 +20,12 @@
   @media (width > 990px) {
     width: 30em;
   }
+}
+
+.userList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .searchBar {

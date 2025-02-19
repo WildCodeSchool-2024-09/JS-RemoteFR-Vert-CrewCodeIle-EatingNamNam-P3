@@ -1,12 +1,12 @@
 import { useState } from "react";
-import RegistrerPopup from "../registrer/RegistrerPopup";
+import RegisterPopup from "../registerpopup/RegisterPopup";
 import SignInPopup from "../signinpopup/SignInPopUp";
 import style from "./DiscoveryHeader.module.css";
 
 const DiscoveryHeader = () => {
-  const [isRegistrerPopup, setIsRegistrerPopup] = useState(false);
-  const handleCloseRegistrer = () => {
-    setIsRegistrerPopup(false);
+  const [isRegisterPopup, setIsRegisterPopup] = useState(false);
+  const handleCloseRegister = () => {
+    setIsRegisterPopup(false);
   };
 
   const [isSignInPopup, setIsSignInPopup] = useState(false);
@@ -15,10 +15,10 @@ const DiscoveryHeader = () => {
   };
   const handleOpenRegister = () => {
     setIsSignInPopup(false);
-    setIsRegistrerPopup(true);
+    setIsRegisterPopup(true);
   };
   const handleOpenSignIn = () => {
-    setIsRegistrerPopup(false);
+    setIsRegisterPopup(false);
     setIsSignInPopup(true);
   };
   return (
@@ -49,13 +49,13 @@ const DiscoveryHeader = () => {
           <button
             className={style.button}
             type="button"
-            onClick={() => setIsRegistrerPopup(true)}
+            onClick={() => setIsRegisterPopup(true)}
           >
             Crée ton compte
           </button>
-          {isRegistrerPopup && (
-            <RegistrerPopup
-              closePopup={handleCloseRegistrer}
+          {isRegisterPopup && (
+            <RegisterPopup
+              closePopup={handleCloseRegister}
               openPopup={handleOpenSignIn}
             />
           )}
